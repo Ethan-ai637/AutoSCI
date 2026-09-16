@@ -112,7 +112,7 @@ AutoSCI 的目标很简单：**减少科研周边的机械劳动，但不减少�
 
 对于折线图、柱状图、heatmap 等数值实验图，Skill 明确优先使用真实数据 + plotting code，而不是让模型“画一条看起来合理的曲线”。
 
-详见 [`skills/scientific-figure/README.md`](skills/scientific-figure/README.md)。
+详见 [`skills/scientific-figure/SKILL.md`](skills/scientific-figure/SKILL.md)。
 
 ## Academic Research Presentation V3
 
@@ -159,7 +159,7 @@ Use $scientific-figure to turn the Method section of paper.pdf into an editable 
 Use $academic-research-presentation to build a paper-reading deck from paper.pdf.
 ```
 
-Windows 和更完整的安装说明见 [`docs/installation.md`](docs/installation.md)。
+Windows 用户将上述两个 Skill 目录复制到 Codex skills 目录即可，例如 `%USERPROFILE%\.codex\skills`。
 
 ## 设计原则
 
@@ -179,10 +179,8 @@ AutoSCI/
 ├── skills/
 │   ├── scientific-figure/
 │   └── academic-research-presentation/
-├── docs/
-├── examples/
-├── scripts/
-└── .github/
+├── README.md
+└── README_zh.md
 ```
 
 每个 Skill 都尽量保持 self-contained，可以单独复制到本地 Codex skills 目录使用。
