@@ -1,0 +1,52 @@
+name: Materialize Skill Packages
+
+on:
+  push:
+    paths:
+      - ".skill-upload/**"
+      - ".github/workflows/materialize-skills.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct skill packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/autosci-skills/fig /tmp/autosci-skills/pres skills
+          cat .skill-upload/fig/*.part | base64 -d > /tmp/fig.tar.xz
+          cat .skill-upload/pres/*.part | base64 -d > /tmp/pres.tar.xz
+          tar -xJf /tmp/fig.tar.xz -C /tmp/autosci-skills/fig
+          tar -xJf /tmp/pres.tar.xz -C /tmp/autosci-skills/pres
+
+          rm -rf skills/scientific-figure skills/academic-research-presentation
+          cp -R /tmp/autosci-skills/fig/scientific-figure skills/scientific-figure
+          cp -R /tmp/autosci-skills/pres/academic-research-presentation-v3 skills/academic-research-presentation
+
+          test -f skills/scientific-figure/SKILL.md
+          test -f skills/academic-research-presentation/SKILL.md
+
+          rm -rf .skill-upload
+          rm -f .github/workflows/materialize-skills.yml
+
+      - name: Commit materialized skills
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "feat: add AutoSCI Codex skills"
+          git push
