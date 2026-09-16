@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Common generated working artifacts
+outputs/
+release/
+benchmarks/
+workflow_state.json
+figure_spec.json
+critic.json
+layout_plan.md
+*.target.png
+*.target.gray.png
+*.preview.png
