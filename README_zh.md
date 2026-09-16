@@ -1,7 +1,7 @@
 # AutoSCI
 
 <p align="center">
-  <img src="assets/readme/autosci-hero-zh.webp" alt="AutoSCI——面向科研绘图与学术汇报的开源 Codex Skills" width="100%">
+  <img src="assets/readme/autosci-hero-zh.png" alt="AutoSCI——面向科研绘图与学术汇报的开源 Codex Skills" width="100%">
 </p>
 
 <p align="center"><strong>把时间留给科研本身，把繁琐留给工具。</strong></p>
