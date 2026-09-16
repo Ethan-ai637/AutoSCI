@@ -1,7 +1,7 @@
 # AutoSCI
 
 <p align="center">
-  <img src="assets/readme/autosci-hero-en.webp" alt="AutoSCI — open-source Codex skills for scientific figures and research presentations" width="100%">
+  <img src="assets/readme/autosci-hero-en.png" alt="AutoSCI — open-source Codex skills for scientific figures and research presentations" width="100%">
 </p>
 
 <p align="center"><strong>Spend more time thinking about science, less time formatting it.</strong></p>
