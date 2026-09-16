@@ -1,0 +1,54 @@
+{
+  "critic_schema": "1.1",
+  "status": "in_progress",
+  "semantic_audit": {
+    "scores": {
+      "semantic_correctness": 0,
+      "completeness": 0,
+      "evidence_discipline": 0
+    },
+    "blockers": [],
+    "evidence_checked": [],
+    "source_grounding": {
+      "unsupported_visible_claims": [],
+      "inferred_core_claims": [],
+      "anchors_checked": []
+    }
+  },
+  "visual_audit": {
+    "scores": {
+      "legibility": 0,
+      "visual_hierarchy": 0,
+      "reading_order": 0,
+      "geometry": 0,
+      "scientific_visual_grammar": 0,
+      "information_density": 0,
+      "style_consistency": 0,
+      "publication_readiness": 0
+    },
+    "blockers": [],
+    "robustness": {
+      "grayscale_checked": false,
+      "color_only_meaning": [],
+      "print_projection_risks": []
+    }
+  },
+  "defects": [
+    {
+      "priority": 1,
+      "location": "",
+      "spec_ids": [],
+      "problem": "",
+      "evidence": "",
+      "fix": ""
+    }
+  ],
+  "regression_check": {
+    "previously_correct_semantics_preserved": [],
+    "previously_resolved_defects_still_resolved": [],
+    "new_regressions": []
+  },
+  "next_iteration_focus": [],
+  "change_grammar": false,
+  "author_verification": []
+}

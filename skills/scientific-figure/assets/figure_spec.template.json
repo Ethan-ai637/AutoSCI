@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.7",
+  "semantic_status": "draft",
+  "semantic_lock": null,
+  "workflow": {
+    "profile": "standard",
+    "layout_tournament": "auto",
+    "max_refine_rounds": 3,
+    "orchestration": "deterministic"
+  },
+  "message": "REPLACE: one-sentence figure message",
+  "source": {
+    "kind": "paper|user-brief|code|data|existing-figure",
+    "description": "REPLACE: authoritative source",
+    "anchors": [
+      {
+        "id": "S1",
+        "locator": "REPLACE: Method §3.2 / Eq. (4) / user brief item / file:line",
+        "evidence_summary": "REPLACE: concise paraphrase of what this source location supports"
+      }
+    ],
+    "artifacts": []
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "text": "REPLACE: supported scientific claim",
+      "priority": "core",
+      "support": "direct",
+      "source_anchor_ids": [
+        "S1"
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "id": "E1",
+      "type": "input",
+      "label": "REPLACE: input",
+      "importance": "primary",
+      "claim_ids": [
+        "C1"
+      ]
+    },
+    {
+      "id": "E2",
+      "type": "module",
+      "label": "REPLACE: method/module",
+      "importance": "primary",
+      "claim_ids": [
+        "C1"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "id": "R1",
+      "source": "E1",
+      "target": "E2",
+      "type": "flow",
+      "label": "",
+      "claim_ids": [
+        "C1"
+      ]
+    }
+  ],
+  "notation": [
+    {
+      "id": "N1",
+      "kind": "term|symbol|equation",
+      "canonical_source": "REPLACE: exact source notation or LaTeX",
+      "required_svg_text": "REPLACE: exact editable SVG display text",
+      "required": false,
+      "source_anchor_ids": [
+        "S1"
+      ]
+    }
+  ],
+  "required_labels": [
+    {
+      "id": "L1",
+      "text": "REPLACE: exact required label",
+      "case_sensitive": true
+    }
+  ],
+  "invariants": [
+    "REPLACE: e.g. R1 direction must remain E1 -> E2"
+  ],
+  "panels": [
+    {
+      "id": "A",
+      "role": "REPLACE: panel scientific job",
+      "contains": [
+        "E1",
+        "E2"
+      ]
+    }
+  ],
+  "visual_encodings": [
+    {
+      "meaning": "primary flow",
+      "encoding": "solid directed arrow",
+      "channels": [
+        "shape",
+        "direction"
+      ]
+    }
+  ],
+  "forbidden_inferences": [],
+  "target": {
+    "use": "paper|presentation|poster",
+    "placement": "single-column|double-column|full-page|slide",
+    "aspect_ratio": "16:9",
+    "width_in": 7.0,
+    "min_text_pt": 7.5,
+    "target_render_dpi": 150,
+    "target_preview_width_px": 1050,
+    "grayscale_safe": true,
+    "exports": [
+      "svg",
+      "pdf",
+      "png"
+    ]
+  },
+  "style_intent": {
+    "density": "medium",
+    "character": "clean scientific vector",
+    "reference_figures": []
+  },
+  "qa": {
+    "geometry_audit": "required",
+    "max_primary_overlap_ratio": 0.15,
+    "relation_endpoint_tolerance": 28,
+    "portability_audit": "recommended",
+    "allow_external_resources": false,
+    "allow_embedded_raster": true,
+    "require_generic_font_fallback": false
+  }
+}

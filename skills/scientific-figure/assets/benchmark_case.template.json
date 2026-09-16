@@ -1,0 +1,16 @@
+{
+  "benchmark_schema": "1.0",
+  "case_id": "paper-a",
+  "title": "Blind method reconstruction",
+  "track": "blind",
+  "figure_mode": "method-overview",
+  "source": {"name": "paper.pdf", "sha256": "sha256:...", "bytes": 0},
+  "protocol": {
+    "author_reference_available": false,
+    "author_reference": null,
+    "reference_access_during_generation": "forbidden",
+    "reference_use_for_evaluation": "posthoc_only",
+    "target_width_in": 7.0,
+    "notes": ""
+  }
+}

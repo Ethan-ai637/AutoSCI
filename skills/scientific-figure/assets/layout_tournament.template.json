@@ -1,0 +1,27 @@
+{
+  "complexity": "medium|high",
+  "candidates": [
+    {
+      "id": "L1",
+      "grammar": "REPLACE",
+      "semantic_risk": "low|medium|high",
+      "story_clarity": 0,
+      "connector_complexity": 0,
+      "target_size_density": 0,
+      "novelty_emphasis": 0,
+      "notes": ""
+    },
+    {
+      "id": "L2",
+      "grammar": "REPLACE",
+      "semantic_risk": "low|medium|high",
+      "story_clarity": 0,
+      "connector_complexity": 0,
+      "target_size_density": 0,
+      "novelty_emphasis": 0,
+      "notes": ""
+    }
+  ],
+  "selected": "L1",
+  "selection_reason": "REPLACE: scientific and visual rationale"
+}

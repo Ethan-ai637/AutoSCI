@@ -1,0 +1,28 @@
+{
+  "evaluation_schema": "1.0",
+  "case_id": "CASE_ID",
+  "run_id": "RUN_ID",
+  "status": "in_progress",
+  "evaluator": {"kind": "human", "name": ""},
+  "posthoc_author_reference_used": false,
+  "scores": {
+    "scientific_correctness": null,
+    "claim_coverage": null,
+    "structural_clarity": null,
+    "visual_hierarchy": null,
+    "reading_order": null,
+    "final_size_legibility": null,
+    "editability": null
+  },
+  "failures": [
+    {"category": "layout", "severity": "major", "description": "", "evidence": ""}
+  ],
+  "reference_comparison": {
+    "semantic_elements_missed": [],
+    "useful_layout_insights": [],
+    "acceptable_differences": [],
+    "notes": ""
+  },
+  "verdict": null,
+  "notes": ""
+}

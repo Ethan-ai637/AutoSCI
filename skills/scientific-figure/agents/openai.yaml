@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scientific Figure"
+  short_description: "Create source-grounded, editable scientific figures with proportional QA"
+  default_prompt: "Use $scientific-figure to turn this research content into an editable scientific figure. Use the standard workflow by default: build a source-grounded semantic spec, freeze stable semantics, choose a scientific visual grammar, generate traceable SVG, run proportional deterministic QA, render, critique semantics and visuals separately, and refine surgically. Use draft mode for rapid sketches and promote to release mode only for publication/camera-ready packaging."

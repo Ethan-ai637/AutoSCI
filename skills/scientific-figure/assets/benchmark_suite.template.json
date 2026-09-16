@@ -1,0 +1,13 @@
+{
+  "benchmark_suite_schema": "1.0",
+  "suite_id": "scientific-figure-core",
+  "title": "Scientific Figure Core Benchmark",
+  "created_utc": "",
+  "cases": [],
+  "variants": [
+    {"id": "raw-codex", "role": "baseline", "description": "Task-equivalent prompt without this skill"},
+    {"id": "skill-current-standard", "role": "candidate", "description": "Current skill in standard profile"},
+    {"id": "skill-current-no-tournament", "role": "ablation", "parent": "skill-current-standard", "change": "Disable layout tournament", "description": "Example ablation"}
+  ],
+  "notes": ""
+}
