@@ -112,7 +112,7 @@ Highlights include source-grounded claims, semantic locking, Spec ↔ SVG tracea
 
 For quantitative experimental plots, the skill prefers authoritative data + plotting code over visually invented curves.
 
-See [`skills/scientific-figure/README.md`](skills/scientific-figure/README.md) and [`STABILITY.md`](skills/scientific-figure/STABILITY.md).
+See [`skills/scientific-figure/SKILL.md`](skills/scientific-figure/SKILL.md) and [`STABILITY.md`](skills/scientific-figure/STABILITY.md).
 
 ## Academic Research Presentation — V3
 
@@ -161,7 +161,7 @@ Use $academic-research-presentation to build a 15-slide paper-reading presentati
 Prioritize the paper's main figures and tables, and explain the evidence rather than filling slides with cards.
 ```
 
-Windows and additional installation notes are in [`docs/installation.md`](docs/installation.md).
+On Windows, copy the same two skill directories into your Codex skills directory (for example `%USERPROFILE%\.codex\skills`).
 
 ## Design Principles
 
@@ -181,10 +181,8 @@ AutoSCI/
 ├── skills/
 │   ├── scientific-figure/
 │   └── academic-research-presentation/
-├── docs/
-├── examples/
-├── scripts/
-└── .github/
+├── README.md
+└── README_zh.md
 ```
 
 Each skill is intentionally self-contained so it can be copied into a local skills directory independently.
@@ -192,7 +190,6 @@ Each skill is intentionally self-contained so it can be copied into a local skil
 ## Validation
 
 ```bash
-python scripts/validate_repo.py
 python skills/scientific-figure/scripts/doctor.py
 ```
 
