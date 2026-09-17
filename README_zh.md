@@ -15,6 +15,7 @@
   <a href="#快速开始">快速开始</a> ·
   <a href="#目前包含的-skills">Skills</a> ·
   <a href="#底层是怎么工作的">底层实现</a> ·
+  <a href="skills/scientific-figure/scripts/">Python 工具</a> ·
   <a href="CONTRIBUTING.md">参与贡献</a>
 </p>
 
