@@ -15,6 +15,7 @@
   <a href="#quick-start">Quick Start</a> ·
   <a href="#skills">Skills</a> ·
   <a href="#under-the-hood">Under the Hood</a> ·
+  <a href="skills/scientific-figure/scripts/">Python Tools</a> ·
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
 
