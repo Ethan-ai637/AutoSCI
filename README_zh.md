@@ -7,7 +7,7 @@
 <p align="center"><strong>把时间留给科研本身，把繁琐留给工具。</strong></p>
 
 <p align="center">
-  面向科研绘图、论文阅读、组会汇报、科研进展与学术表达工作的开源、本地优先 Codex Skills。
+  面向文献研究、科研绘图、论文阅读、组会汇报、科研进展与学术表达工作的开源、本地优先 Codex Skills。
 </p>
 
 <p align="center">
@@ -21,6 +21,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
+  <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
@@ -65,10 +66,26 @@ AutoSCI **不只是一组提示词**。我们把科研工作经验组织成可�
 
 | Skill | 做什么 | 实现方式 |
 | --- | --- | --- |
+| [`literature-research`](skills/literature-research) | 文献搜索、筛选、去重、report-to-study identity、主题聚类、claim-level evidence table、citation trail 与 study-aware synthesis | Skill 工作流 + references + templates + **Python normalization、screening、study identity、provenance、synthesis、schema、snapshot 与 handoff 工具链** |
 | [`scientific-figure`](skills/scientific-figure) | 从 Method、equation、code、data 或已有科研图创建/重构可编辑科研图 | Skill 工作流 + references + **Python 流程编排、审计、渲染、release 与 benchmark 工具链** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | 论文汇报、组会、科研进展与 technical talk 的 evidence-first 工作流 | Skill 工作流 + references + templates + source visual / diagram QA 规则 |
 
-两个 Skill 可以独立安装，也可以串联使用：
+三个 Skill 可以独立安装，也可以串联使用。`literature-research` 可以先生成经过审计的证据工作区，再交给科研绘图或学术汇报流程继续消费：
+
+```text
+研究问题 / 文献语料
+        │
+        ↓
+$literature-research
+        ↓
+可审计 evidence workspace
+        │
+   ┌────┴────┐
+   ↓         ↓
+$scientific-figure  $academic-research-presentation
+```
+
+科研绘图与汇报 Skill 也可以直接独立使用：
 
 ```text
 论文 / Method / Results
@@ -141,6 +158,16 @@ benchmark_suite.py     多案例 Skill 评测
 
 AutoSCI 的目标很简单：**减少科研周边的机械劳动，但不减少研究者的判断权。**
 
+## Literature Research v1.6.1
+
+`literature-research` 是 evidence-first 的文献研究工作流，覆盖文献发现、筛选、去重、report-to-study identity、主题组织、claim-level evidence extraction、citation trail 与 study-aware synthesis。
+
+它把科研判断和机械 QA 分开：模型负责检索设计、纳排判断与证据解释，确定性 Python 工具负责 metadata normalization、保守去重、screening reconciliation、study identity audit、search/stopping-rule audit、synthesis provenance、workspace schema、冻结快照与下游 handoff。
+
+Skill 支持 `exploratory / standard / systematic` 三种 profile，并明确区分“尝试过的检索”和“成功覆盖”、“full_text_attempted”和真正的“full_text_screened”、报告数量和独立 study 数量，以及科学证据状态和 verification coverage。当检索覆盖不完整时，不会把普通标准证据综述包装成系统综述。
+
+详见 [`SKILL.md`](skills/literature-research/SKILL.md)、[`references/`](skills/literature-research/references/)、[`templates/`](skills/literature-research/templates/) 和可执行的 [`scripts/`](skills/literature-research/scripts/) 目录。
+
 ## Scientific Figure v2.0
 
 `scientific-figure` 是一个 structure-first 的可编辑科研绘图工作流，把 source-grounded semantic contract、traceable SVG 与确定性的 Python QA 组合在一起。
@@ -170,11 +197,17 @@ git clone https://github.com/Ethan-ai637/AutoSCI.git
 cd AutoSCI
 
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
+cp -R skills/literature-research "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
 重新加载 Codex 后，可以直接调用：
+
+```text
+Use $literature-research to review 2022–2026 empirical studies on LLM clinical decision support.
+Use standard mode and preserve the full search, screening, study-identity, evidence, and synthesis audit trail.
+```
 
 ```text
 Use $scientific-figure to turn the Method section of paper.pdf into an editable Figure 1.
@@ -196,6 +229,12 @@ python skills/scientific-figure/scripts/doctor.py
 AutoSCI/
 ├── assets/readme/                      # README 视觉素材
 ├── skills/
+│   ├── literature-research/
+│   │   ├── SKILL.md                    # Codex Skill 入口
+│   │   ├── references/                 # 检索、筛选、证据与 study identity 规则
+│   │   ├── schemas/                    # versioned workspace contract
+│   │   ├── templates/                  # protocol / search / screening / evidence 模板
+│   │   └── scripts/                    # 确定性 review / audit / handoff 工具
 │   ├── scientific-figure/
 │   │   ├── SKILL.md                    # Codex Skill 入口
 │   │   ├── agents/                     # Agent metadata
@@ -226,6 +265,7 @@ AutoSCI/
 
 ## 项目状态
 
+- `literature-research`: **v1.6.1**，已通过真实 standard workflow 回归，提供 search / screening / study / synthesis provenance 与可复现 handoff。
 - `scientific-figure`: **v2.0.0 stable**。
 - `academic-research-presentation`: **v3.0.0**，当前重点是 evidence-first、diagram safety 与 source visual completeness。
 

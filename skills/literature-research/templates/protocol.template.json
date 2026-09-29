@@ -1,0 +1,55 @@
+{
+  "protocol_id": "",
+  "protocol_version": "1.0",
+  "created_at": "",
+  "profile": "standard",
+  "research_question": "",
+  "question_framework": "freeform",
+  "concepts": [
+    {
+      "name": "concept_1",
+      "terms": []
+    },
+    {
+      "name": "concept_2",
+      "terms": []
+    }
+  ],
+  "inclusion_criteria": [],
+  "exclusion_criteria": [],
+  "date_range": {
+    "from": null,
+    "to": null
+  },
+  "languages": [],
+  "publication_types": [],
+  "target_sources": [],
+  "evidence_fields": [],
+  "screening_plan": {
+    "stages": [
+      "title_abstract",
+      "full_text_or_most_complete_accessible_record"
+    ],
+    "reviewers_per_record": 1,
+    "conflict_resolution": "adjudication when needed"
+  },
+  "stopping_rule": "",
+  "protocol_changes": [],
+  "synthesis_unit": "study",
+  "deterministic_exclusion_rules": [
+    {
+      "rule_id": "example_non_empirical_review",
+      "field": "publication_type",
+      "operator": "contains_any",
+      "values": [
+        "review",
+        "editorial",
+        "commentary"
+      ],
+      "reason_code": "non_empirical_review",
+      "criterion_id": "non_empirical_review",
+      "enabled": false,
+      "note": "Example only. Enable/adapt only when the protocol explicitly excludes these publication types."
+    }
+  ]
+}

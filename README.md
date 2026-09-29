@@ -7,7 +7,7 @@
 <p align="center"><strong>Spend more time thinking about science, less time formatting it.</strong></p>
 
 <p align="center">
-  Open-source, local-first Codex skills for scientific figures, paper reading, group meetings, research updates, and technical presentations.
+  Open-source, local-first Codex skills for literature research, scientific figures, paper reading, group meetings, research updates, and technical presentations.
 </p>
 
 <p align="center">
@@ -21,6 +21,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
+  <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
@@ -61,14 +62,30 @@ This is not about replacing scientific judgment. It is about removing friction b
 
 ## Skills
 
-AutoSCI currently contains two complementary, independently installable skills:
+AutoSCI currently contains three complementary, independently installable skills:
 
 | Skill | What it does | Implementation |
 | --- | --- | --- |
+| [`literature-research`](skills/literature-research) | Searches, screens, deduplicates, resolves report-to-study identity, clusters topics, builds claim-level evidence tables and citation trails, and produces audited study-aware synthesis | Skill workflow + references + templates + **Python normalization, screening, study-identity, provenance, synthesis, schema, snapshot and handoff tooling** |
 | [`scientific-figure`](skills/scientific-figure) | Creates/reconstructs editable scientific figures from methods, equations, code, data, or existing figures | Skill workflow + references + **Python orchestration, audits, rendering, release and benchmark tooling** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | Builds/reviews evidence-first paper-reading, group-meeting, research-update, and technical-talk workflows | Skill workflow + references + templates + source-visual/diagram QA rules |
 
-They can be used separately or together:
+They can be used separately or chained together. A literature review can produce an audited evidence workspace for later figure or presentation work:
+
+```text
+research question / literature corpus
+             │
+             ↓
+     $literature-research
+             ↓
+ audited evidence workspace
+             │
+       ┌─────┴─────┐
+       ↓           ↓
+$scientific-figure  $academic-research-presentation
+```
+
+The figure and presentation skills can also be used directly:
 
 ```text
 paper / method / results
@@ -141,6 +158,16 @@ The presentation skill is intentionally more reasoning-oriented: its implementat
 
 The goal is simple: **reduce the mechanical work around research without reducing the researcher’s agency.**
 
+## Literature Research — v1.6.1
+
+`literature-research` is an evidence-first workflow for literature discovery, screening, deduplication, report-to-study identity, topic organization, claim-level evidence extraction, citation trails, and study-aware synthesis.
+
+It separates research judgment from mechanical QA: the model designs searches and interprets evidence, while deterministic Python tooling handles normalization, conservative deduplication, screening reconciliation, study identity audits, search/stopping-rule audits, synthesis provenance, workspace schemas, frozen snapshots, and downstream handoff packages.
+
+The skill supports `exploratory`, `standard`, and `systematic` profiles. It explicitly distinguishes attempted versus successful search coverage, `full_text_attempted` versus genuinely `full_text_screened`, report counts versus independent-study counts, and scientific evidence state versus verification coverage. It does not turn a standard evidence review into a claimed systematic review when retrieval coverage is incomplete.
+
+See [`SKILL.md`](skills/literature-research/SKILL.md), [`references/`](skills/literature-research/references/), [`templates/`](skills/literature-research/templates/), and the executable [`scripts/`](skills/literature-research/scripts/) directory.
+
 ## Scientific Figure — v2.0 Stable
 
 `scientific-figure` is a structure-first workflow for creating and reconstructing editable research figures. It combines a source-grounded semantic contract with traceable SVG and deterministic Python QA.
@@ -170,11 +197,17 @@ git clone https://github.com/Ethan-ai637/AutoSCI.git
 cd AutoSCI
 
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
+cp -R skills/literature-research "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
 Reload Codex and invoke a skill explicitly:
+
+```text
+Use $literature-research to review 2022–2026 empirical studies on LLM clinical decision support.
+Use standard mode, preserve the search/screening trail, distinguish reports from underlying studies, and deliver an audited evidence table + synthesis.
+```
 
 ```text
 Use $scientific-figure to turn the Method section of paper.pdf into an editable Figure 1.
@@ -198,6 +231,12 @@ python skills/scientific-figure/scripts/doctor.py
 AutoSCI/
 ├── assets/readme/                      # README artwork
 ├── skills/
+│   ├── literature-research/
+│   │   ├── SKILL.md                    # Codex skill entry point
+│   │   ├── references/                 # search/screening/evidence/study-identity guidance
+│   │   ├── schemas/                    # versioned workspace contracts
+│   │   ├── templates/                  # protocol/search/screening/evidence templates
+│   │   └── scripts/                    # deterministic review/audit/handoff tooling
 │   ├── scientific-figure/
 │   │   ├── SKILL.md                    # Codex skill entry point
 │   │   ├── agents/                     # agent metadata
@@ -228,6 +267,7 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 
 ## Project Status
 
+- **Literature Research:** `v1.6.1`, real-world-tested standard-workflow baseline with search/screening/study/synthesis provenance and reproducible handoff.
 - **Scientific Figure:** `v2.0.0`, stable production contract.
 - **Academic Research Presentation:** `v3.0.0`, focused on evidence-first presentation design, diagram safety, and complete acquisition of paper figures/tables.
 

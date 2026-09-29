@@ -1,0 +1,5 @@
+id,title,authors,year,journal,doi,abstract,source,search_id,retrieval_date
+1,Deep learning for widget detection,"A. Smith; B. Lee",2024,Journal of Widgets,10.1000/widget.1,"We evaluate deep neural networks for widget detection.",ExampleDB,Q1,2026-09-29
+2,Deep Learning for Widget Detection,"A. Smith; B. Lee",2024,Journal of Widgets,https://doi.org/10.1000/widget.1,"We evaluate deep neural networks for widget detection.",OtherDB,Q2,2026-09-29
+3,Transformer methods for widget classification,C. Patel,2025,Widget Methods,10.1000/widget.2,"A transformer classifier is evaluated on three widget datasets.",ExampleDB,Q1,2026-09-29
+4,Classical baselines for widget classification,D. Chen,2023,Widget Benchmark,10.1000/widget.3,"We compare linear and tree-based baselines.",ExampleDB,Q1,2026-09-29

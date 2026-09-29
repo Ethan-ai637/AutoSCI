@@ -1,0 +1,84 @@
+{
+  "schema_id": "autosci-literature-research-workspace-v1",
+  "schema_version": 1,
+  "description": "Structural contract for literature-research workspaces. Extra columns/keys are allowed; listed fields are the minimum compatible surface.",
+  "artifacts": {
+    "protocol.json": {
+      "kind": "json_object",
+      "required_keys": ["profile", "research_question", "concepts", "inclusion_criteria", "exclusion_criteria", "target_sources", "screening_plan", "stopping_rule", "synthesis_unit"],
+      "enums": {
+        "profile": ["exploratory", "standard", "systematic"],
+        "synthesis_unit": ["study", "report"]
+      }
+    },
+    "search_log.csv": {
+      "kind": "csv",
+      "required_columns": ["query_id", "search_stage", "source", "interface", "query", "searched_at", "filters", "concept_blocks", "result_count", "imported_count", "new_unique_count", "new_included_count", "notes"]
+    },
+    "records.normalized.csv": {
+      "kind": "csv",
+      "required_columns": ["record_id", "title", "authors", "year", "venue", "doi", "pmid", "pmcid", "arxiv_id", "url", "abstract", "source", "query_id", "retrieved_at", "publication_type", "extra_json"]
+    },
+    "records.deduped.csv": {
+      "kind": "csv",
+      "required_columns": ["record_id", "title", "authors", "year", "venue", "doi", "pmid", "pmcid", "arxiv_id", "url", "abstract", "source", "query_id", "retrieved_at", "publication_type", "extra_json"]
+    },
+    "review/workspace_meta.json": {
+      "kind": "json_object",
+      "required_keys": ["workspace_schema", "created_by_skill_version", "created_at", "migration_history"]
+    },
+    "review/screening.csv": {
+      "kind": "csv",
+      "required_columns": ["record_id", "title", "decision", "reason_code", "screening_stage", "reviewers", "decision_basis", "conflict_status", "notes"]
+    },
+    "review/screening_log.csv": {
+      "kind": "csv",
+      "required_columns": ["record_id", "title", "stage", "reviewer", "decision", "reason_code", "criterion_id", "evidence_basis", "decided_at", "notes"]
+    },
+    "review/study_map.csv": {
+      "kind": "csv",
+      "required_columns": ["record_id", "study_id", "report_role", "linkage_basis", "verification_status", "notes"]
+    },
+    "review/evidence_table.csv": {
+      "kind": "csv",
+      "required_columns": ["source_id", "study_id", "source_version", "claim_id", "research_question_component", "study_design_or_method", "population_dataset_context", "intervention_or_method", "comparator_or_baseline", "outcome_metric", "reported_result", "uncertainty_or_variance", "authors_interpretation", "reviewer_interpretation", "limitations", "evidence_location", "support_level", "verification_status", "evidence_strength_note"]
+    },
+    "review/citation_trail.csv": {
+      "kind": "csv",
+      "required_columns": ["source_id", "target_id", "relation", "verification_source", "verification_url", "verified_at", "notes"]
+    },
+    "review/synthesis_claims.csv": {
+      "kind": "csv",
+      "required_columns": ["synthesis_id", "statement", "research_question_component", "evidence_state", "scope", "caveat", "notes"]
+    },
+    "review/synthesis_evidence.csv": {
+      "kind": "csv",
+      "required_columns": ["synthesis_id", "claim_id", "relation", "notes"]
+    },
+    "review/evidence_graph.json": {
+      "kind": "json_object",
+      "required_keys": ["schema", "counts", "nodes", "edges", "passed"]
+    },
+    "review/preflight.json": {
+      "kind": "json_object",
+      "required_keys": ["profile", "counts", "errors", "warnings", "passed"]
+    },
+    "review/review_manifest.json": {
+      "kind": "json_object",
+      "required_keys": ["manifest_schema", "skill", "protocol", "artifacts", "artifact_count"]
+    }
+  },
+  "final_required": [
+    "protocol.json",
+    "search_log.csv",
+    "records.deduped.csv",
+    "review/workspace_meta.json",
+    "review/screening.csv",
+    "review/study_map.csv",
+    "review/evidence_table.csv",
+    "review/citation_trail.csv",
+    "review/synthesis_claims.csv",
+    "review/synthesis_evidence.csv",
+    "review/preflight.json"
+  ]
+}
