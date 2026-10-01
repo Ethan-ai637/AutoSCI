@@ -1,0 +1,109 @@
+{
+  "project_id": "full-release-demo",
+  "skill_version": "1.7.2",
+  "profile": "release",
+  "mode": "build",
+  "manuscript_scope": "full_manuscript",
+  "study_design": "controlled experiment",
+  "research_question": "Does condition A differ from condition B for the primary outcome?",
+  "primary_outcomes": [
+    "primary outcome"
+  ],
+  "analysis_populations": [
+    "all analyzed samples"
+  ],
+  "canonical_terminology": {
+    "A": "condition A",
+    "B": "condition B"
+  },
+  "protected_facts": [],
+  "unresolved_conflicts": [
+    {
+      "conflict_id": "CF001",
+      "status": "unresolved",
+      "release_disposition": "disclose_and_scope",
+      "summary": "Synthetic canonical table and secondary export disagree on the exact primary-outcome estimates.",
+      "reason": "The canonical result remains usable if the secondary export discrepancy is kept source-specific and disclosed.",
+      "affected_source_ids": [
+        "SRC001",
+        "SRCALT"
+      ],
+      "affected_claim_ids": [
+        "C001",
+        "C003"
+      ],
+      "scoped_claim_ids": [
+        "C001"
+      ],
+      "disclosure_claim_ids": [
+        "C003"
+      ],
+      "required_disclosure_text_tokens": [
+        "canonical table",
+        "secondary export"
+      ],
+      "affected_evidence_ids": [
+        "E001",
+        "E004"
+      ],
+      "cross_side_claim_ids": [
+        "C003"
+      ],
+      "conflict_sides": [
+        {
+          "side_id": "canonical",
+          "source_ids": [
+            "SRC001"
+          ],
+          "evidence_ids": [
+            "E001"
+          ],
+          "value_tokens": [
+            "12.4",
+            "10.1"
+          ],
+          "attribution_tokens": [
+            "canonical table"
+          ]
+        },
+        {
+          "side_id": "secondary",
+          "source_ids": [
+            "SRCALT"
+          ],
+          "evidence_ids": [
+            "E004"
+          ],
+          "value_tokens": [
+            "12.5",
+            "10.0"
+          ],
+          "attribution_tokens": [
+            "secondary export"
+          ]
+        }
+      ]
+    }
+  ],
+  "journal_target": null,
+  "notes": "Synthetic structure example only.",
+  "coverage_policy": {
+    "required_sections": [
+      "Abstract",
+      "Methods",
+      "Results",
+      "Discussion",
+      "Conclusion"
+    ],
+    "allow_exemptions": true
+  },
+  "claim_atomicity_policy": {
+    "enforce_claim_types": [
+      "result",
+      "method",
+      "limitation"
+    ],
+    "max_top_level_scientific_clauses": 1,
+    "allow_exemptions": true
+  }
+}

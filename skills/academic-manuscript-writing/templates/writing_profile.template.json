@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "unresolved",
+  "context": {
+    "discipline": null,
+    "subfield": null,
+    "article_type": null,
+    "venue": null,
+    "track": null,
+    "venue_year": null,
+    "submission_stage": "initial_submission",
+    "target_specificity": "generic",
+    "language": "en"
+  },
+  "retrieval": {
+    "performed": false,
+    "retrieved_at": null,
+    "source_priority": [
+      "official_author_guidelines",
+      "official_template",
+      "official_checklist",
+      "official_publisher_or_society_guidance",
+      "secondary_guidance"
+    ],
+    "notes": ""
+  },
+  "constraints": [],
+  "guideline_conflicts": [],
+  "readiness": {
+    "level": "generic",
+    "venue_ready": false,
+    "limitations": [
+      "No discipline/venue-specific writing profile has been resolved."
+    ]
+  }
+}

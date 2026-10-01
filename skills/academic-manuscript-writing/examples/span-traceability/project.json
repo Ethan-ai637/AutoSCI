@@ -1,0 +1,51 @@
+{
+  "project_id": "span-traceability-demo",
+  "skill_version": "1.8.0",
+  "profile": "release",
+  "mode": "build",
+  "study_design": "controlled experiment",
+  "research_question": "Does condition A change the primary outcome relative to condition B?",
+  "primary_outcomes": [
+    "primary outcome"
+  ],
+  "analysis_populations": [
+    "all analyzed samples"
+  ],
+  "canonical_terminology": {
+    "A": "condition A",
+    "B": "condition B"
+  },
+  "protected_facts": [],
+  "unresolved_conflicts": [],
+  "journal_target": null,
+  "notes": "Synthetic structure example only; no real scientific values.",
+  "manuscript_scope": "single_section",
+  "coverage_policy": {
+    "required_sections": [
+      "Results"
+    ],
+    "allow_exemptions": true
+  },
+  "claim_span_policy": {
+    "required_sections": [
+      "Results"
+    ],
+    "required_claim_types": [
+      "result",
+      "limitation"
+    ],
+    "allow_exemptions": true,
+    "max_uncovered_words_per_paragraph": 2,
+    "require_exact_claim_text": true,
+    "enforce_reverse_references": true
+  },
+  "claim_atomicity_policy": {
+    "enforce_claim_types": [
+      "result",
+      "method",
+      "limitation"
+    ],
+    "max_top_level_scientific_clauses": 1,
+    "allow_exemptions": true
+  }
+}

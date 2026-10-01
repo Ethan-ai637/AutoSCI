@@ -1,0 +1,2 @@
+{"source_id": "SRC001", "source_type": "result_table", "path": "results/table1.csv", "locator": "Table 1", "authority": "canonical", "version": "v1", "citation_key": null, "object_label": "Table 1", "fingerprint": null, "notes": "Primary result table"}
+{"source_id": "SRC002", "source_type": "figure", "path": "figures/fig2.png", "locator": "Figure 2", "authority": "derived", "version": "v1", "citation_key": null, "object_label": "Fig. 2", "fingerprint": null, "notes": "Generated from canonical analysis"}

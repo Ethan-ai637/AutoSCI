@@ -1,13 +1,13 @@
 # AutoSCI
 
 <p align="center">
-  <img src="assets/readme/autosci-hero-en.png" alt="AutoSCI — open-source Codex skills for scientific figures and research presentations" width="100%">
+  <img src="assets/readme/autosci-hero-en.png" alt="AutoSCI — open-source Codex skills for scientific research and communication" width="100%">
 </p>
 
 <p align="center"><strong>Spend more time thinking about science, less time formatting it.</strong></p>
 
 <p align="center">
-  Open-source, local-first Codex skills for literature research, manuscript review, scientific data analysis, scientific figures, paper reading, group meetings, research updates, and technical presentations.
+  Open-source, local-first Codex skills for evidence-grounded manuscript writing and review, literature research, scientific data analysis, scientific figures, paper reading, group meetings, research updates, and technical presentations.
 </p>
 
 <p align="center">
@@ -23,6 +23,7 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
   <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">
   <img src="https://img.shields.io/badge/Manuscript%20Reviewer-v1.1.0-8a2be2" alt="Manuscript Reviewer v1.1.0">
+  <img src="https://img.shields.io/badge/Manuscript%20Writing-v2.0.0-2563eb" alt="Academic Manuscript Writing v2.0.0">
   <img src="https://img.shields.io/badge/Scientific%20Data%20Analysis-v1.6.1-0f766e" alt="Scientific Data Analysis v1.6.1">
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
@@ -64,12 +65,13 @@ This is not about replacing scientific judgment. It is about removing friction b
 
 ## Skills
 
-AutoSCI currently contains five complementary, independently installable skills:
+AutoSCI currently contains six complementary, independently installable skills:
 
 | Skill | What it does | Implementation |
 | --- | --- | --- |
 | [`literature-research`](skills/literature-research) | Searches, screens, deduplicates, resolves report-to-study identity, clusters topics, builds claim-level evidence tables and citation trails, and produces audited study-aware synthesis | Skill workflow + references + templates + **Python normalization, screening, study-identity, provenance, synthesis, schema, snapshot and handoff tooling** |
 | [`manuscript-reviewer`](skills/manuscript-reviewer) | Audits claim–evidence alignment, figure/table/text consistency, numerical integrity, notation, citation support, protocol comparability, overclaiming, and revision/rebuttal resolution | Evidence-led reviewer workflow + canonical finding records + schemas + **semantic regression fixtures and release validation** |
+| [`academic-manuscript-writing`](skills/academic-manuscript-writing) | Builds, revises, refreshes, and audits scientific manuscripts from supplied evidence, with claim traceability and source-aware writing contracts | Skill workflow + references + templates + schemas + **deterministic preflight, revision lineage, and venue-profile audits** |
 | [`scientific-data-analysis`](skills/scientific-data-analysis) | Turns scientific tabular data into an auditable workflow spanning data cleaning, prespecified inference, effect sizes and uncertainty, sensitivity analysis, reproducible plotting, and prospective power/sample-size planning | Skill workflow + references + templates + **deterministic Python cleaning, statistics, plotting, provenance, power-planning, reconciliation and release QA** |
 | [`scientific-figure`](skills/scientific-figure) | Creates/reconstructs editable scientific figures from methods, equations, code, data, or existing figures | Skill workflow + references + **Python orchestration, audits, rendering, release and benchmark tooling** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | Builds/reviews evidence-first paper-reading, group-meeting, research-update, and technical-talk workflows | Skill workflow + references + templates + source-visual/diagram QA rules |
@@ -112,6 +114,8 @@ manuscript / supplement / references / rebuttal
      evidence-backed findings
   + revision lineage / coverage gaps
 ```
+
+`academic-manuscript-writing` handles evidence-grounded drafting and revision. Its v2.0 workflow separates scientific evidence from time-sensitive writing guidance: when a discipline or venue profile is requested, it records applicable official sources, normalizes their constraints, and validates the manuscript against a versioned contract. It also supports claim/evidence ledgers, source-conflict disclosure, revision lineage, manuscript coverage, and release preflight.
 
 The figure and presentation skills can also be used directly:
 
@@ -210,6 +214,14 @@ It is **not** an accept/reject predictor and does not replace scientific judgmen
 
 See [`SKILL.md`](skills/manuscript-reviewer/SKILL.md), [`checks/`](skills/manuscript-reviewer/checks/), [`schemas/`](skills/manuscript-reviewer/schemas/), [`regressions/`](skills/manuscript-reviewer/regressions/), and [`docs/EVALUATION.md`](skills/manuscript-reviewer/docs/EVALUATION.md).
 
+## Academic Manuscript Writing — v2.0.0
+
+`academic-manuscript-writing` supports building, revising, refreshing, and auditing scientific manuscripts from results, figures, tables, methods, and research notes. It keeps a traceable chain from sources and evidence to claims, section/reporting contracts, manuscript text, revision obligations, and release checks.
+
+For discipline- or venue-specific work, v2.0 resolves a writing profile from retrieved, applicable guidance and links its requirements to a `manuscript_contract.json`. Writing requirements remain separate from scientific evidence, and venue readiness is reported only after the contract and release checks are verified.
+
+See [`SKILL.md`](skills/academic-manuscript-writing/SKILL.md), [`references/`](skills/academic-manuscript-writing/references/), [`templates/`](skills/academic-manuscript-writing/templates/), [`schemas/`](skills/academic-manuscript-writing/schemas/), and [`scripts/`](skills/academic-manuscript-writing/scripts/). Run its packaged checks with `python skills/academic-manuscript-writing/scripts/self_test.py --quick`.
+
 ## Scientific Data Analysis — v1.6.1
 
 `scientific-data-analysis` is an audit-first workflow for scientific tabular data. It locks the scientific question, estimand, independent analysis unit, variable roles, exclusions and analysis family before inference; records cleaning decisions instead of silently changing data; reports effect magnitude and uncertainty alongside significance tests; supports declared sensitivity analyses and multiplicity correction; and produces reproducible plots whose cohorts are reconciled against the statistical results.
@@ -251,6 +263,7 @@ cd AutoSCI
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
 cp -R skills/literature-research "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/manuscript-reviewer "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -R skills/academic-manuscript-writing "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-data-analysis "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
@@ -266,6 +279,11 @@ Use standard mode, preserve the search/screening trail, distinguish reports from
 ```text
 Use $manuscript-reviewer to audit paper.pdf before submission.
 Check claim–evidence alignment, figure/table/text consistency, numerical integrity, notation, citations, protocol comparability, and overclaiming.
+```
+
+```text
+Use $academic-manuscript-writing to revise my manuscript from the verified results and figures.
+Preserve supported text, trace every substantive claim to evidence, record unresolved source conflicts, and run the appropriate preflight.
 ```
 
 ```text
@@ -309,6 +327,12 @@ AutoSCI/
 │   │   ├── schemas/                    # canonical finding and revision-delta contracts
 │   │   ├── regressions/                # semantic regression fixtures
 │   │   └── scripts/                    # release/build validation
+│   ├── academic-manuscript-writing/
+│   │   ├── SKILL.md                    # evidence-grounded manuscript workflow
+│   │   ├── references/                 # source, claim, revision, and writing-profile guidance
+│   │   ├── schemas/                    # project, writing-profile, and manuscript contracts
+│   │   ├── templates/                  # evidence, claim, reporting, and writing-workspace templates
+│   │   └── scripts/                    # deterministic audits, preflight, and self-tests
 │   ├── scientific-data-analysis/
 │   │   ├── SKILL.md                    # audit-first analysis/planning entry point
 │   │   ├── references/                 # cleaning/statistics/uncertainty/power guidance
@@ -347,6 +371,7 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 
 - **Literature Research:** `v1.6.1`, real-world-tested standard-workflow baseline with search/screening/study/synthesis provenance and reproducible handoff.
 - **Manuscript Reviewer:** `v1.1.0`, evidence-led pre-submission and revision/rebuttal audit baseline with canonical findings and regression-driven validation.
+- **Academic Manuscript Writing:** `v2.0.0`, evidence-traceable manuscript build/revision with dynamic writing profiles, manuscript contracts, revision lineage, and deterministic release QA.
 - **Scientific Data Analysis:** `v1.6.1`, audit-first tabular analysis + prospective power/sample-size planning with deterministic reconciliation and release gating.
 - **Scientific Figure:** `v2.0.0`, stable production contract.
 - **Academic Research Presentation:** `v3.0.0`, focused on evidence-first presentation design, diagram safety, and complete acquisition of paper figures/tables.

@@ -1,0 +1,261 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "writing_profile.schema.json",
+  "title": "Dynamic Writing Profile",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "context",
+    "retrieval",
+    "constraints",
+    "guideline_conflicts",
+    "readiness"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "enum": [
+        "unresolved",
+        "partial",
+        "resolved",
+        "not_required"
+      ]
+    },
+    "context": {
+      "type": "object",
+      "required": [
+        "submission_stage",
+        "target_specificity",
+        "language"
+      ],
+      "properties": {
+        "discipline": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "subfield": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "article_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "venue": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "track": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "venue_year": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1900,
+          "maximum": 2200
+        },
+        "submission_stage": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_specificity": {
+          "enum": [
+            "generic",
+            "discipline",
+            "venue"
+          ]
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "retrieval": {
+      "type": "object",
+      "required": [
+        "performed",
+        "retrieved_at"
+      ],
+      "properties": {
+        "performed": {
+          "type": "boolean"
+        },
+        "retrieved_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_priority": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "constraint_id",
+          "category",
+          "requirement",
+          "strength",
+          "basis",
+          "source_ids",
+          "verification"
+        ],
+        "properties": {
+          "constraint_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requirement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "strength": {
+            "enum": [
+              "required",
+              "recommended",
+              "prohibited",
+              "informational"
+            ]
+          },
+          "basis": {
+            "enum": [
+              "official_guideline",
+              "official_template",
+              "official_checklist",
+              "discipline_convention",
+              "user_instruction"
+            ]
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "source_locator": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "applies_to_stages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verification": {
+            "enum": [
+              "verified",
+              "needs_review",
+              "blocked"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "guideline_conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "conflict_id",
+          "summary",
+          "source_ids",
+          "disposition"
+        ],
+        "properties": {
+          "conflict_id": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "disposition": {
+            "enum": [
+              "blocking",
+              "scoped",
+              "historical",
+              "resolved"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "readiness": {
+      "type": "object",
+      "required": [
+        "level",
+        "venue_ready",
+        "limitations"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "generic",
+            "discipline",
+            "venue"
+          ]
+        },
+        "venue_ready": {
+          "type": "boolean"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
