@@ -22,7 +22,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
   <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">
-  <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
+  <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">\n  <img src="https://img.shields.io/badge/Manuscript%20Reviewer-v1.1.0-0A7BBB" alt="Manuscript Reviewer v1.1.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
 </p>
@@ -66,11 +66,11 @@ AutoSCI **不只是一组提示词**。我们把科研工作经验组织成可�
 
 | Skill | 做什么 | 实现方式 |
 | --- | --- | --- |
-| [`literature-research`](skills/literature-research) | 文献搜索、筛选、去重、report-to-study identity、主题聚类、claim-level evidence table、citation trail 与 study-aware synthesis | Skill 工作流 + references + templates + **Python normalization、screening、study identity、provenance、synthesis、schema、snapshot 与 handoff 工具链** |
+| [`literature-research`](skills/literature-research) | 文献搜索、筛选、去重、report-to-study identity、主题聚类、claim-level evidence table、citation trail 与 study-aware synthesis | Skill 工作流 + references + templates + **Python normalization、screening、study identity、provenance、synthesis、schema、snapshot 与 handoff 工具链** |\n| [`manuscript-reviewer`](skills/manuscript-reviewer) | 投稿前与 rebuttal/revision 阶段的论文证据一致性审计：claim–evidence、Figure/Table/Text、数值、notation、citation semantic support、overclaim、protocol comparability 与 revision lineage | Skill 工作流 + **checks + schemas + canonical records + semantic regression fixtures + 确定性 release validation** |
 | [`scientific-figure`](skills/scientific-figure) | 从 Method、equation、code、data 或已有科研图创建/重构可编辑科研图 | Skill 工作流 + references + **Python 流程编排、审计、渲染、release 与 benchmark 工具链** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | 论文汇报、组会、科研进展与 technical talk 的 evidence-first 工作流 | Skill 工作流 + references + templates + source visual / diagram QA 规则 |
 
-三个 Skill 可以独立安装，也可以串联使用。`literature-research` 可以先生成经过审计的证据工作区，再交给科研绘图或学术汇报流程继续消费：
+四个 Skill 可以独立安装，也可以串联使用。`literature-research` 可以先生成经过审计的证据工作区，再交给科研绘图或学术汇报流程继续消费：
 
 ```text
 研究问题 / 文献语料
@@ -85,7 +85,7 @@ $literature-research
 $scientific-figure  $academic-research-presentation
 ```
 
-科研绘图与汇报 Skill 也可以直接独立使用：
+论文审稿 Skill 可以作为投稿前或 revision/rebuttal 阶段的独立质量门：\n\n```text\nmanuscript / supplement / rebuttal / revision\n                    │\n                    ↓\n          $manuscript-reviewer\n                    ↓\n       证据驱动的一致性审计\n finding / author query / coverage gap\n```\n\n科研绘图与汇报 Skill 也可以直接独立使用：
 
 ```text
 论文 / Method / Results
@@ -210,7 +210,7 @@ Use standard mode and preserve the full search, screening, study-identity, evide
 ```
 
 ```text
-Use $scientific-figure to turn the Method section of paper.pdf into an editable Figure 1.
+Use $manuscript-reviewer to audit paper.pdf in standard mode.\nCheck claim–evidence alignment, figure/table/text consistency, numerical integrity, notation, citation support, and overclaiming.\nSeparate verified findings, author queries, and coverage gaps.\n```\n\n```text\nUse $scientific-figure to turn the Method section of paper.pdf into an editable Figure 1.
 ```
 
 ```text
@@ -235,7 +235,7 @@ AutoSCI/
 │   │   ├── schemas/                    # versioned workspace contract
 │   │   ├── templates/                  # protocol / search / screening / evidence 模板
 │   │   └── scripts/                    # 确定性 review / audit / handoff 工具
-│   ├── scientific-figure/
+│   ├── manuscript-reviewer/\n│   │   ├── SKILL.md                    # 论文证据一致性审计入口\n│   │   ├── checks/                     # audit / state / coverage / provenance / revision 规则\n│   │   ├── schemas/                    # canonical finding / revision-delta contract\n│   │   ├── regressions/                # semantic regression fixtures\n│   │   └── scripts/                    # release validation / build 工具\n│   ├── scientific-figure/
 │   │   ├── SKILL.md                    # Codex Skill 入口
 │   │   ├── agents/                     # Agent metadata
 │   │   ├── assets/                     # 结构化模板
@@ -266,7 +266,7 @@ AutoSCI/
 ## 项目状态
 
 - `literature-research`: **v1.6.1**，已通过真实 standard workflow 回归，提供 search / screening / study / synthesis provenance 与可复现 handoff。
-- `scientific-figure`: **v2.0.0 stable**。
+- `manuscript-reviewer`: **v1.1.0**，面向投稿前与 revision/rebuttal 的 evidence-first 审计，包含 canonical records、revision lineage、误报控制与 regression-driven validation。\n- `scientific-figure`: **v2.0.0 stable**。
 - `academic-research-presentation`: **v3.0.0**，当前重点是 evidence-first、diagram safety 与 source visual completeness。
 
 ## 致谢与说明

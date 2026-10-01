@@ -22,7 +22,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
   <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">
-  <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
+  <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">\n  <img src="https://img.shields.io/badge/Manuscript%20Reviewer-v1.1.0-0A7BBB" alt="Manuscript Reviewer v1.1.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
 </p>
@@ -62,11 +62,11 @@ This is not about replacing scientific judgment. It is about removing friction b
 
 ## Skills
 
-AutoSCI currently contains three complementary, independently installable skills:
+AutoSCI currently contains four complementary, independently installable skills:
 
 | Skill | What it does | Implementation |
 | --- | --- | --- |
-| [`literature-research`](skills/literature-research) | Searches, screens, deduplicates, resolves report-to-study identity, clusters topics, builds claim-level evidence tables and citation trails, and produces audited study-aware synthesis | Skill workflow + references + templates + **Python normalization, screening, study-identity, provenance, synthesis, schema, snapshot and handoff tooling** |
+| [`literature-research`](skills/literature-research) | Searches, screens, deduplicates, resolves report-to-study identity, clusters topics, builds claim-level evidence tables and citation trails, and produces audited study-aware synthesis | Skill workflow + references + templates + **Python normalization, screening, study-identity, provenance, synthesis, schema, snapshot and handoff tooling** |\n| [`manuscript-reviewer`](skills/manuscript-reviewer) | Audits manuscripts before submission and during rebuttal/revision for claim–evidence alignment, figure/table/text and numerical consistency, notation, citation support, overclaiming, protocol comparability, and revision lineage | Skill workflow + **checks + schemas + canonical records + semantic regression fixtures + deterministic release validation** |
 | [`scientific-figure`](skills/scientific-figure) | Creates/reconstructs editable scientific figures from methods, equations, code, data, or existing figures | Skill workflow + references + **Python orchestration, audits, rendering, release and benchmark tooling** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | Builds/reviews evidence-first paper-reading, group-meeting, research-update, and technical-talk workflows | Skill workflow + references + templates + source-visual/diagram QA rules |
 
@@ -85,7 +85,7 @@ research question / literature corpus
 $scientific-figure  $academic-research-presentation
 ```
 
-The figure and presentation skills can also be used directly:
+The manuscript reviewer can be used independently as a pre-submission or revision gate:\n\n```text\nmanuscript / supplement / rebuttal / revision\n                    │\n                    ↓\n          $manuscript-reviewer\n                    ↓\n  evidence-grounded consistency audit\n finding / author query / coverage gap\n```\n\nThe figure and presentation skills can also be used directly:
 
 ```text
 paper / method / results
@@ -210,7 +210,7 @@ Use standard mode, preserve the search/screening trail, distinguish reports from
 ```
 
 ```text
-Use $scientific-figure to turn the Method section of paper.pdf into an editable Figure 1.
+Use $manuscript-reviewer to audit paper.pdf in standard mode.\nCheck claim–evidence alignment, figure/table/text consistency, numerical integrity, notation, citation support, and overclaiming.\nSeparate verified findings, author queries, and coverage gaps.\n```\n\n```text\nUse $scientific-figure to turn the Method section of paper.pdf into an editable Figure 1.
 Use standard mode, preserve mathematical notation, and deliver SVG + target-size PNG.
 ```
 
@@ -237,7 +237,7 @@ AutoSCI/
 │   │   ├── schemas/                    # versioned workspace contracts
 │   │   ├── templates/                  # protocol/search/screening/evidence templates
 │   │   └── scripts/                    # deterministic review/audit/handoff tooling
-│   ├── scientific-figure/
+│   ├── manuscript-reviewer/\n│   │   ├── SKILL.md                    # evidence-driven manuscript audit entry point\n│   │   ├── checks/                     # audit, state, coverage, provenance and revision rules\n│   │   ├── schemas/                    # canonical finding / revision-delta contracts\n│   │   ├── regressions/                # semantic regression fixtures\n│   │   └── scripts/                    # deterministic release validation/build tooling\n│   ├── scientific-figure/
 │   │   ├── SKILL.md                    # Codex skill entry point
 │   │   ├── agents/                     # agent metadata
 │   │   ├── assets/                     # structured templates
@@ -268,7 +268,7 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 ## Project Status
 
 - **Literature Research:** `v1.6.1`, real-world-tested standard-workflow baseline with search/screening/study/synthesis provenance and reproducible handoff.
-- **Scientific Figure:** `v2.0.0`, stable production contract.
+- **Manuscript Reviewer:** `v1.1.0`, evidence-first pre-submission/revision audit with canonical records, revision lineage, false-positive controls, and regression-driven validation.\n- **Scientific Figure:** `v2.0.0`, stable production contract.
 - **Academic Research Presentation:** `v3.0.0`, focused on evidence-first presentation design, diagram safety, and complete acquisition of paper figures/tables.
 
 ## Acknowledgements
