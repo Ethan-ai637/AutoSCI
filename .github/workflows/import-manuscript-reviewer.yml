@@ -4,7 +4,7 @@ on:
     branches:
       - publish-manuscript-reviewer-v1.1.0
     paths:
-      - ".autosci-import/**"
+      - ".autosci-import/READY"
 permissions:
   contents: write
 jobs:
