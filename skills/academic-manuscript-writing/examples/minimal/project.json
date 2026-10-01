@@ -1,0 +1,33 @@
+{
+  "project_id": "minimal-demo",
+  "skill_version": "1.6.0",
+  "profile": "standard",
+  "mode": "build",
+  "study_design": "controlled experiment",
+  "research_question": "Does condition A change the primary outcome relative to condition B?",
+  "primary_outcomes": [
+    "primary outcome"
+  ],
+  "analysis_populations": [
+    "all analyzed samples"
+  ],
+  "canonical_terminology": {
+    "A": "condition A",
+    "B": "condition B"
+  },
+  "protected_facts": [],
+  "unresolved_conflicts": [],
+  "journal_target": null,
+  "notes": "Synthetic structure example only; no real scientific values.",
+  "manuscript_scope": "single_section",
+  "coverage_policy": {
+    "required_sections": [
+      "Abstract",
+      "Methods",
+      "Results",
+      "Discussion",
+      "Conclusion"
+    ],
+    "allow_exemptions": true
+  }
+}

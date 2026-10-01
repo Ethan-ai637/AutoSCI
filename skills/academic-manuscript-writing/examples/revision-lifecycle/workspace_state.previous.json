@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "state_id": "9d8625604cbcd4a9934affd1c7bd8264c56926b01c54693a27e3f35f76fc066e",
+  "project_id": "revision-lifecycle-demo",
+  "skill_version": "1.5.0",
+  "mode": "refresh",
+  "files": {
+    "project.json": "e8f56bcd735a5be3cf578db6285c37fed7359726cb6bb79b8b9088bbd1d16f26",
+    "section_plan.json": "a18bc6d9c6c3e8a5ba86078f246d98609223dca18387fb525d4a5766af33670a",
+    "sources.jsonl": "b9f239b76124fe6970fe97e204a56b56b45cb233e63217e8d17d1417b9296b92",
+    "evidence.jsonl": "36ac9fa83c0c125419e416060409d2d85e9a025cd424bf5fca8bbe4355256c69",
+    "claims.jsonl": "2c897ac3f414be09a82592ce52c4bbe1d603d531f07a55bd9d34e839dd642825",
+    "reporting_contracts.jsonl": "5c4c553f771649d672506ec2a41f3d02219b84e03204bc29d1bc63989b423b2b",
+    "manuscript.md": "eb270dddf245d321e8a465565bf50fba98919e79bdf78afdffb8112cd77dae34"
+  },
+  "source_files": {
+    "SRC001_OLD": {
+      "path": "results.before.csv",
+      "version": "v1",
+      "exists": true,
+      "sha256": "2a12a53fd71b5c654925b1f688c4fda76de8595ea50dac1fa43b26b60b09f8fb"
+    },
+    "SRCM": {
+      "path": "methods.txt",
+      "version": "v1",
+      "exists": true,
+      "sha256": "5ee003d225588be7e03ed2c3abbd9f0e41790b21d9e3463d5daf6353884b64d9"
+    },
+    "SRCF": {
+      "path": "fig2.svg",
+      "version": "v1",
+      "exists": true,
+      "sha256": "8cc01553adf8f799eefeb1f4c2a51d831559d72935311233dda6144f579d6226"
+    }
+  },
+  "records": {
+    "sources": {
+      "SRC001_OLD": "f81d106ea547cbbae0e141f7b558cc2302cd3c30446c79564b95ab4e26266d6b",
+      "SRCM": "eb58e2cf61bf1cba82b7346a8b3c4b3ac96f4b89df791bd0bdf7d72b55cd7ce7",
+      "SRCF": "88e8cfb3545a192250bfef11e9c1d760c969c5fcaa4e5a6a092d473dd486d6e4"
+    },
+    "evidence": {
+      "E001_OLD": "41c0ca02e2469c5c888b9f7d61c491fddceaf7033d2aabf6ee311bba6e8f37da",
+      "E002": "f30d102cc03e0c7a83427a9e1a80c8a24ff73c3f2f1ce02dc0297a9e66262af9",
+      "E003": "b99b77e97a8fb338e1f10362038530d7aa29d02127fe73df49dd356659fb1458"
+    },
+    "claims": {
+      "C002_OLD": "8b8b161929aef4375526e211bd1318cd9b255fe7bd8415fe673dd259e247537e",
+      "C001_OLD": "31697f29a7ac6d3d4227e35069deebed914cfff38bff8883238a5c0f8c2e5aae",
+      "C003_OLD": "55dade27a6da43e73ccefb82d283fa0a273a14cc62da69fcf5d04067e9245644",
+      "CM1": "916fc24b1be92f6c7e8a2c6c7f0901b5dcda44b784971192c82e24a13eb92bb6"
+    },
+    "reporting_contracts": {
+      "RC001": "10956c811a22d3b5a5d3b3bbd7c6c596d76168dd6780ac05938d91bccf50e7e9"
+    }
+  }
+}

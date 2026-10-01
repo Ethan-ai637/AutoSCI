@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "contract_status": "verified",
+  "context": {
+    "discipline": "computer_science",
+    "subfield": "machine_learning",
+    "article_type": "conference_paper",
+    "venue": "ExampleConf",
+    "track": "main",
+    "venue_year": 2030,
+    "submission_stage": "initial_submission",
+    "target_specificity": "venue",
+    "language": "en"
+  },
+  "writing_profile_sha256": "c6aed032515af89acc4b70259605d808c066c5bc4e8026585db3958ae9ee117c",
+  "enforce_section_order": true,
+  "sections": [
+    {
+      "name": "Abstract",
+      "presence": "required",
+      "claim_coverage": "required",
+      "purpose": "Compressed evidence summary.",
+      "constraint_ids": [
+        "WC001",
+        "WC002"
+      ],
+      "scientific_roles": [
+        "abstract"
+      ]
+    },
+    {
+      "name": "Methods",
+      "presence": "required",
+      "claim_coverage": "required",
+      "purpose": "Source-grounded methods.",
+      "constraint_ids": [
+        "WC001"
+      ],
+      "scientific_roles": [
+        "methods"
+      ]
+    },
+    {
+      "name": "Evaluation",
+      "presence": "required",
+      "claim_coverage": "required",
+      "purpose": "Empirical findings.",
+      "constraint_ids": [
+        "WC001"
+      ],
+      "scientific_roles": [
+        "results"
+      ]
+    },
+    {
+      "name": "Discussion",
+      "presence": "required",
+      "claim_coverage": "required",
+      "purpose": "Interpretation and limits.",
+      "constraint_ids": [
+        "WC001"
+      ],
+      "scientific_roles": [
+        "discussion"
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "MR001",
+      "scope": "manuscript",
+      "rule": "Preserve anonymous-review compliance.",
+      "strength": "required",
+      "constraint_ids": [
+        "WC003"
+      ]
+    }
+  ],
+  "machine_checks": [
+    {
+      "check_id": "MC001",
+      "type": "section_order",
+      "sections": [
+        "Abstract",
+        "Methods",
+        "Evaluation",
+        "Discussion"
+      ],
+      "constraint_ids": [
+        "WC001"
+      ]
+    },
+    {
+      "check_id": "MC002",
+      "type": "max_words",
+      "section": "Abstract",
+      "max_words": 120,
+      "constraint_ids": [
+        "WC002"
+      ]
+    }
+  ],
+  "manual_checks": [
+    {
+      "check_id": "MN001",
+      "rule": "Verify author-identifying content is absent from the submission artifact.",
+      "constraint_ids": [
+        "WC003"
+      ],
+      "status": "verified",
+      "verification_notes": "Synthetic fixture manuscript contains no author metadata."
+    }
+  ],
+  "unresolved_items": []
+}

@@ -1,0 +1,4 @@
+{"source_id":"SRC001_OLD","source_type":"result_table","path":"results.before.csv","locator":"primary outcome, historical v1","authority":"historical","version":"v1","citation_key":null,"object_label":null,"notes":"Synthetic historical result table"}
+{"source_id":"SRC001","source_type":"result_table","path":"results.csv","locator":"primary outcome","authority":"canonical","version":"v2","citation_key":null,"object_label":null,"notes":"Synthetic revised result table"}
+{"source_id":"SRCM","source_type":"methods_record","path":"methods.txt","locator":"analysis plan","authority":"canonical","version":"v1","citation_key":null,"object_label":null,"notes":"Synthetic methods record"}
+{"source_id":"SRCF","source_type":"figure","path":"fig2.svg","locator":"Figure 2","authority":"derived","version":"v2","citation_key":null,"object_label":"Fig. 2","notes":"Synthetic revised figure"}

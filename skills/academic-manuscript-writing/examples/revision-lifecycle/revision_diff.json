@@ -1,0 +1,104 @@
+{
+  "schema_version": 2,
+  "old_manuscript_sha256": "eb270dddf245d321e8a465565bf50fba98919e79bdf78afdffb8112cd77dae34",
+  "new_manuscript_sha256": "fbb768e08dd17b06071d7e02d33e849441926a18f15937695d32a257fa72631e",
+  "changed_sections": [
+    "Abstract",
+    "Discussion",
+    "Results"
+  ],
+  "changed_claims": [],
+  "removed_claim_anchors": [
+    {
+      "claim_id": "C002_OLD",
+      "claim_family_id": "F001",
+      "section": "Abstract",
+      "lifecycle_state": "superseded",
+      "anchor": "CLAIM:C002_OLD"
+    },
+    {
+      "claim_id": "C001_OLD",
+      "claim_family_id": "F001",
+      "section": "Results",
+      "lifecycle_state": "superseded",
+      "anchor": "CLAIM:C001_OLD"
+    },
+    {
+      "claim_id": "C003_OLD",
+      "claim_family_id": "F001",
+      "section": "Discussion",
+      "lifecycle_state": "superseded",
+      "anchor": "CLAIM:C003_OLD"
+    }
+  ],
+  "added_claim_anchors": [
+    {
+      "claim_id": "C102",
+      "claim_family_id": "F001",
+      "section": "Abstract",
+      "lifecycle_state": "active",
+      "anchor": "CLAIM:C102"
+    },
+    {
+      "claim_id": "C101",
+      "claim_family_id": "F001",
+      "section": "Results",
+      "lifecycle_state": "active",
+      "anchor": "CLAIM:C101"
+    },
+    {
+      "claim_id": "C103",
+      "claim_family_id": "F001",
+      "section": "Discussion",
+      "lifecycle_state": "active",
+      "anchor": "CLAIM:C103"
+    }
+  ],
+  "anchors_absent_in_both": [],
+  "missing_or_moved_anchors": [
+    {
+      "claim_id": "C002_OLD",
+      "anchor": "CLAIM:C002_OLD",
+      "old_present": true,
+      "new_present": false
+    },
+    {
+      "claim_id": "C001_OLD",
+      "anchor": "CLAIM:C001_OLD",
+      "old_present": true,
+      "new_present": false
+    },
+    {
+      "claim_id": "C003_OLD",
+      "anchor": "CLAIM:C003_OLD",
+      "old_present": true,
+      "new_present": false
+    },
+    {
+      "claim_id": "C102",
+      "anchor": "CLAIM:C102",
+      "old_present": false,
+      "new_present": true
+    },
+    {
+      "claim_id": "C101",
+      "anchor": "CLAIM:C101",
+      "old_present": false,
+      "new_present": true
+    },
+    {
+      "claim_id": "C103",
+      "anchor": "CLAIM:C103",
+      "old_present": false,
+      "new_present": true
+    }
+  ],
+  "summary": {
+    "changed_section_count": 3,
+    "changed_claim_count": 0,
+    "removed_anchor_count": 3,
+    "added_anchor_count": 3,
+    "absent_both_count": 0,
+    "anchor_transition_count": 6
+  }
+}

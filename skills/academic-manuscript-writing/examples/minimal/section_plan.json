@@ -1,0 +1,14 @@
+{
+  "central_argument": "Primary result is higher in Group A than Group B.",
+  "main_claim_families": [
+    "F001"
+  ],
+  "sections": {
+    "Results": {
+      "must_cover": [
+        "F001"
+      ],
+      "notes": "Minimal example"
+    }
+  }
+}

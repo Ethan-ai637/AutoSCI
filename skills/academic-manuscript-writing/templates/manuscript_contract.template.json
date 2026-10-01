@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "contract_status": "draft",
+  "context": {
+    "discipline": null,
+    "subfield": null,
+    "article_type": null,
+    "venue": null,
+    "track": null,
+    "venue_year": null,
+    "submission_stage": "initial_submission",
+    "target_specificity": "generic",
+    "language": "en"
+  },
+  "writing_profile_sha256": null,
+  "enforce_section_order": false,
+  "sections": [],
+  "rules": [],
+  "machine_checks": [],
+  "manual_checks": [],
+  "unresolved_items": []
+}

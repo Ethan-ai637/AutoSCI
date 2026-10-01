@@ -1,0 +1,1 @@
+{"contract_id": "RC001", "claim_family_id": "F001", "role": "primary", "result_evidence_ids": ["E001"], "method_evidence_ids": ["E002"], "qualifier_evidence_ids": ["E003"], "object_source_ids": ["SRCF"], "required_sections": ["Abstract", "Results", "Discussion"], "abstract_eligible": true, "notes": "Synthetic main-result reporting contract"}

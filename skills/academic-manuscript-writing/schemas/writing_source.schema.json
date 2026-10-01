@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "writing_source.schema.json",
+  "title": "Academic Manuscript Writing Source",
+  "type": "object",
+  "required": [
+    "writing_source_id",
+    "title",
+    "authority_level",
+    "source_class",
+    "retrieved_at"
+  ],
+  "properties": {
+    "writing_source_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "authority_level": {
+      "enum": [
+        "official",
+        "publisher",
+        "society",
+        "secondary",
+        "user"
+      ]
+    },
+    "source_class": {
+      "type": "string",
+      "minLength": 1
+    },
+    "retrieved_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "venue": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "discipline": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subfield": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "applicable_article_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "applicable_tracks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "applicable_years": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "applicable_stages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "content_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "url"
+      ]
+    },
+    {
+      "required": [
+        "path"
+      ]
+    }
+  ],
+  "additionalProperties": true
+}

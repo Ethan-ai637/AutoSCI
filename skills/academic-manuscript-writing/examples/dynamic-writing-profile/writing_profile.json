@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "status": "resolved",
+  "context": {
+    "discipline": "computer_science",
+    "subfield": "machine_learning",
+    "article_type": "conference_paper",
+    "venue": "ExampleConf",
+    "track": "main",
+    "venue_year": 2030,
+    "submission_stage": "initial_submission",
+    "target_specificity": "venue",
+    "language": "en"
+  },
+  "retrieval": {
+    "performed": true,
+    "retrieved_at": "2030-01-15T12:05:00+00:00",
+    "source_priority": [
+      "official_author_guidelines",
+      "official_template",
+      "official_checklist",
+      "official_publisher_or_society_guidance",
+      "secondary_guidance"
+    ],
+    "notes": "Synthetic fixture retrieval."
+  },
+  "constraints": [
+    {
+      "constraint_id": "WC001",
+      "category": "structure",
+      "requirement": "Initial submissions contain Abstract, Methods, Evaluation, and Discussion in that order.",
+      "strength": "required",
+      "basis": "official_guideline",
+      "source_ids": [
+        "WS001"
+      ],
+      "source_locator": "bullet 1",
+      "applies_to_stages": [
+        "initial_submission"
+      ],
+      "verification": "verified"
+    },
+    {
+      "constraint_id": "WC002",
+      "category": "abstract",
+      "requirement": "Abstract must not exceed 120 words.",
+      "strength": "required",
+      "basis": "official_guideline",
+      "source_ids": [
+        "WS001"
+      ],
+      "source_locator": "bullet 2",
+      "applies_to_stages": [
+        "initial_submission"
+      ],
+      "verification": "verified"
+    },
+    {
+      "constraint_id": "WC003",
+      "category": "anonymity",
+      "requirement": "Initial submissions use anonymous review.",
+      "strength": "required",
+      "basis": "official_guideline",
+      "source_ids": [
+        "WS001"
+      ],
+      "source_locator": "bullet 3",
+      "applies_to_stages": [
+        "initial_submission"
+      ],
+      "verification": "verified"
+    }
+  ],
+  "guideline_conflicts": [],
+  "readiness": {
+    "level": "venue",
+    "venue_ready": true,
+    "limitations": [
+      "Synthetic fixture demonstrates the interface; it is not a real venue profile."
+    ]
+  }
+}

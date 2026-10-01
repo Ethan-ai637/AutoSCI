@@ -1,0 +1,293 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "manuscript_contract.schema.json",
+  "title": "Operational Manuscript Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "contract_status",
+    "context",
+    "writing_profile_sha256",
+    "sections",
+    "rules",
+    "machine_checks",
+    "manual_checks",
+    "unresolved_items"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "contract_status": {
+      "enum": [
+        "draft",
+        "verified",
+        "blocked"
+      ]
+    },
+    "context": {
+      "type": "object",
+      "required": [
+        "submission_stage",
+        "target_specificity",
+        "language"
+      ],
+      "properties": {
+        "discipline": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "subfield": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "article_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "venue": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "track": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "venue_year": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1900,
+          "maximum": 2200
+        },
+        "submission_stage": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_specificity": {
+          "enum": [
+            "generic",
+            "discipline",
+            "venue"
+          ]
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "writing_profile_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "enforce_section_order": {
+      "type": "boolean"
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "presence",
+          "claim_coverage",
+          "scientific_roles",
+          "constraint_ids"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "presence": {
+            "enum": [
+              "required",
+              "optional",
+              "forbidden"
+            ]
+          },
+          "claim_coverage": {
+            "enum": [
+              "required",
+              "optional",
+              "none"
+            ]
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "constraint_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "scientific_roles": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "title",
+                "abstract",
+                "introduction",
+                "methods",
+                "results",
+                "discussion",
+                "conclusion",
+                "mixed",
+                "other"
+              ]
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "rule_id",
+          "scope",
+          "rule",
+          "strength",
+          "constraint_ids"
+        ],
+        "properties": {
+          "rule_id": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "rule": {
+            "type": "string"
+          },
+          "strength": {
+            "enum": [
+              "required",
+              "recommended",
+              "prohibited",
+              "informational"
+            ]
+          },
+          "constraint_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "machine_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "check_id",
+          "type",
+          "constraint_ids"
+        ],
+        "properties": {
+          "check_id": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "section_presence",
+              "section_absence",
+              "section_order",
+              "max_words"
+            ]
+          },
+          "section": {
+            "type": "string"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "max_words": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "constraint_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "manual_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "check_id",
+          "rule",
+          "constraint_ids",
+          "status"
+        ],
+        "properties": {
+          "check_id": {
+            "type": "string"
+          },
+          "rule": {
+            "type": "string"
+          },
+          "constraint_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "enum": [
+              "pending",
+              "verified",
+              "not_applicable",
+              "blocked"
+            ]
+          },
+          "verification_notes": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "unresolved_items": {
+      "type": "array",
+      "items": {
+        "type": [
+          "string",
+          "object"
+        ]
+      }
+    }
+  },
+  "additionalProperties": true
+}

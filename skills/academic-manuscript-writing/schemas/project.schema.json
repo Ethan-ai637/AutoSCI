@@ -1,0 +1,469 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Academic Manuscript Writing Project",
+  "type": "object",
+  "required": [
+    "project_id",
+    "skill_version",
+    "profile",
+    "mode",
+    "study_design",
+    "research_question"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "skill_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile": {
+      "enum": [
+        "draft",
+        "standard",
+        "release"
+      ]
+    },
+    "mode": {
+      "enum": [
+        "build",
+        "revise",
+        "refresh",
+        "audit"
+      ]
+    },
+    "study_design": {
+      "type": "string"
+    },
+    "research_question": {
+      "type": "string"
+    },
+    "primary_outcomes": {
+      "type": "array"
+    },
+    "analysis_populations": {
+      "type": "array"
+    },
+    "canonical_terminology": {
+      "type": "object"
+    },
+    "protected_facts": {
+      "type": "array"
+    },
+    "unresolved_conflicts": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "object",
+            "required": [
+              "conflict_id",
+              "status",
+              "release_disposition",
+              "summary"
+            ],
+            "properties": {
+              "conflict_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "enum": [
+                  "unresolved",
+                  "resolved"
+                ]
+              },
+              "release_disposition": {
+                "enum": [
+                  "blocking",
+                  "disclose_and_scope",
+                  "historical_only",
+                  "resolved"
+                ]
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "type": "string"
+              },
+              "resolution": {
+                "type": "string"
+              },
+              "affected_source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "affected_evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "affected_claim_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "scoped_claim_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "disclosure_claim_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "blocks_claim_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "required_disclosure_text_tokens": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "notes": {
+                "type": "string"
+              },
+              "conflict_sides": {
+                "type": "array",
+                "minItems": 2,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "side_id"
+                  ],
+                  "properties": {
+                    "side_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "source_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "evidence_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "value_tokens": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "attribution_tokens": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "cross_side_claim_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              },
+              "cross_side_numeric_exceptions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "claim_id",
+                    "value_token",
+                    "role",
+                    "reason"
+                  ],
+                  "properties": {
+                    "claim_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "value_token": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "role": {
+                      "enum": [
+                        "derived",
+                        "context"
+                      ]
+                    },
+                    "reason": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "source_side_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": true
+          }
+        ]
+      }
+    },
+    "journal_target": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    },
+    "manuscript_scope": {
+      "enum": [
+        "full_manuscript",
+        "multi_section",
+        "single_section"
+      ]
+    },
+    "coverage_policy": {
+      "type": "object",
+      "properties": {
+        "required_sections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "allow_exemptions": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "claim_atomicity_policy": {
+      "type": "object",
+      "properties": {
+        "enforce_claim_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "max_top_level_scientific_clauses": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "allow_exemptions": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "revision_policy": {
+      "type": "object",
+      "properties": {
+        "preserve_existing_manuscript": {
+          "type": "boolean"
+        },
+        "allow_global_rewrite": {
+          "type": "boolean"
+        },
+        "global_rewrite_reason": {
+          "type": "string"
+        },
+        "global_rewrite_change_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "min_prose_token_similarity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "min_preserved_old_paragraph_fraction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "allow_title_change": {
+          "type": "boolean"
+        },
+        "forbidden_meta_manuscript_terms": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "claim_span_policy": {
+      "type": "object",
+      "properties": {
+        "required_sections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "required_claim_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "allow_exemptions": {
+          "type": "boolean"
+        },
+        "max_uncovered_words_per_paragraph": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "require_exact_claim_text": {
+          "type": "boolean"
+        },
+        "enforce_reverse_references": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "writing_context": {
+      "type": "object",
+      "properties": {
+        "discipline": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "subfield": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "article_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "venue": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "track": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "venue_year": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1900,
+          "maximum": 2200
+        },
+        "submission_stage": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_specificity": {
+          "enum": [
+            "generic",
+            "discipline",
+            "venue"
+          ]
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "writing_profile_policy": {
+      "type": "object",
+      "properties": {
+        "dynamic_retrieval": {
+          "type": "boolean"
+        },
+        "require_official_sources_for_venue": {
+          "type": "boolean"
+        },
+        "require_year_match": {
+          "type": "boolean"
+        },
+        "require_stage_match": {
+          "type": "boolean"
+        },
+        "allow_secondary_sources": {
+          "type": "boolean"
+        },
+        "secondary_sources_may_override_official": {
+          "type": "boolean"
+        },
+        "require_constraint_provenance": {
+          "type": "boolean"
+        },
+        "contract_must_match_profile_hash": {
+          "type": "boolean"
+        },
+        "require_contract_for_full_manuscript_release": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}

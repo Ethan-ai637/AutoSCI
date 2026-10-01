@@ -1,0 +1,82 @@
+{
+  "project_id": "dynamic-writing-profile-demo",
+  "skill_version": "2.0.0",
+  "profile": "release",
+  "mode": "build",
+  "manuscript_scope": "full_manuscript",
+  "study_design": "controlled experiment",
+  "research_question": "Does condition A differ from condition B for the primary outcome?",
+  "primary_outcomes": [
+    "primary outcome"
+  ],
+  "analysis_populations": [
+    "all analyzed samples"
+  ],
+  "canonical_terminology": {
+    "A": "condition A",
+    "B": "condition B"
+  },
+  "protected_facts": [],
+  "unresolved_conflicts": [],
+  "notes": "Synthetic venue-profile fixture. ExampleConf is not a real venue.",
+  "coverage_policy": {
+    "required_sections": [
+      "Abstract",
+      "Methods",
+      "Evaluation",
+      "Discussion"
+    ],
+    "allow_exemptions": true
+  },
+  "claim_span_policy": {
+    "required_sections": [
+      "Abstract",
+      "Methods",
+      "Evaluation",
+      "Discussion"
+    ],
+    "required_claim_types": [
+      "result",
+      "method",
+      "interpretation",
+      "limitation",
+      "literature_context"
+    ],
+    "allow_exemptions": true,
+    "max_uncovered_words_per_paragraph": 2,
+    "require_exact_claim_text": true,
+    "enforce_reverse_references": true
+  },
+  "claim_atomicity_policy": {
+    "enforce_claim_types": [
+      "result",
+      "method",
+      "limitation"
+    ],
+    "max_top_level_scientific_clauses": 1,
+    "allow_exemptions": true
+  },
+  "writing_context": {
+    "discipline": "computer_science",
+    "subfield": "machine_learning",
+    "article_type": "conference_paper",
+    "venue": "ExampleConf",
+    "track": "main",
+    "venue_year": 2030,
+    "submission_stage": "initial_submission",
+    "target_specificity": "venue",
+    "language": "en"
+  },
+  "writing_profile_policy": {
+    "dynamic_retrieval": true,
+    "require_official_sources_for_venue": true,
+    "require_year_match": true,
+    "require_stage_match": true,
+    "allow_secondary_sources": true,
+    "secondary_sources_may_override_official": false,
+    "require_constraint_provenance": true,
+    "contract_must_match_profile_hash": true,
+    "require_article_type_match": true,
+    "require_track_match_when_declared": true
+  }
+}

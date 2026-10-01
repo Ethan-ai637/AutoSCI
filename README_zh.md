@@ -1,13 +1,13 @@
 # AutoSCI
 
 <p align="center">
-  <img src="assets/readme/autosci-hero-zh.png" alt="AutoSCI——面向科研绘图与学术汇报的开源 Codex Skills" width="100%">
+  <img src="assets/readme/autosci-hero-zh.png" alt="AutoSCI——面向科研工作与学术表达的开源 Codex Skills" width="100%">
 </p>
 
 <p align="center"><strong>把时间留给科研本身，把繁琐留给工具。</strong></p>
 
 <p align="center">
-  面向文献研究、论文审稿自检、科研数据分析、科研绘图、论文阅读、组会汇报、科研进展与学术表达工作的开源、本地优先 Codex Skills。
+  面向证据驱动的论文写作与审稿、文献研究、科研数据分析、科研绘图、论文阅读、组会汇报、科研进展与学术表达工作的开源、本地优先 Codex Skills。
 </p>
 
 <p align="center">
@@ -23,6 +23,7 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
   <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">
   <img src="https://img.shields.io/badge/Manuscript%20Reviewer-v1.1.0-8a2be2" alt="Manuscript Reviewer v1.1.0">
+  <img src="https://img.shields.io/badge/Manuscript%20Writing-v2.0.0-2563eb" alt="Academic Manuscript Writing v2.0.0">
   <img src="https://img.shields.io/badge/Scientific%20Data%20Analysis-v1.6.1-0f766e" alt="Scientific Data Analysis v1.6.1">
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
@@ -70,11 +71,12 @@ AutoSCI **不只是一组提示词**。我们把科研工作经验组织成可�
 | --- | --- | --- |
 | [`literature-research`](skills/literature-research) | 文献搜索、筛选、去重、report-to-study identity、主题聚类、claim-level evidence table、citation trail 与 study-aware synthesis | Skill 工作流 + references + templates + **Python normalization、screening、study identity、provenance、synthesis、schema、snapshot 与 handoff 工具链** |
 | [`manuscript-reviewer`](skills/manuscript-reviewer) | 检查 claim–evidence、图表/正文、数值、notation、citation、protocol comparability、overclaim，以及 rebuttal / revision 是否真正解决旧问题 | evidence-led 审稿工作流 + canonical finding records + schemas + **语义 regression fixtures 与 release validation** |
+| [`academic-manuscript-writing`](skills/academic-manuscript-writing) | 基于 supplied evidence 撰写、修订、刷新和审计科学论文，追踪 claim 并处理来源冲突 | Skill 工作流 + references + templates + schemas + **确定性 preflight、revision lineage 与 venue-profile 审计** |
 | [`scientific-data-analysis`](skills/scientific-data-analysis) | 把科研表格数据的清洗、预设统计推断、效应量与不确定性、敏感性分析、可复现绘图，以及实验前 power / sample-size planning 组织成可审计工作流 | Skill 工作流 + references + templates + **确定性 Python 清洗、统计、绘图、provenance、power planning、reconciliation 与 release QA** |
 | [`scientific-figure`](skills/scientific-figure) | 从 Method、equation、code、data 或已有科研图创建/重构可编辑科研图 | Skill 工作流 + references + **Python 流程编排、审计、渲染、release 与 benchmark 工具链** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | 论文汇报、组会、科研进展与 technical talk 的 evidence-first 工作流 | Skill 工作流 + references + templates + source visual / diagram QA 规则 |
 
-五个 Skill 可以独立安装，也可以串联使用。`literature-research` 可以先生成经过审计的证据工作区，再交给科研绘图或学术汇报流程继续消费：
+六个 Skill 可以独立安装，也可以串联使用。`literature-research` 可以先生成经过审计的证据工作区，再交给科研绘图或学术汇报流程继续消费：
 
 ```text
 研究问题 / 文献语料
@@ -210,6 +212,12 @@ Skill 使用 canonical finding record 作为唯一事实源，让 Executive Summ
 
 详见 [`SKILL.md`](skills/manuscript-reviewer/SKILL.md)、[`checks/`](skills/manuscript-reviewer/checks/)、[`schemas/`](skills/manuscript-reviewer/schemas/)、[`regressions/`](skills/manuscript-reviewer/regressions/) 和 [`docs/EVALUATION.md`](skills/manuscript-reviewer/docs/EVALUATION.md)。
 
+## Academic Manuscript Writing v2.0.0
+
+`academic-manuscript-writing` 面向基于证据的论文起草与修订。v2.0 将科学证据与会随时间变化的写作规范分开：需要学科或投稿 venue 规范时，先登记适用的官方来源、归纳约束，再用版本化的 `manuscript_contract.json` 校验稿件。它也覆盖 claim/evidence ledger、来源冲突披露、修订 lineage、正文覆盖度与 release preflight。
+
+详见 [`SKILL.md`](skills/academic-manuscript-writing/SKILL.md)、[`references/`](skills/academic-manuscript-writing/references/)、[`templates/`](skills/academic-manuscript-writing/templates/)、[`schemas/`](skills/academic-manuscript-writing/schemas/) 和 [`scripts/`](skills/academic-manuscript-writing/scripts/)。运行打包检查：`python skills/academic-manuscript-writing/scripts/self_test.py --quick`。
+
 ## Scientific Data Analysis v1.6.1
 
 `scientific-data-analysis` 是 audit-first 的科研表格数据分析 Skill。它要求在 inference 之前锁定科研问题、estimand、独立分析单位、变量角色、排除规则和分析 family；清洗过程必须留痕，而不是静默改变数据；显著性检验与效应量、置信区间一起报告；支持预先声明的 sensitivity analysis 与 multiplicity correction；绘图 cohort 也会与统计结果进行 reconciliation。
@@ -251,6 +259,7 @@ cd AutoSCI
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
 cp -R skills/literature-research "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/manuscript-reviewer "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -R skills/academic-manuscript-writing "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-data-analysis "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
@@ -266,6 +275,11 @@ Use standard mode and preserve the full search, screening, study-identity, evide
 ```text
 Use $manuscript-reviewer to audit paper.pdf before submission.
 重点检查 claim–evidence、图表/正文、数值、notation、citation、protocol comparability 与 overclaim。
+```
+
+```text
+Use $academic-manuscript-writing to revise my manuscript from the verified results and figures.
+Preserve supported text, trace every substantive claim to evidence, record unresolved source conflicts, and run the appropriate preflight.
 ```
 
 ```text
@@ -307,6 +321,12 @@ AutoSCI/
 │   │   ├── schemas/                    # canonical finding / revision-delta contract
 │   │   ├── regressions/                # 语义 regression fixtures
 │   │   └── scripts/                    # release / build validation
+│   ├── academic-manuscript-writing/
+│   │   ├── SKILL.md                    # evidence-grounded manuscript workflow
+│   │   ├── references/                 # source、claim、revision 与 writing-profile 指南
+│   │   ├── schemas/                    # project、writing-profile 与 manuscript contract
+│   │   ├── templates/                  # evidence、claim、reporting 与 writing-workspace 模板
+│   │   └── scripts/                    # 确定性审计、preflight 与 self-test
 │   ├── scientific-data-analysis/
 │   │   ├── SKILL.md                    # audit-first 数据分析 / planning 入口
 │   │   ├── references/                 # cleaning / statistics / uncertainty / power 规范
@@ -345,6 +365,7 @@ AutoSCI/
 
 - `literature-research`: **v1.6.1**，已通过真实 standard workflow 回归，提供 search / screening / study / synthesis provenance 与可复现 handoff。
 - `manuscript-reviewer`: **v1.1.0**，面向投稿前与 rebuttal / revision 的 evidence-led manuscript audit，采用 canonical finding 与 regression-driven validation。
+- `academic-manuscript-writing`: **v2.0.0**，提供 evidence-traceable 论文撰写与修订、dynamic writing profile、manuscript contract、revision lineage 与确定性 release QA。
 - `scientific-data-analysis`: **v1.6.1**，audit-first 表格数据分析 + 前瞻性 power / sample-size planning，带 deterministic reconciliation 与 release gate。
 - `scientific-figure`: **v2.0.0 stable**。
 - `academic-research-presentation`: **v3.0.0**，当前重点是 evidence-first、diagram safety 与 source visual completeness。

@@ -1,0 +1,30 @@
+{
+  "central_argument": "Condition A differs from condition B for the primary outcome.",
+  "main_claim_families": [
+    "F001"
+  ],
+  "sections": {
+    "Abstract": {
+      "must_cover": [
+        "F001"
+      ],
+      "notes": ""
+    },
+    "Methods": {
+      "must_cover": [],
+      "notes": ""
+    },
+    "Discussion": {
+      "must_cover": [
+        "F001"
+      ],
+      "notes": ""
+    },
+    "Evaluation": {
+      "must_cover": [
+        "F001"
+      ],
+      "notes": ""
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "project_id": "PROJECT_ID",
+  "skill_version": "2.0.0",
+  "profile": "standard",
+  "mode": "build",
+  "manuscript_scope": "full_manuscript",
+  "study_design": "unspecified",
+  "research_question": "",
+  "primary_outcomes": [],
+  "analysis_populations": [],
+  "canonical_terminology": {},
+  "protected_facts": [],
+  "unresolved_conflicts": [],
+  "writing_context": {
+    "discipline": null,
+    "subfield": null,
+    "article_type": null,
+    "venue": null,
+    "track": null,
+    "venue_year": null,
+    "submission_stage": "initial_submission",
+    "target_specificity": "generic",
+    "language": "en"
+  },
+  "writing_profile_policy": {
+    "dynamic_retrieval": true,
+    "require_official_sources_for_venue": true,
+    "require_year_match": true,
+    "require_stage_match": true,
+    "require_article_type_match": true,
+    "require_track_match_when_declared": true,
+    "allow_secondary_sources": true,
+    "secondary_sources_may_override_official": false,
+    "require_constraint_provenance": true,
+    "contract_must_match_profile_hash": true,
+    "require_contract_for_full_manuscript_release": true
+  },
+  "notes": "",
+  "coverage_policy": {
+    "required_sections": [],
+    "allow_exemptions": true
+  },
+  "claim_span_policy": {
+    "required_sections": [],
+    "required_claim_types": [
+      "result",
+      "method",
+      "interpretation",
+      "limitation",
+      "literature_context"
+    ],
+    "allow_exemptions": true,
+    "max_uncovered_words_per_paragraph": 2,
+    "require_exact_claim_text": true,
+    "enforce_reverse_references": true
+  },
+  "claim_atomicity_policy": {
+    "enforce_claim_types": [
+      "result",
+      "method",
+      "limitation"
+    ],
+    "max_top_level_scientific_clauses": 1,
+    "allow_exemptions": true
+  },
+  "revision_policy": {
+    "preserve_existing_manuscript": true,
+    "allow_global_rewrite": false,
+    "min_prose_token_similarity": 0.55,
+    "min_preserved_old_paragraph_fraction": 0.35,
+    "allow_title_change": false,
+    "forbidden_meta_manuscript_terms": [
+      "this refresh",
+      "this refreshed",
+      "supplied methods notes",
+      "supplied current table",
+      "supplied current results",
+      "allowed sources",
+      "source-conflict note",
+      "benchmark materials",
+      "benchmark prompt",
+      "source scope"
+    ]
+  }
+}
