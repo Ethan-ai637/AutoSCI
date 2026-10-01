@@ -16,7 +16,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat .autosci-import/pack* | base64 -d > /tmp/manuscript-reviewer.zip
+          cat .autosci-import/final* | base64 -d > /tmp/manuscript-reviewer.zip
           rm -rf /tmp/mr && mkdir -p /tmp/mr
           unzip -q /tmp/manuscript-reviewer.zip -d /tmp/mr
           rm -rf skills/manuscript-reviewer
