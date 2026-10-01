@@ -7,7 +7,7 @@
 <p align="center"><strong>把时间留给科研本身，把繁琐留给工具。</strong></p>
 
 <p align="center">
-  面向文献研究、论文审稿自检、科研绘图、论文阅读、组会汇报、科研进展与学术表达工作的开源、本地优先 Codex Skills。
+  面向文献研究、论文审稿自检、科研数据分析、科研绘图、论文阅读、组会汇报、科研进展与学术表达工作的开源、本地优先 Codex Skills。
 </p>
 
 <p align="center">
@@ -23,6 +23,7 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
   <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">
   <img src="https://img.shields.io/badge/Manuscript%20Reviewer-v1.1.0-8a2be2" alt="Manuscript Reviewer v1.1.0">
+  <img src="https://img.shields.io/badge/Scientific%20Data%20Analysis-v1.6.1-0f766e" alt="Scientific Data Analysis v1.6.1">
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
@@ -69,10 +70,11 @@ AutoSCI **不只是一组提示词**。我们把科研工作经验组织成可�
 | --- | --- | --- |
 | [`literature-research`](skills/literature-research) | 文献搜索、筛选、去重、report-to-study identity、主题聚类、claim-level evidence table、citation trail 与 study-aware synthesis | Skill 工作流 + references + templates + **Python normalization、screening、study identity、provenance、synthesis、schema、snapshot 与 handoff 工具链** |
 | [`manuscript-reviewer`](skills/manuscript-reviewer) | 检查 claim–evidence、图表/正文、数值、notation、citation、protocol comparability、overclaim，以及 rebuttal / revision 是否真正解决旧问题 | evidence-led 审稿工作流 + canonical finding records + schemas + **语义 regression fixtures 与 release validation** |
+| [`scientific-data-analysis`](skills/scientific-data-analysis) | 把科研表格数据的清洗、预设统计推断、效应量与不确定性、敏感性分析、可复现绘图，以及实验前 power / sample-size planning 组织成可审计工作流 | Skill 工作流 + references + templates + **确定性 Python 清洗、统计、绘图、provenance、power planning、reconciliation 与 release QA** |
 | [`scientific-figure`](skills/scientific-figure) | 从 Method、equation、code、data 或已有科研图创建/重构可编辑科研图 | Skill 工作流 + references + **Python 流程编排、审计、渲染、release 与 benchmark 工具链** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | 论文汇报、组会、科研进展与 technical talk 的 evidence-first 工作流 | Skill 工作流 + references + templates + source visual / diagram QA 规则 |
 
-四个 Skill 可以独立安装，也可以串联使用。`literature-research` 可以先生成经过审计的证据工作区，再交给科研绘图或学术汇报流程继续消费：
+五个 Skill 可以独立安装，也可以串联使用。`literature-research` 可以先生成经过审计的证据工作区，再交给科研绘图或学术汇报流程继续消费：
 
 ```text
 研究问题 / 文献语料
@@ -85,6 +87,18 @@ $literature-research
    ┌────┴────┐
    ↓         ↓
 $scientific-figure  $academic-research-presentation
+```
+
+`scientific-data-analysis` 可以在实验前用于可审计的 power / sample-size planning，也可以在数据产生后用于预设统计分析、不确定性量化、稳健性检查与可复现绘图：
+
+```text
+实验设计问题 / tabular data
+          │
+          ↓
+$scientific-data-analysis
+          ↓
+power plan / audited analysis
+ + effect size / uncertainty / figures
 ```
 
 论文审稿 Skill 也可以直接用于投稿前自检、rebuttal 与 revision：
@@ -162,11 +176,13 @@ benchmark.py           单案例评测
 benchmark_suite.py     多案例 Skill 评测
 ```
 
+`scientific-data-analysis` 在量化研究上采用同样的 inspectable-workflow 思路：analysis plan 与 power plan 是显式契约，确定性脚本执行 cleaning / statistics / plotting，preflight 会重新计算计划内结果并检查 stale / tampered artifact。发布门禁见 [`skills/scientific-data-analysis/scripts/release_check.py`](skills/scientific-data-analysis/scripts/release_check.py)。
+
 `academic-research-presentation` 则更偏 reasoning / workflow：其实现主要由 `SKILL.md` 中的科研汇报流程、`references/` 中的 source-visual 与 diagram safety 规则，以及 `templates/` 中可复用的 evidence / storyboard / preflight 结构组成。
 
 ## 我们希望自动化什么？又不希望自动化什么？
 
-**适合交给工具的工作：**重复性的科研图构建、布局与 routing、Figure/Table 提取检查、汇报编排、notation/geometry/clipping/readability 等确定性 QA，以及反复的 render → inspect → refine。
+**适合交给工具的工作：**声明式数据清洗、确定性统计计算与 reconciliation、重复性的科研图构建、布局与 routing、Figure/Table 提取检查、汇报编排、notation/geometry/clipping/readability 等确定性 QA，以及反复的 render → inspect → refine。
 
 **仍然属于研究者的工作：**选择问题、决定假设与方法、验证实验和证据、解释结果、判断哪些 claim 成立，以及做最终的科研表达取舍。
 
@@ -193,6 +209,16 @@ Skill 使用 canonical finding record 作为唯一事实源，让 Executive Summ
 它不是 accept/reject 预测器，也不替代研究者的科学判断；定位是 **manuscript integrity 与 evidence alignment**。
 
 详见 [`SKILL.md`](skills/manuscript-reviewer/SKILL.md)、[`checks/`](skills/manuscript-reviewer/checks/)、[`schemas/`](skills/manuscript-reviewer/schemas/)、[`regressions/`](skills/manuscript-reviewer/regressions/) 和 [`docs/EVALUATION.md`](skills/manuscript-reviewer/docs/EVALUATION.md)。
+
+## Scientific Data Analysis v1.6.1
+
+`scientific-data-analysis` 是 audit-first 的科研表格数据分析 Skill。它要求在 inference 之前锁定科研问题、estimand、独立分析单位、变量角色、排除规则和分析 family；清洗过程必须留痕，而不是静默改变数据；显著性检验与效应量、置信区间一起报告；支持预先声明的 sensitivity analysis 与 multiplicity correction；绘图 cohort 也会与统计结果进行 reconciliation。
+
+它同时包含一条与 post-data inference 分离的 **pre-data planning** 工作流，用于前瞻性 power / sample-size planning。目前覆盖 two-group Welch mean、paired mean、independent proportions 和预设 heteroscedastic Welch contrast，并要求 assumption provenance、scenario analysis、approximation-adequacy checks 与 deterministic power-result reconciliation。完成研究后不会使用 observed/post-hoc power 来为结果背书。
+
+当前 release 提供 schema-validated examples/templates、`doctor.py`、两套 self-test、analysis/power 两条 deterministic preflight，以及面向仓库发布的 `release_check.py`。
+
+详见 [`SKILL.md`](skills/scientific-data-analysis/SKILL.md)、[`references/`](skills/scientific-data-analysis/references/)、[`templates/`](skills/scientific-data-analysis/templates/)、[`examples/`](skills/scientific-data-analysis/examples/) 和可执行的 [`scripts/`](skills/scientific-data-analysis/scripts/) 目录。
 
 ## Scientific Figure v2.0
 
@@ -225,6 +251,7 @@ cd AutoSCI
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
 cp -R skills/literature-research "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/manuscript-reviewer "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -R skills/scientific-data-analysis "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
@@ -242,6 +269,11 @@ Use $manuscript-reviewer to audit paper.pdf before submission.
 ```
 
 ```text
+Use $scientific-data-analysis to analyze experiment.csv with an audit-first workflow.
+先锁定 independent unit 与 analysis plan，再执行 inference；报告 effect size + confidence interval，运行声明好的 sensitivity analysis，生成可复现图，并保留 deterministic preflight / provenance artifacts。
+```
+
+```text
 Use $scientific-figure to turn the Method section of paper.pdf into an editable Figure 1.
 ```
 
@@ -249,9 +281,11 @@ Use $scientific-figure to turn the Method section of paper.pdf into an editable 
 Use $academic-research-presentation to build a paper-reading deck from paper.pdf.
 ```
 
-Scientific Figure 还可以直接检查本地环境：
+Scientific Data Analysis 与 Scientific Figure 都可以直接检查本地环境：
 
 ```bash
+python skills/scientific-data-analysis/scripts/doctor.py
+python skills/scientific-data-analysis/scripts/release_check.py
 python skills/scientific-figure/scripts/doctor.py
 ```
 
@@ -273,6 +307,12 @@ AutoSCI/
 │   │   ├── schemas/                    # canonical finding / revision-delta contract
 │   │   ├── regressions/                # 语义 regression fixtures
 │   │   └── scripts/                    # release / build validation
+│   ├── scientific-data-analysis/
+│   │   ├── SKILL.md                    # audit-first 数据分析 / planning 入口
+│   │   ├── references/                 # cleaning / statistics / uncertainty / power 规范
+│   │   ├── templates/                  # analysis plan / data dictionary / power plan 模板
+│   │   ├── examples/                   # 可执行 toy plans / data
+│   │   └── scripts/                    # 确定性分析、绘图、power 与 QA 工具
 │   ├── scientific-figure/
 │   │   ├── SKILL.md                    # Codex Skill 入口
 │   │   ├── agents/                     # Agent metadata
@@ -305,6 +345,7 @@ AutoSCI/
 
 - `literature-research`: **v1.6.1**，已通过真实 standard workflow 回归，提供 search / screening / study / synthesis provenance 与可复现 handoff。
 - `manuscript-reviewer`: **v1.1.0**，面向投稿前与 rebuttal / revision 的 evidence-led manuscript audit，采用 canonical finding 与 regression-driven validation。
+- `scientific-data-analysis`: **v1.6.1**，audit-first 表格数据分析 + 前瞻性 power / sample-size planning，带 deterministic reconciliation 与 release gate。
 - `scientific-figure`: **v2.0.0 stable**。
 - `academic-research-presentation`: **v3.0.0**，当前重点是 evidence-first、diagram safety 与 source visual completeness。
 

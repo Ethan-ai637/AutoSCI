@@ -1,0 +1,125 @@
+{
+  "power_plan_schema_version": "1.1",
+  "planning_id": "toy-prospective-study",
+  "plan_version": "1.0",
+  "research_question": "Prospectively size common two-group, paired, binary, and planned multi-group contrast designs under explicit assumptions.",
+  "unit_of_analysis": "subject",
+  "alpha": 0.05,
+  "target_power": 0.8,
+  "alternative": "two-sided",
+  "planning_items": [
+    {
+      "planning_item_id": "welch_primary",
+      "type": "welch_two_group_mean",
+      "solve_for": "sample_size",
+      "mean_difference": 5.0,
+      "sd_a": 10.0,
+      "sd_b": 12.0,
+      "allocation_ratio_b_to_a": 1.0,
+      "attrition_rate": 0.1,
+      "assumption_source": {
+        "kind": "scientific_threshold",
+        "reference": "Toy protocol: 5 units is the smallest scientifically important mean difference; SDs 10 and 12 are external planning assumptions."
+      },
+      "scenarios": [
+        {
+          "scenario_id": "smaller_effect",
+          "overrides": {
+            "mean_difference": 4.0
+          }
+        },
+        {
+          "scenario_id": "higher_variability",
+          "overrides": {
+            "sd_a": 12.0,
+            "sd_b": 14.0
+          }
+        }
+      ]
+    },
+    {
+      "planning_item_id": "contrast_primary",
+      "type": "welch_contrast",
+      "solve_for": "sample_size",
+      "contrast_effect": 5.0,
+      "contrast_terms": [
+        {
+          "level": "control",
+          "weight": -1.0,
+          "sd": 10.0,
+          "allocation_ratio": 1.0
+        },
+        {
+          "level": "treatment_A",
+          "weight": 0.5,
+          "sd": 12.0,
+          "allocation_ratio": 1.0
+        },
+        {
+          "level": "treatment_B",
+          "weight": 0.5,
+          "sd": 14.0,
+          "allocation_ratio": 1.5
+        }
+      ],
+      "attrition_rate": 0.1,
+      "assumption_source": {
+        "kind": "scientific_threshold",
+        "reference": "Toy protocol: (treatment_A + treatment_B)/2 - control = 5 units is the smallest planned contrast worth detecting; SDs are external assumptions."
+      },
+      "scenarios": [
+        {
+          "scenario_id": "higher_variability",
+          "overrides": {
+            "contrast_terms": [
+              {
+                "level": "control",
+                "weight": -1.0,
+                "sd": 12.0,
+                "allocation_ratio": 1.0
+              },
+              {
+                "level": "treatment_A",
+                "weight": 0.5,
+                "sd": 14.0,
+                "allocation_ratio": 1.0
+              },
+              {
+                "level": "treatment_B",
+                "weight": 0.5,
+                "sd": 16.0,
+                "allocation_ratio": 1.5
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "planning_item_id": "paired_primary",
+      "type": "paired_mean",
+      "solve_for": "minimum_detectable_effect",
+      "sd_difference": 8.0,
+      "n_pairs": 40,
+      "attrition_rate": 0.05,
+      "assumption_source": {
+        "kind": "external_evidence",
+        "reference": "Toy external reliability study: SD of within-pair differences approximately 8 units."
+      }
+    },
+    {
+      "planning_item_id": "binary_primary",
+      "type": "independent_proportions",
+      "solve_for": "prospective_power",
+      "p_a": 0.3,
+      "p_b": 0.45,
+      "n_a": 160,
+      "n_b": 160,
+      "attrition_rate": 0.0,
+      "assumption_source": {
+        "kind": "external_evidence",
+        "reference": "Toy external event-rate assumptions: 30% control and 45% treatment."
+      }
+    }
+  ]
+}

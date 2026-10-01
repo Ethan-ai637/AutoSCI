@@ -1,0 +1,124 @@
+{
+  "analysis_plan_schema_version": "1.4",
+  "analysis_id": "toy-treatment-study",
+  "plan_version": "1.0",
+  "profile": "standard",
+  "research_question": "Does treatment change response relative to control?",
+  "unit_of_analysis": "subject",
+  "confidence_level": 0.95,
+  "random_seed": 42,
+  "input": {
+    "path": "examples/toy_data.csv",
+    "sha256": "57ef45f7049df83b218de72857e2e3a4f60d09cabda81e6126d1ef1ff66d67f7"
+  },
+  "variables": {
+    "id": "subject_id",
+    "group": "group",
+    "outcomes": [
+      "response"
+    ],
+    "pair_id": null,
+    "covariates": []
+  },
+  "cleaning": {
+    "missing_tokens": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "require_nonmissing": [
+      "subject_id",
+      "group",
+      "response",
+      "qc_flag"
+    ],
+    "require_numeric": [
+      "response"
+    ],
+    "numeric_ranges": {
+      "response": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "allowed_levels": {
+      "group": [
+        "control",
+        "treatment"
+      ],
+      "qc_flag": [
+        "keep",
+        "review"
+      ]
+    },
+    "drop_exact_duplicates": true,
+    "id_duplicate_policy": "error",
+    "technical_replicates": null
+  },
+  "missing_data": {
+    "strategy": "complete_case",
+    "report_per_analysis": true,
+    "imputation": "none"
+  },
+  "resampling": {
+    "method": "percentile",
+    "n_resamples": 300
+  },
+  "analyses": [
+    {
+      "analysis_item_id": "response_primary",
+      "analysis_role": "primary",
+      "type": "independent_t",
+      "outcome": "response",
+      "group": "group",
+      "group_a": "control",
+      "group_b": "treatment",
+      "multiplicity_family": "primary",
+      "estimand": "Mean treatment-control difference in response at the subject level"
+    }
+  ],
+  "multiplicity": {
+    "primary": {
+      "method": "none",
+      "justification": "Single primary test"
+    }
+  },
+  "plots": [
+    {
+      "plot_id": "response_plot",
+      "analysis_item_id": "response_primary",
+      "kind": "group_comparison",
+      "ylabel": "Response (a.u.)"
+    }
+  ],
+  "sensitivity_analyses": [
+    {
+      "sensitivity_id": "exclude_review_flag",
+      "base_analysis_item_id": "response_primary",
+      "rationale": "Check sensitivity to the one observation pre-flagged for measurement review.",
+      "data_filter": {
+        "exclude_if": [
+          {
+            "column": "qc_flag",
+            "operator": "eq",
+            "value": "review"
+          }
+        ]
+      },
+      "analysis_overrides": {},
+      "estimand_relation": "same"
+    },
+    {
+      "sensitivity_id": "rank_based",
+      "base_analysis_item_id": "response_primary",
+      "rationale": "Check dependence on a mean-based parametric analysis; this changes the estimand and is therefore reported separately rather than numerically equated with the base estimate.",
+      "data_filter": {
+        "exclude_if": []
+      },
+      "analysis_overrides": {
+        "type": "mann_whitney"
+      },
+      "estimand_relation": "different"
+    }
+  ]
+}

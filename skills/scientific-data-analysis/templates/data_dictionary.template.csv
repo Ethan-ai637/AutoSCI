@@ -1,0 +1,4 @@
+column,role,type,unit,allowed_values_or_range,missing_tokens,description
+subject_id,id,string,,,"Independent experimental unit / subject identifier"
+group,predictor,categorical,,"control|treatment",,"Primary group/exposure"
+outcome,outcome,numeric,unit,"min..max",,"Primary measured outcome"

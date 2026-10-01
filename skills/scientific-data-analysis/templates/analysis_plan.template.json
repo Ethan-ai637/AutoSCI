@@ -1,0 +1,105 @@
+{
+  "analysis_plan_schema_version": "1.4",
+  "analysis_id": "example-analysis",
+  "plan_version": "1.0",
+  "profile": "standard",
+  "research_question": "Does treatment change the primary outcome relative to control?",
+  "unit_of_analysis": "subject",
+  "confidence_level": 0.95,
+  "random_seed": 20260929,
+  "input": {
+    "path": "data.csv",
+    "sha256": ""
+  },
+  "variables": {
+    "id": "subject_id",
+    "group": "group",
+    "outcomes": [
+      "outcome"
+    ],
+    "pair_id": null,
+    "covariates": []
+  },
+  "cleaning": {
+    "missing_tokens": [
+      "",
+      "NA",
+      "N/A",
+      "null"
+    ],
+    "require_nonmissing": [
+      "subject_id",
+      "group",
+      "outcome"
+    ],
+    "require_numeric": [
+      "outcome"
+    ],
+    "numeric_ranges": {
+      "outcome": {
+        "min": null,
+        "max": null
+      }
+    },
+    "allowed_levels": {
+      "group": [
+        "control",
+        "treatment"
+      ]
+    },
+    "drop_exact_duplicates": true,
+    "id_duplicate_policy": "audit",
+    "technical_replicates": null
+  },
+  "missing_data": {
+    "strategy": "complete_case",
+    "report_per_analysis": true,
+    "imputation": "none"
+  },
+  "resampling": {
+    "method": "percentile",
+    "n_resamples": 2000
+  },
+  "analyses": [
+    {
+      "analysis_item_id": "primary_outcome",
+      "analysis_role": "primary",
+      "type": "independent_t",
+      "outcome": "outcome",
+      "group": "group",
+      "group_a": "control",
+      "group_b": "treatment",
+      "multiplicity_family": "primary",
+      "notes": "Welch t-test; treatment minus control effect orientation",
+      "estimand": "Mean treatment-control difference in outcome at the subject level"
+    }
+  ],
+  "multiplicity": {
+    "primary": {
+      "method": "none",
+      "justification": "Single primary test"
+    }
+  },
+  "plots": [
+    {
+      "plot_id": "primary_outcome_plot",
+      "analysis_item_id": "primary_outcome",
+      "kind": "group_comparison",
+      "ylabel": "Outcome (unit)"
+    }
+  ],
+  "sensitivity_analyses": [
+    {
+      "sensitivity_id": "primary_rank_based",
+      "base_analysis_item_id": "primary_outcome",
+      "rationale": "Check whether the qualitative pattern depends strongly on a mean-based parametric analysis.",
+      "data_filter": {
+        "exclude_if": []
+      },
+      "analysis_overrides": {
+        "type": "mann_whitney"
+      },
+      "estimand_relation": "different"
+    }
+  ]
+}
