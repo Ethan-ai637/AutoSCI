@@ -21,7 +21,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
-  <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">\n  <img src="https://img.shields.io/badge/Manuscript%20Reviewer-v1.1.0-8a2be2" alt="Manuscript Reviewer v1.1.0">
+  <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">
+  <img src="https://img.shields.io/badge/Manuscript%20Reviewer-v1.1.0-8a2be2" alt="Manuscript Reviewer v1.1.0">
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
@@ -66,7 +67,8 @@ AutoSCI **不只是一组提示词**。我们把科研工作经验组织成可�
 
 | Skill | 做什么 | 实现方式 |
 | --- | --- | --- |
-| [`literature-research`](skills/literature-research) | 文献搜索、筛选、去重、report-to-study identity、主题聚类、claim-level evidence table、citation trail 与 study-aware synthesis | Skill 工作流 + references + templates + **Python normalization、screening、study identity、provenance、synthesis、schema、snapshot 与 handoff 工具链** |\n| [`manuscript-reviewer`](skills/manuscript-reviewer) | 检查 claim–evidence、图表/正文、数值、notation、citation、protocol comparability、overclaim，以及 rebuttal / revision 是否真正解决旧问题 | evidence-led 审稿工作流 + canonical finding records + schemas + **语义 regression fixtures 与 release validation** |
+| [`literature-research`](skills/literature-research) | 文献搜索、筛选、去重、report-to-study identity、主题聚类、claim-level evidence table、citation trail 与 study-aware synthesis | Skill 工作流 + references + templates + **Python normalization、screening、study identity、provenance、synthesis、schema、snapshot 与 handoff 工具链** |
+| [`manuscript-reviewer`](skills/manuscript-reviewer) | 检查 claim–evidence、图表/正文、数值、notation、citation、protocol comparability、overclaim，以及 rebuttal / revision 是否真正解决旧问题 | evidence-led 审稿工作流 + canonical finding records + schemas + **语义 regression fixtures 与 release validation** |
 | [`scientific-figure`](skills/scientific-figure) | 从 Method、equation、code、data 或已有科研图创建/重构可编辑科研图 | Skill 工作流 + references + **Python 流程编排、审计、渲染、release 与 benchmark 工具链** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | 论文汇报、组会、科研进展与 technical talk 的 evidence-first 工作流 | Skill 工作流 + references + templates + source visual / diagram QA 规则 |
 
@@ -85,7 +87,19 @@ $literature-research
 $scientific-figure  $academic-research-presentation
 ```
 
-论文审稿 Skill 也可以直接用于投稿前自检、rebuttal 与 revision：\n\n```text\n论文 / Supplement / References / Rebuttal\n                 │\n                 ↓\n       $manuscript-reviewer\n                 ↓\n      可追溯 findings\n + revision lineage / coverage gaps\n```\n\n科研绘图与汇报 Skill 也可以直接独立使用：
+论文审稿 Skill 也可以直接用于投稿前自检、rebuttal 与 revision：
+
+```text
+论文 / Supplement / References / Rebuttal
+                 │
+                 ↓
+       $manuscript-reviewer
+                 ↓
+      可追溯 findings
+ + revision lineage / coverage gaps
+```
+
+科研绘图与汇报 Skill 也可以直接独立使用：
 
 ```text
 论文 / Method / Results
@@ -210,6 +224,7 @@ cd AutoSCI
 
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
 cp -R skills/literature-research "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -R skills/manuscript-reviewer "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
@@ -219,6 +234,11 @@ cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/
 ```text
 Use $literature-research to review 2022–2026 empirical studies on LLM clinical decision support.
 Use standard mode and preserve the full search, screening, study-identity, evidence, and synthesis audit trail.
+```
+
+```text
+Use $manuscript-reviewer to audit paper.pdf before submission.
+重点检查 claim–evidence、图表/正文、数值、notation、citation、protocol comparability 与 overclaim。
 ```
 
 ```text
@@ -247,6 +267,12 @@ AutoSCI/
 │   │   ├── schemas/                    # versioned workspace contract
 │   │   ├── templates/                  # protocol / search / screening / evidence 模板
 │   │   └── scripts/                    # 确定性 review / audit / handoff 工具
+│   ├── manuscript-reviewer/
+│   │   ├── SKILL.md                    # evidence-led 论文审计入口
+│   │   ├── checks/                     # claim/evidence、一致性、引用、notation、revision 规则
+│   │   ├── schemas/                    # canonical finding / revision-delta contract
+│   │   ├── regressions/                # 语义 regression fixtures
+│   │   └── scripts/                    # release / build validation
 │   ├── scientific-figure/
 │   │   ├── SKILL.md                    # Codex Skill 入口
 │   │   ├── agents/                     # Agent metadata
@@ -278,7 +304,8 @@ AutoSCI/
 ## 项目状态
 
 - `literature-research`: **v1.6.1**，已通过真实 standard workflow 回归，提供 search / screening / study / synthesis provenance 与可复现 handoff。
-- `manuscript-reviewer`: **v1.1.0**，面向投稿前与 rebuttal / revision 的 evidence-led manuscript audit，采用 canonical finding 与 regression-driven validation。\n- `scientific-figure`: **v2.0.0 stable**。
+- `manuscript-reviewer`: **v1.1.0**，面向投稿前与 rebuttal / revision 的 evidence-led manuscript audit，采用 canonical finding 与 regression-driven validation。
+- `scientific-figure`: **v2.0.0 stable**。
 - `academic-research-presentation`: **v3.0.0**，当前重点是 evidence-first、diagram safety 与 source visual completeness。
 
 ## 致谢与说明
