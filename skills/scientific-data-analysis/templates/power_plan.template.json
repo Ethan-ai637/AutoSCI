@@ -1,0 +1,73 @@
+{
+  "power_plan_schema_version": "1.1",
+  "planning_id": "example-power-plan",
+  "plan_version": "1.0",
+  "research_question": "How many independent subjects are needed to detect the smallest scientifically important treatment-control mean difference?",
+  "unit_of_analysis": "subject",
+  "alpha": 0.05,
+  "target_power": 0.8,
+  "alternative": "two-sided",
+  "planning_items": [
+    {
+      "planning_item_id": "primary_mean_difference",
+      "type": "welch_two_group_mean",
+      "solve_for": "sample_size",
+      "mean_difference": 5.0,
+      "sd_a": 10.0,
+      "sd_b": 12.0,
+      "allocation_ratio_b_to_a": 1.0,
+      "attrition_rate": 0.1,
+      "assumption_source": {
+        "kind": "scientific_threshold",
+        "reference": "Protocol-defined smallest effect of scientific interest; SD assumptions from prior independent evidence",
+        "notes": "Do not replace these assumptions with the observed effect from the completed study."
+      },
+      "scenarios": [
+        {
+          "scenario_id": "smaller_effect",
+          "overrides": {
+            "mean_difference": 4.0
+          }
+        },
+        {
+          "scenario_id": "higher_variability",
+          "overrides": {
+            "sd_a": 12.0,
+            "sd_b": 14.0
+          }
+        }
+      ]
+    },
+    {
+      "planning_item_id": "planned_contrast_primary",
+      "type": "welch_contrast",
+      "solve_for": "sample_size",
+      "contrast_effect": 5.0,
+      "contrast_terms": [
+        {
+          "level": "control",
+          "weight": -1.0,
+          "sd": 10.0,
+          "allocation_ratio": 1.0
+        },
+        {
+          "level": "treatment_A",
+          "weight": 0.5,
+          "sd": 12.0,
+          "allocation_ratio": 1.0
+        },
+        {
+          "level": "treatment_B",
+          "weight": 0.5,
+          "sd": 14.0,
+          "allocation_ratio": 1.5
+        }
+      ],
+      "attrition_rate": 0.1,
+      "assumption_source": {
+        "kind": "scientific_threshold",
+        "reference": "Protocol-defined smallest scientifically important value of (treatment_A + treatment_B)/2 - control; SDs are external planning assumptions."
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+subject_id,group,response,qc_flag
+C01,control,10.2,keep
+C02,control,11.1,keep
+C03,control,9.7,keep
+C04,control,10.8,keep
+C05,control,12.0,keep
+C06,control,10.4,keep
+T01,treatment,13.0,keep
+T02,treatment,12.4,keep
+T03,treatment,14.2,keep
+T04,treatment,13.7,keep
+T05,treatment,12.9,keep
+T06,treatment,14.0,review

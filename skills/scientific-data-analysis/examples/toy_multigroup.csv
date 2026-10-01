@@ -1,0 +1,13 @@
+subject_id,arm,response
+S01,control,1.0
+S02,control,1.2
+S03,control,0.9
+S04,control,1.1
+S05,dose_low,1.5
+S06,dose_low,1.8
+S07,dose_low,1.6
+S08,dose_low,1.7
+S09,dose_high,2.2
+S10,dose_high,2.5
+S11,dose_high,2.3
+S12,dose_high,2.6

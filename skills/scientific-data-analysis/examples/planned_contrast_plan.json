@@ -1,0 +1,105 @@
+{
+  "analysis_plan_schema_version": "1.4",
+  "analysis_id": "toy-planned-contrast",
+  "plan_version": "1.0",
+  "profile": "standard",
+  "research_question": "Is the average response across the two dose groups higher than control?",
+  "unit_of_analysis": "subject",
+  "confidence_level": 0.95,
+  "random_seed": 314,
+  "input": {
+    "path": "examples/toy_multigroup.csv",
+    "sha256": "ffd997e0674c3e79c30ffe50aab1f9b6d388f9bf7e6d56c918618735c0984138"
+  },
+  "variables": {
+    "id": "subject_id",
+    "group": "arm",
+    "outcomes": [
+      "response"
+    ],
+    "pair_id": null,
+    "covariates": []
+  },
+  "cleaning": {
+    "missing_tokens": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "require_nonmissing": [
+      "subject_id",
+      "arm",
+      "response"
+    ],
+    "require_numeric": [
+      "response"
+    ],
+    "numeric_ranges": {},
+    "allowed_levels": {
+      "arm": [
+        "control",
+        "dose_low",
+        "dose_high"
+      ]
+    },
+    "drop_exact_duplicates": true,
+    "id_duplicate_policy": "error",
+    "technical_replicates": null
+  },
+  "missing_data": {
+    "strategy": "complete_case",
+    "report_per_analysis": true,
+    "imputation": "none"
+  },
+  "resampling": {
+    "method": "percentile",
+    "n_resamples": 300
+  },
+  "analyses": [
+    {
+      "analysis_item_id": "omnibus",
+      "analysis_role": "secondary",
+      "type": "welch_anova",
+      "outcome": "response",
+      "group": "arm",
+      "group_levels": [
+        "control",
+        "dose_low",
+        "dose_high"
+      ],
+      "estimand": "Global equality of the three arm means"
+    },
+    {
+      "analysis_item_id": "avg_dose_vs_control",
+      "analysis_role": "primary",
+      "type": "welch_contrast",
+      "outcome": "response",
+      "group": "arm",
+      "contrast_terms": [
+        {
+          "level": "dose_low",
+          "weight": 0.5
+        },
+        {
+          "level": "dose_high",
+          "weight": 0.5
+        },
+        {
+          "level": "control",
+          "weight": -1.0
+        }
+      ],
+      "estimand": "Average of the two dose-group means minus the control mean"
+    }
+  ],
+  "multiplicity": {},
+  "plots": [
+    {
+      "plot_id": "avg_dose_vs_control_plot",
+      "analysis_item_id": "avg_dose_vs_control",
+      "kind": "group_comparison",
+      "ylabel": "Response (a.u.)"
+    }
+  ],
+  "sensitivity_analyses": []
+}
