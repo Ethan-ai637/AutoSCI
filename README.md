@@ -21,7 +21,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
-  <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">\n  <img src="https://img.shields.io/badge/Manuscript%20Reviewer-v1.1.0-8a2be2" alt="Manuscript Reviewer v1.1.0">
+  <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">
+  <img src="https://img.shields.io/badge/Manuscript%20Reviewer-v1.1.0-8a2be2" alt="Manuscript Reviewer v1.1.0">
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
@@ -66,7 +67,8 @@ AutoSCI currently contains four complementary, independently installable skills:
 
 | Skill | What it does | Implementation |
 | --- | --- | --- |
-| [`literature-research`](skills/literature-research) | Searches, screens, deduplicates, resolves report-to-study identity, clusters topics, builds claim-level evidence tables and citation trails, and produces audited study-aware synthesis | Skill workflow + references + templates + **Python normalization, screening, study-identity, provenance, synthesis, schema, snapshot and handoff tooling** |\n| [`manuscript-reviewer`](skills/manuscript-reviewer) | Audits claim–evidence alignment, figure/table/text consistency, numerical integrity, notation, citation support, protocol comparability, overclaiming, and revision/rebuttal resolution | Evidence-led reviewer workflow + canonical finding records + schemas + **semantic regression fixtures and release validation** |
+| [`literature-research`](skills/literature-research) | Searches, screens, deduplicates, resolves report-to-study identity, clusters topics, builds claim-level evidence tables and citation trails, and produces audited study-aware synthesis | Skill workflow + references + templates + **Python normalization, screening, study-identity, provenance, synthesis, schema, snapshot and handoff tooling** |
+| [`manuscript-reviewer`](skills/manuscript-reviewer) | Audits claim–evidence alignment, figure/table/text consistency, numerical integrity, notation, citation support, protocol comparability, overclaiming, and revision/rebuttal resolution | Evidence-led reviewer workflow + canonical finding records + schemas + **semantic regression fixtures and release validation** |
 | [`scientific-figure`](skills/scientific-figure) | Creates/reconstructs editable scientific figures from methods, equations, code, data, or existing figures | Skill workflow + references + **Python orchestration, audits, rendering, release and benchmark tooling** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | Builds/reviews evidence-first paper-reading, group-meeting, research-update, and technical-talk workflows | Skill workflow + references + templates + source-visual/diagram QA rules |
 
@@ -85,7 +87,19 @@ research question / literature corpus
 $scientific-figure  $academic-research-presentation
 ```
 
-The manuscript reviewer can also be used independently on a draft, supplement, references, rebuttal, or revised manuscript:\n\n```text\nmanuscript / supplement / references / rebuttal\n                    │\n                    ↓\n          $manuscript-reviewer\n                    ↓\n     evidence-backed findings\n  + revision lineage / coverage gaps\n```\n\nThe figure and presentation skills can also be used directly:
+The manuscript reviewer can also be used independently on a draft, supplement, references, rebuttal, or revised manuscript:
+
+```text
+manuscript / supplement / references / rebuttal
+                    │
+                    ↓
+          $manuscript-reviewer
+                    ↓
+     evidence-backed findings
+  + revision lineage / coverage gaps
+```
+
+The figure and presentation skills can also be used directly:
 
 ```text
 paper / method / results
@@ -210,6 +224,7 @@ cd AutoSCI
 
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
 cp -R skills/literature-research "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -R skills/manuscript-reviewer "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
@@ -219,6 +234,11 @@ Reload Codex and invoke a skill explicitly:
 ```text
 Use $literature-research to review 2022–2026 empirical studies on LLM clinical decision support.
 Use standard mode, preserve the search/screening trail, distinguish reports from underlying studies, and deliver an audited evidence table + synthesis.
+```
+
+```text
+Use $manuscript-reviewer to audit paper.pdf before submission.
+Check claim–evidence alignment, figure/table/text consistency, numerical integrity, notation, citations, protocol comparability, and overclaiming.
 ```
 
 ```text
@@ -249,6 +269,12 @@ AutoSCI/
 │   │   ├── schemas/                    # versioned workspace contracts
 │   │   ├── templates/                  # protocol/search/screening/evidence templates
 │   │   └── scripts/                    # deterministic review/audit/handoff tooling
+│   ├── manuscript-reviewer/
+│   │   ├── SKILL.md                    # evidence-led manuscript audit entry point
+│   │   ├── checks/                     # claim/evidence, consistency, citation, notation, revision rules
+│   │   ├── schemas/                    # canonical finding and revision-delta contracts
+│   │   ├── regressions/                # semantic regression fixtures
+│   │   └── scripts/                    # release/build validation
 │   ├── scientific-figure/
 │   │   ├── SKILL.md                    # Codex skill entry point
 │   │   ├── agents/                     # agent metadata
@@ -280,7 +306,8 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 ## Project Status
 
 - **Literature Research:** `v1.6.1`, real-world-tested standard-workflow baseline with search/screening/study/synthesis provenance and reproducible handoff.
-- **Manuscript Reviewer:** `v1.1.0`, evidence-led pre-submission and revision/rebuttal audit baseline with canonical findings and regression-driven validation.\n- **Scientific Figure:** `v2.0.0`, stable production contract.
+- **Manuscript Reviewer:** `v1.1.0`, evidence-led pre-submission and revision/rebuttal audit baseline with canonical findings and regression-driven validation.
+- **Scientific Figure:** `v2.0.0`, stable production contract.
 - **Academic Research Presentation:** `v3.0.0`, focused on evidence-first presentation design, diagram safety, and complete acquisition of paper figures/tables.
 
 ## Acknowledgements
