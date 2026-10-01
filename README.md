@@ -7,7 +7,7 @@
 <p align="center"><strong>Spend more time thinking about science, less time formatting it.</strong></p>
 
 <p align="center">
-  Open-source, local-first Codex skills for literature research, manuscript review, scientific figures, paper reading, group meetings, research updates, and technical presentations.
+  Open-source, local-first Codex skills for literature research, manuscript review, scientific data analysis, scientific figures, paper reading, group meetings, research updates, and technical presentations.
 </p>
 
 <p align="center">
@@ -23,6 +23,7 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
   <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">
   <img src="https://img.shields.io/badge/Manuscript%20Reviewer-v1.1.0-8a2be2" alt="Manuscript Reviewer v1.1.0">
+  <img src="https://img.shields.io/badge/Scientific%20Data%20Analysis-v1.6.1-0f766e" alt="Scientific Data Analysis v1.6.1">
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
@@ -63,12 +64,13 @@ This is not about replacing scientific judgment. It is about removing friction b
 
 ## Skills
 
-AutoSCI currently contains four complementary, independently installable skills:
+AutoSCI currently contains five complementary, independently installable skills:
 
 | Skill | What it does | Implementation |
 | --- | --- | --- |
 | [`literature-research`](skills/literature-research) | Searches, screens, deduplicates, resolves report-to-study identity, clusters topics, builds claim-level evidence tables and citation trails, and produces audited study-aware synthesis | Skill workflow + references + templates + **Python normalization, screening, study-identity, provenance, synthesis, schema, snapshot and handoff tooling** |
 | [`manuscript-reviewer`](skills/manuscript-reviewer) | Audits claim–evidence alignment, figure/table/text consistency, numerical integrity, notation, citation support, protocol comparability, overclaiming, and revision/rebuttal resolution | Evidence-led reviewer workflow + canonical finding records + schemas + **semantic regression fixtures and release validation** |
+| [`scientific-data-analysis`](skills/scientific-data-analysis) | Turns scientific tabular data into an auditable workflow spanning data cleaning, prespecified inference, effect sizes and uncertainty, sensitivity analysis, reproducible plotting, and prospective power/sample-size planning | Skill workflow + references + templates + **deterministic Python cleaning, statistics, plotting, provenance, power-planning, reconciliation and release QA** |
 | [`scientific-figure`](skills/scientific-figure) | Creates/reconstructs editable scientific figures from methods, equations, code, data, or existing figures | Skill workflow + references + **Python orchestration, audits, rendering, release and benchmark tooling** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | Builds/reviews evidence-first paper-reading, group-meeting, research-update, and technical-talk workflows | Skill workflow + references + templates + source-visual/diagram QA rules |
 
@@ -85,6 +87,18 @@ research question / literature corpus
        ┌─────┴─────┐
        ↓           ↓
 $scientific-figure  $academic-research-presentation
+```
+
+`scientific-data-analysis` can be used before data collection for auditable power/sample-size planning and after data collection for prespecified analysis, uncertainty, robustness checks, and reproducible figures:
+
+```text
+design question / tabular data
+          │
+          ↓
+$scientific-data-analysis
+          ↓
+power plan / audited analysis
+ + effect size / uncertainty / figures
 ```
 
 The manuscript reviewer can also be used independently on a draft, supplement, references, rebuttal, or revised manuscript:
@@ -162,11 +176,13 @@ benchmark.py           single-case evaluation
 benchmark_suite.py     multi-case skill evaluation
 ```
 
+`scientific-data-analysis` follows the same inspectable-workflow principle for quantitative research: analysis and power plans are explicit contracts, deterministic scripts execute cleaning/statistics/plots, and preflight reconciliation re-computes planned results to catch stale or tampered artifacts. The release gate lives at [`skills/scientific-data-analysis/scripts/release_check.py`](skills/scientific-data-analysis/scripts/release_check.py).
+
 The presentation skill is intentionally more reasoning-oriented: its implementation is the explicit research workflow in `SKILL.md`, source-visual and diagram safety rules in `references/`, and reusable evidence/storyboard/preflight structures in `templates/`.
 
 ## What we automate — and what we do not
 
-**Good candidates for automation:** repetitive figure construction, layout/alignment/routing, figure/table extraction checks, slide organization, deterministic notation/geometry/clipping/readability checks, and repeated render-inspect-refine cycles.
+**Good candidates for automation:** declared data-cleaning rules, deterministic statistical calculations and reconciliation, repetitive figure construction, layout/alignment/routing, figure/table extraction checks, slide organization, deterministic notation/geometry/clipping/readability checks, and repeated render-inspect-refine cycles.
 
 **Still belongs to the researcher:** choosing the problem, assumptions and methodology; validating experiments and evidence; interpreting results; deciding which claims are justified; and making the final communication choices.
 
@@ -193,6 +209,16 @@ The skill uses canonical finding records so the executive summary, main comments
 It is **not** an accept/reject predictor and does not replace scientific judgment. Its role is manuscript integrity and evidence alignment.
 
 See [`SKILL.md`](skills/manuscript-reviewer/SKILL.md), [`checks/`](skills/manuscript-reviewer/checks/), [`schemas/`](skills/manuscript-reviewer/schemas/), [`regressions/`](skills/manuscript-reviewer/regressions/), and [`docs/EVALUATION.md`](skills/manuscript-reviewer/docs/EVALUATION.md).
+
+## Scientific Data Analysis — v1.6.1
+
+`scientific-data-analysis` is an audit-first workflow for scientific tabular data. It locks the scientific question, estimand, independent analysis unit, variable roles, exclusions and analysis family before inference; records cleaning decisions instead of silently changing data; reports effect magnitude and uncertainty alongside significance tests; supports declared sensitivity analyses and multiplicity correction; and produces reproducible plots whose cohorts are reconciled against the statistical results.
+
+It also has a separate **pre-data planning** branch for prospective power/sample-size work. Current planning families cover two-group Welch means, paired means, independent proportions, and prespecified heteroscedastic Welch contrasts, with explicit assumption provenance, scenario analysis, approximation-adequacy checks, and deterministic power-result reconciliation. It deliberately does not use observed/post-hoc power as evidence after a completed study.
+
+The current release includes schema-validated examples/templates, `doctor.py`, two self-test suites, deterministic preflights for both analysis and power artifacts, and `release_check.py` for repository/release gating.
+
+See [`SKILL.md`](skills/scientific-data-analysis/SKILL.md), [`references/`](skills/scientific-data-analysis/references/), [`templates/`](skills/scientific-data-analysis/templates/), [`examples/`](skills/scientific-data-analysis/examples/), and the executable [`scripts/`](skills/scientific-data-analysis/scripts/) directory.
 
 ## Scientific Figure — v2.0 Stable
 
@@ -225,6 +251,7 @@ cd AutoSCI
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
 cp -R skills/literature-research "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/manuscript-reviewer "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -R skills/scientific-data-analysis "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
@@ -242,6 +269,11 @@ Check claim–evidence alignment, figure/table/text consistency, numerical integ
 ```
 
 ```text
+Use $scientific-data-analysis to analyze experiment.csv with an audit-first workflow.
+Lock the independent unit and analysis plan before inference; report effect sizes + confidence intervals, run declared sensitivity analyses, generate reproducible plots, and preserve deterministic preflight/provenance artifacts.
+```
+
+```text
 Use $scientific-figure to turn the Method section of paper.pdf into an editable Figure 1.
 Use standard mode, preserve mathematical notation, and deliver SVG + target-size PNG.
 ```
@@ -251,9 +283,11 @@ Use $academic-research-presentation to build a 15-slide paper-reading presentati
 Prioritize the paper's main figures and tables, and explain the evidence rather than filling slides with cards.
 ```
 
-For Scientific Figure, you can inspect local capabilities with:
+For Scientific Data Analysis and Scientific Figure, you can inspect local capabilities with:
 
 ```bash
+python skills/scientific-data-analysis/scripts/doctor.py
+python skills/scientific-data-analysis/scripts/release_check.py
 python skills/scientific-figure/scripts/doctor.py
 ```
 
@@ -275,6 +309,12 @@ AutoSCI/
 │   │   ├── schemas/                    # canonical finding and revision-delta contracts
 │   │   ├── regressions/                # semantic regression fixtures
 │   │   └── scripts/                    # release/build validation
+│   ├── scientific-data-analysis/
+│   │   ├── SKILL.md                    # audit-first analysis/planning entry point
+│   │   ├── references/                 # cleaning/statistics/uncertainty/power guidance
+│   │   ├── templates/                  # analysis-plan, data-dictionary and power-plan templates
+│   │   ├── examples/                   # executable toy plans/data
+│   │   └── scripts/                    # deterministic analysis, plotting, power and QA tooling
 │   ├── scientific-figure/
 │   │   ├── SKILL.md                    # Codex skill entry point
 │   │   ├── agents/                     # agent metadata
@@ -307,6 +347,7 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 
 - **Literature Research:** `v1.6.1`, real-world-tested standard-workflow baseline with search/screening/study/synthesis provenance and reproducible handoff.
 - **Manuscript Reviewer:** `v1.1.0`, evidence-led pre-submission and revision/rebuttal audit baseline with canonical findings and regression-driven validation.
+- **Scientific Data Analysis:** `v1.6.1`, audit-first tabular analysis + prospective power/sample-size planning with deterministic reconciliation and release gating.
 - **Scientific Figure:** `v2.0.0`, stable production contract.
 - **Academic Research Presentation:** `v3.0.0`, focused on evidence-first presentation design, diagram safety, and complete acquisition of paper figures/tables.
 
