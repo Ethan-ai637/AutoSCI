@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use manuscript-reviewer in research, please cite the software and the specific release used."
+title: "manuscript-reviewer"
+type: software
+version: 1.1.0
+date-released: 2026-10-01
+license: MIT
+authors:
+  - name: "manuscript-reviewer contributors"
+abstract: "An evidence-driven Agent Skill for auditing scientific manuscripts for claim-evidence alignment, cross-surface consistency, numerical integrity, notation, citation support, overclaiming, and revision lineage."

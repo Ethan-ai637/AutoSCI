@@ -1,0 +1,49 @@
+case_id: BLIND-V011-04
+title: "Clarification of imported-baseline provenance is not partial repair"
+test_level: version_delta
+origin: prior_failure
+review_mode: standard
+manuscript_archetype: method_model_system
+
+evidence_boundary:
+  available:
+    - "Prior root concerns broad direct-comparison framing for imported/different-budget auxiliary baselines"
+    - "Revision explains the imported provenance more clearly"
+    - "Material broad/direct-comparison framing still survives"
+  unavailable: []
+  rendered_pdf_available: true
+  external_sources_available: false
+
+anchors:
+  - "Rebuttal provenance explanation and current comparison wording"
+
+expected:
+  must_find:
+    - root_identity: "Imported-baseline comparability defect remains materially unchanged"
+      allowed_primary_categories: [CE, XR]
+      disposition: finding
+      allowed_severity: [Major]
+      evidence_state: partial_support
+  must_not_find:
+    - "Do not call the root partially_resolved merely because provenance is clearer"
+    - "Do not accept a rebuttal statement as repair without current-manuscript correction"
+  coverage_expectations:
+    - "Match lineage by scientific root and compare current claim scope, not amount of explanation"
+  forbidden_synthesis:
+    - "All baseline comparisons are invalid"
+
+notes:
+  scientific_rationale: "Reviewer information gain is not manuscript defect reduction."
+  regression_target: "disposition"
+  copyright_note: "Synthetic/minimal semantic fixture derived from a blind-run failure."
+
+version_delta_expectations:
+  prior_records: ["CE-IMPORT"]
+  transitions:
+    - prior_record_id: "CE-IMPORT"
+      expected_status: "persistent"
+      expected_current_disposition: "finding"
+      allowed_current_severity: [Major]
+      must_not_duplicate_as_new: true
+  forbidden_transitions:
+    - "Do not use partially_resolved when only clarification improved"

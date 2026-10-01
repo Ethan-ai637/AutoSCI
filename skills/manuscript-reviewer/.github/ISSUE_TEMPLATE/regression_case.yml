@@ -1,0 +1,25 @@
+name: Regression case
+description: Propose a minimal semantic case for a reviewer failure mode.
+title: "[regression] "
+labels: [regression]
+body:
+  - type: textarea
+    id: failure
+    attributes:
+      label: Failure mode
+      description: What scientific-review behavior is wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: fixture
+    attributes:
+      label: Minimal fixture
+      description: Use synthetic/minimal text; do not paste confidential manuscripts.
+    validations:
+      required: true
+  - type: textarea
+    id: expectation
+    attributes:
+      label: Expected disposition / severity / suppression
+    validations:
+      required: true

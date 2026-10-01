@@ -1,0 +1,36 @@
+case_id: BLIND-V011-06
+title: "Canonical salience controls prose placement"
+test_level: micro
+origin: prior_failure
+review_mode: standard
+manuscript_archetype: mixed
+
+evidence_boundary:
+  available:
+    - "A finalized canonical finding record has salience=main_comment"
+    - "The rendered report places the same ID under Secondary findings"
+  unavailable: []
+  rendered_pdf_available: false
+  external_sources_available: false
+
+anchors:
+  - "Canonical record and final report section placement"
+
+expected:
+  must_find:
+    - root_identity: "Structured/prose rendering mismatch"
+      allowed_primary_categories: [XR]
+      disposition: finding
+      allowed_severity: [Minor, Moderate]
+      evidence_state: contradicted
+  must_not_find:
+    - "Do not silently accept different salience in prose and structured output"
+  coverage_expectations:
+    - "Compare each outward item against canonical ID, disposition, severity, confidence, and salience"
+  forbidden_synthesis:
+    - "Report placement may freely override canonical salience"
+
+notes:
+  scientific_rationale: "The canonical record is the single source of truth; rendering cannot become a second adjudication layer."
+  regression_target: "synthesis"
+  copyright_note: "Pure skill-behavior regression fixture; no manuscript text."

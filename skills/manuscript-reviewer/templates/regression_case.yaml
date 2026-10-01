@@ -1,0 +1,47 @@
+case_id: REG-XXX
+title: "Short scientific failure mode"
+test_level: micro  # micro | manuscript_slice | full_manuscript | version_delta
+origin: synthetic  # synthetic | real_manuscript | prior_failure
+review_mode: standard
+manuscript_archetype: mixed
+
+evidence_boundary:
+  available:
+    - "List only material evidence available to the reviewer"
+  unavailable: []
+  rendered_pdf_available: true
+  external_sources_available: false
+
+anchors:
+  - "Stable manuscript/object anchor or short paraphrased fixture reference"
+
+expected:
+  must_find:
+    - root_identity: "Describe the scientific root, not exact prose"
+      allowed_primary_categories: [CE, OC]
+      disposition: finding
+      allowed_severity: [Moderate, Major]
+      evidence_state: partial_support
+  must_not_find:
+    - "Do not assert semantic citation failure when the cited source was unavailable"
+  coverage_expectations:
+    - "Follow any explicit appendix dependency before declaring missing evidence"
+  forbidden_synthesis:
+    - "The entire evaluation is invalid"
+
+notes:
+  scientific_rationale: "Why this expected behavior is correct"
+  regression_target: "false_positive | false_negative | disposition | severity | duplicate | coverage | provenance | synthesis"
+  copyright_note: "Use short excerpts/paraphrases and stable anchors; do not embed large manuscript passages."
+
+# Optional: use only for test_level: version_delta
+version_delta_expectations:
+  prior_records: []
+  transitions:
+    # - prior_record_id: "CE-01"
+    #   expected_status: "resolved | partially_resolved | persistent | reclassified | not_reassessable | no_longer_material"
+    #   expected_current_disposition: "finding | author_query | coverage_gap | null"
+    #   allowed_current_severity: [Moderate, Major]
+    #   must_not_duplicate_as_new: true
+  forbidden_transitions:
+    - "Do not mark a prior issue resolved solely because the response letter says it was fixed"

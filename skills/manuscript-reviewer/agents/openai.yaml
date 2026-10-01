@@ -1,0 +1,9 @@
+interface:
+  display_name: "Manuscript Reviewer"
+  short_description: "Audit scientific manuscripts"
+  default_prompt: "Audit this manuscript with manuscript-reviewer and separate findings, author queries, and coverage gaps."
+policy:
+  products:
+    - CHAT
+    - CODEX
+  allow_implicit_invocation: true

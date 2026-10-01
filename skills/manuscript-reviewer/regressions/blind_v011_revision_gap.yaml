@@ -1,0 +1,45 @@
+case_id: BLIND-V011-05
+title: "Unverifiable citation dependency removed from current scope"
+test_level: version_delta
+origin: prior_failure
+review_mode: standard
+manuscript_archetype: mixed
+
+evidence_boundary:
+  available:
+    - "Prior citation semantic verification was blocked because source text was unavailable"
+    - "Revision removes the strong citation-dependent claim"
+    - "Source text is still unavailable"
+  unavailable:
+    - "Cited source semantic content"
+  rendered_pdf_available: true
+  external_sources_available: false
+
+anchors:
+  - "Prior coverage gap and revised claim/citation dependency"
+
+expected:
+  must_find: []
+  must_not_find:
+    - "Do not mark semantic verification as resolved"
+    - "Do not keep the gap as a current actionable issue when no material claim depends on it"
+  coverage_expectations:
+    - "Record revision lineage as no_longer_material"
+  forbidden_synthesis:
+    - "The citation has now been verified"
+
+notes:
+  scientific_rationale: "The verification was not completed; it ceased to matter to the current manuscript."
+  regression_target: "disposition"
+  copyright_note: "Synthetic/minimal semantic fixture derived from a blind-run failure."
+
+version_delta_expectations:
+  prior_records: ["CG-01"]
+  transitions:
+    - prior_record_id: "CG-01"
+      expected_status: "no_longer_material"
+      expected_current_disposition: null
+      allowed_current_severity: []
+      must_not_duplicate_as_new: true
+  forbidden_transitions:
+    - "Do not call the gap resolved when the source remains unavailable"
