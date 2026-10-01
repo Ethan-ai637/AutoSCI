@@ -7,7 +7,7 @@
 <p align="center"><strong>Spend more time thinking about science, less time formatting it.</strong></p>
 
 <p align="center">
-  Open-source, local-first Codex skills for literature research, scientific figures, paper reading, group meetings, research updates, and technical presentations.
+  Open-source, local-first Codex skills for literature research, manuscript review, scientific figures, paper reading, group meetings, research updates, and technical presentations.
 </p>
 
 <p align="center">
@@ -21,7 +21,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
-  <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">
+  <img src="https://img.shields.io/badge/Literature%20Research-v1.6.1-6f42c1" alt="Literature Research v1.6.1">\n  <img src="https://img.shields.io/badge/Manuscript%20Reviewer-v1.1.0-8a2be2" alt="Manuscript Reviewer v1.1.0">
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
@@ -62,11 +62,11 @@ This is not about replacing scientific judgment. It is about removing friction b
 
 ## Skills
 
-AutoSCI currently contains three complementary, independently installable skills:
+AutoSCI currently contains four complementary, independently installable skills:
 
 | Skill | What it does | Implementation |
 | --- | --- | --- |
-| [`literature-research`](skills/literature-research) | Searches, screens, deduplicates, resolves report-to-study identity, clusters topics, builds claim-level evidence tables and citation trails, and produces audited study-aware synthesis | Skill workflow + references + templates + **Python normalization, screening, study-identity, provenance, synthesis, schema, snapshot and handoff tooling** |
+| [`literature-research`](skills/literature-research) | Searches, screens, deduplicates, resolves report-to-study identity, clusters topics, builds claim-level evidence tables and citation trails, and produces audited study-aware synthesis | Skill workflow + references + templates + **Python normalization, screening, study-identity, provenance, synthesis, schema, snapshot and handoff tooling** |\n| [`manuscript-reviewer`](skills/manuscript-reviewer) | Audits claim–evidence alignment, figure/table/text consistency, numerical integrity, notation, citation support, protocol comparability, overclaiming, and revision/rebuttal resolution | Evidence-led reviewer workflow + canonical finding records + schemas + **semantic regression fixtures and release validation** |
 | [`scientific-figure`](skills/scientific-figure) | Creates/reconstructs editable scientific figures from methods, equations, code, data, or existing figures | Skill workflow + references + **Python orchestration, audits, rendering, release and benchmark tooling** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | Builds/reviews evidence-first paper-reading, group-meeting, research-update, and technical-talk workflows | Skill workflow + references + templates + source-visual/diagram QA rules |
 
@@ -85,7 +85,7 @@ research question / literature corpus
 $scientific-figure  $academic-research-presentation
 ```
 
-The figure and presentation skills can also be used directly:
+The manuscript reviewer can also be used independently on a draft, supplement, references, rebuttal, or revised manuscript:\n\n```text\nmanuscript / supplement / references / rebuttal\n                    │\n                    ↓\n          $manuscript-reviewer\n                    ↓\n     evidence-backed findings\n  + revision lineage / coverage gaps\n```\n\nThe figure and presentation skills can also be used directly:
 
 ```text
 paper / method / results
@@ -167,6 +167,18 @@ It separates research judgment from mechanical QA: the model designs searches an
 The skill supports `exploratory`, `standard`, and `systematic` profiles. It explicitly distinguishes attempted versus successful search coverage, `full_text_attempted` versus genuinely `full_text_screened`, report counts versus independent-study counts, and scientific evidence state versus verification coverage. It does not turn a standard evidence review into a claimed systematic review when retrieval coverage is incomplete.
 
 See [`SKILL.md`](skills/literature-research/SKILL.md), [`references/`](skills/literature-research/references/), [`templates/`](skills/literature-research/templates/), and the executable [`scripts/`](skills/literature-research/scripts/) directory.
+
+## Manuscript Reviewer — v1.1.0
+
+`manuscript-reviewer` is an evidence-first scientific argument auditor for pre-submission checks and revision/rebuttal review. It asks a narrower question than a generic reviewer: **does the manuscript say exactly what its available evidence supports?**
+
+It decomposes central claims into atomic propositions, traces them to experiments, figures, tables, formulas and citations, checks numerical and notation consistency, verifies protocol/provenance comparability before comparing results, distinguishes findings from author queries and coverage gaps, and tracks whether revision changes actually resolve prior scientific roots.
+
+The skill uses canonical finding records so the executive summary, main comments and revision report inherit the same disposition, severity and evidence boundary. It also includes semantic regression fixtures derived from blind stress testing, including false-positive resistance, revision severity recalibration and prompt-injection resistance for untrusted manuscript content.
+
+It is **not** an accept/reject predictor and does not replace scientific judgment. Its role is manuscript integrity and evidence alignment.
+
+See [`SKILL.md`](skills/manuscript-reviewer/SKILL.md), [`checks/`](skills/manuscript-reviewer/checks/), [`schemas/`](skills/manuscript-reviewer/schemas/), [`regressions/`](skills/manuscript-reviewer/regressions/), and [`docs/EVALUATION.md`](skills/manuscript-reviewer/docs/EVALUATION.md).
 
 ## Scientific Figure — v2.0 Stable
 
@@ -268,7 +280,7 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 ## Project Status
 
 - **Literature Research:** `v1.6.1`, real-world-tested standard-workflow baseline with search/screening/study/synthesis provenance and reproducible handoff.
-- **Scientific Figure:** `v2.0.0`, stable production contract.
+- **Manuscript Reviewer:** `v1.1.0`, evidence-led pre-submission and revision/rebuttal audit baseline with canonical findings and regression-driven validation.\n- **Scientific Figure:** `v2.0.0`, stable production contract.
 - **Academic Research Presentation:** `v3.0.0`, focused on evidence-first presentation design, diagram safety, and complete acquisition of paper figures/tables.
 
 ## Acknowledgements
