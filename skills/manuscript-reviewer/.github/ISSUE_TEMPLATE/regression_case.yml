@@ -1,0 +1,22 @@
+name: Regression case proposal
+description: Propose a semantic regression fixture
+labels: [regression]
+body:
+  - type: textarea
+    attributes:
+      label: General failure pattern
+      description: Describe the general reviewer failure without paper-specific hardcoding.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Must find / must not find
+      description: List the intended semantic assertions.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Why this generalizes
+      description: Explain why the rule applies beyond the motivating manuscript.
+    validations:
+      required: true

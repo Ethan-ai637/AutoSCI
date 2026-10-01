@@ -1,0 +1,49 @@
+case_id: BLIND-V011-03
+title: "Partial repair requires residual-only severity recalibration"
+test_level: version_delta
+origin: prior_failure
+review_mode: standard
+manuscript_archetype: mixed
+
+evidence_boundary:
+  available:
+    - "Prior universal claim appeared across abstract, results, and conclusion and was Major"
+    - "Revision narrows abstract and results to supported scope"
+    - "One stale conclusion statement retains the old universal claim"
+    - "Current evidence/table and main results now use the correct narrower scope"
+  unavailable: []
+  rendered_pdf_available: true
+  external_sources_available: false
+
+anchors:
+  - "Prior universal root and revised abstract/results/conclusion"
+
+expected:
+  must_find:
+    - root_identity: "Residual stale universal conclusion after meaningful partial repair"
+      allowed_primary_categories: [CE, OC]
+      disposition: finding
+      allowed_severity: [Moderate]
+      evidence_state: contradicted
+  must_not_find:
+    - "Do not keep Major solely because the prior lineage was Major"
+  coverage_expectations:
+    - "Recheck every narrative surface and calibrate severity from the current remainder"
+  forbidden_synthesis:
+    - "The revision failed to address the claim at all"
+
+notes:
+  scientific_rationale: "The remaining defect is materially smaller; severity must be assigned from current consequence rather than history."
+  regression_target: "severity"
+  copyright_note: "Synthetic/minimal semantic fixture derived from a blind-run failure."
+
+version_delta_expectations:
+  prior_records: ["CE-02"]
+  transitions:
+    - prior_record_id: "CE-02"
+      expected_status: "partially_resolved"
+      expected_current_disposition: "finding"
+      allowed_current_severity: [Moderate]
+      must_not_duplicate_as_new: true
+  forbidden_transitions:
+    - "Do not preserve Major without current-state recalibration"

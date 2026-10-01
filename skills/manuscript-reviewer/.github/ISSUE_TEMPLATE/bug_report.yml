@@ -1,0 +1,28 @@
+name: Reviewer behavior bug
+description: Report a reproducible manuscript-reviewer failure
+labels: [bug]
+body:
+  - type: textarea
+    attributes:
+      label: Failure mode
+      description: Describe what the reviewer did and why it is scientifically wrong or unstable.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Minimal evidence bundle
+      description: Provide a minimal synthetic or shareable excerpt. Do not upload confidential material.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: State the expected finding/query/gap, severity range, transition, or suppression behavior.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Version
+      placeholder: "1.1.0"
+    validations:
+      required: true

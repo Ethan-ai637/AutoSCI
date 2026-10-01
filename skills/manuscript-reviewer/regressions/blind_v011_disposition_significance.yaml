@@ -1,0 +1,38 @@
+case_id: BLIND-V011-01
+title: "Explicit significance claim lacks reported test output"
+test_level: manuscript_slice
+origin: prior_failure
+review_mode: standard
+manuscript_archetype: mixed
+
+evidence_boundary:
+  available:
+    - "Main claim explicitly asserts a named significance threshold"
+    - "Methods/results/tables and available supplement have been checked"
+    - "No test statistic, p-value, paired-unit definition, or hypothesis-test output is reported"
+  unavailable: []
+  rendered_pdf_available: true
+  external_sources_available: false
+
+anchors:
+  - "Significance assertion and supplement reporting note"
+
+expected:
+  must_find:
+    - root_identity: "Current manuscript does not substantiate its explicit significance assertion"
+      allowed_primary_categories: [CE, XR]
+      disposition: finding
+      allowed_severity: [Moderate]
+      evidence_state: missing_required_evidence
+  must_not_find:
+    - "Do not conclude that the gains are non-significant"
+    - "Do not downgrade to author_query solely because authors could supply statistics later"
+  coverage_expectations:
+    - "Complete a claim-directed absence check before disposition"
+  forbidden_synthesis:
+    - "None of the results are significant"
+
+notes:
+  scientific_rationale: "The truth of significance is unknown, but the manuscript-level support/reporting defect is directly verifiable."
+  regression_target: "disposition"
+  copyright_note: "Synthetic/minimal semantic fixture derived from a blind-run failure; no paper text reproduced."

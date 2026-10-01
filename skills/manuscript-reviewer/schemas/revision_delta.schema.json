@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openai.local/manuscript-reviewer/revision_delta.schema.json",
+  "title": "Manuscript Reviewer Revision Delta Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prior_record_id",
+    "current_record_id",
+    "status",
+    "lineage_confidence",
+    "resolution_basis",
+    "current_disposition",
+    "current_severity"
+  ],
+  "properties": {
+    "prior_record_id": {
+      "type": "string",
+      "pattern": "^(CE|FT|NI|NT|CI|OC|XR|AQ|CG)-[0-9]{2,}$"
+    },
+    "current_record_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^(CE|FT|NI|NT|CI|OC|XR|AQ|CG)-[0-9]{2,}$"
+    },
+    "status": {
+      "enum": [
+        "resolved",
+        "partially_resolved",
+        "persistent",
+        "reclassified",
+        "not_reassessable",
+        "no_longer_material"
+      ]
+    },
+    "lineage_confidence": {
+      "enum": [
+        "High",
+        "Medium",
+        "Low"
+      ]
+    },
+    "resolution_basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "current_disposition": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "finding",
+        "author_query",
+        "coverage_gap",
+        null
+      ]
+    },
+    "current_severity": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Critical",
+        "Major",
+        "Moderate",
+        "Minor",
+        null
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "resolved",
+              "no_longer_material"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "current_record_id": {
+            "type": "null"
+          },
+          "current_disposition": {
+            "type": "null"
+          },
+          "current_severity": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "partially_resolved",
+              "persistent",
+              "reclassified"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "current_record_id": {
+            "type": "string"
+          },
+          "current_disposition": {
+            "enum": [
+              "finding",
+              "author_query",
+              "coverage_gap"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

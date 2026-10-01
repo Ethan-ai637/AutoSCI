@@ -1,0 +1,38 @@
+case_id: BLIND-V011-02
+title: "Claimed asymptotic interchangeability lacks stated relation"
+test_level: manuscript_slice
+origin: prior_failure
+review_mode: standard
+manuscript_archetype: method_model_system
+
+evidence_boundary:
+  available:
+    - "Two asymptotic expressions use graph-size variables and batch-size variables"
+    - "Manuscript states they are interchangeable"
+    - "No relation such as N~n and M~m is stated after checking the relevant method/appendix"
+  unavailable: []
+  rendered_pdf_available: true
+  external_sources_available: false
+
+anchors:
+  - "Complexity statement and variable definitions"
+
+expected:
+  must_find:
+    - root_identity: "Interchangeability/scaling assertion lacks the required stated assumption or justification"
+      allowed_primary_categories: [NT, CE, XR]
+      disposition: finding
+      allowed_severity: [Moderate]
+      evidence_state: missing_required_evidence
+  must_not_find:
+    - "Do not claim the two complexity expressions can never be equivalent"
+    - "Do not use only author_query when the manuscript-level justification defect is already established"
+  coverage_expectations:
+    - "Check variable definitions and the relevant appendix before concluding the relation is unstated"
+  forbidden_synthesis:
+    - "The method has invalid computational complexity"
+
+notes:
+  scientific_rationale: "The review can establish missing justification in the current manuscript without deciding the hidden mathematical truth."
+  regression_target: "disposition"
+  copyright_note: "Synthetic/minimal semantic fixture derived from a blind-run failure."
