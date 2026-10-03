@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autosci.local/schemas/paper-reproduction/repository_readiness.schema.json",
+  "title": "AutoSCI Repository Reproduction Readiness",
+  "type": "object",
+  "required": ["schema_version", "dimensions"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "generated_at": {"type": ["string", "null"]},
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": {"enum": ["ready", "partial", "missing", "blocked", "not_checked"]}
+    },
+    "overall_score": {"type": "null"},
+    "notes": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}

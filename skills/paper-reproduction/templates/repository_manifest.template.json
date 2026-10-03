@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "repository_id": "repo_001",
+  "remote_url": null,
+  "official_status": "unknown",
+  "identity_evidence": [],
+  "source_revision": {
+    "commit": null,
+    "branch": null,
+    "tags_at_head": [],
+    "release": null,
+    "selection_basis": "unknown",
+    "selection_evidence": []
+  },
+  "git": {
+    "dirty": null,
+    "submodules": [],
+    "lfs_detected": null
+  },
+  "detected": {
+    "environment_files": [],
+    "container_files": [],
+    "entrypoint_candidates": [],
+    "config_candidates": [],
+    "license_files": []
+  },
+  "notes": null
+}
