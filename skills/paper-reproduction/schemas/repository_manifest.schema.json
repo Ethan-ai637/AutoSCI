@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autosci.local/schemas/paper-reproduction/repository_manifest.schema.json",
+  "title": "AutoSCI Repository Manifest",
+  "type": "object",
+  "required": ["schema_version", "repository_id", "official_status", "source_revision"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "repository_id": {"type": "string"},
+    "remote_url": {"type": ["string", "null"]},
+    "official_status": {"enum": ["author_official", "publisher_official", "artifact_evaluation", "linked_project", "third_party", "unknown"]},
+    "identity_evidence": {"type": "array"},
+    "source_revision": {
+      "type": "object",
+      "required": ["commit", "selection_basis"],
+      "properties": {
+        "commit": {"type": ["string", "null"]},
+        "branch": {"type": ["string", "null"]},
+        "tags_at_head": {"type": "array", "items": {"type": "string"}},
+        "release": {"type": ["string", "null"]},
+        "selection_basis": {"enum": ["paper_linked_tag", "paper_linked_release", "paper_documented_commit", "artifact_documented_commit", "publication_period_commit", "user_pinned", "current_head_fallback", "unknown"]},
+        "selection_evidence": {"type": "array"}
+      },
+      "additionalProperties": true
+    },
+    "git": {"type": "object"},
+    "detected": {"type": "object"},
+    "notes": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}

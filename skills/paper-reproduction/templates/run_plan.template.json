@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "plan_id": "plan_001",
+  "created_at": null,
+  "items": [
+    {
+      "plan_item_id": "step_001",
+      "stage": "smoke",
+      "claim_ids": ["claim_001"],
+      "scientific_target": false,
+      "command": null,
+      "expected_outputs": [],
+      "resource_class": null,
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "plan_item_id": "step_002",
+      "stage": "target",
+      "claim_ids": ["claim_001"],
+      "scientific_target": true,
+      "command": null,
+      "expected_outputs": [],
+      "resource_class": null,
+      "status": "planned",
+      "notes": null
+    }
+  ]
+}

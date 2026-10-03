@@ -65,7 +65,7 @@ This is not about replacing scientific judgment. It is about removing friction b
 
 ## Skills
 
-AutoSCI currently contains six complementary, independently installable skills:
+AutoSCI currently contains seven complementary, independently installable skills:
 
 | Skill | What it does | Implementation |
 | --- | --- | --- |
@@ -75,6 +75,7 @@ AutoSCI currently contains six complementary, independently installable skills:
 | [`scientific-data-analysis`](skills/scientific-data-analysis) | Turns scientific tabular data into an auditable workflow spanning data cleaning, prespecified inference, effect sizes and uncertainty, sensitivity analysis, reproducible plotting, and prospective power/sample-size planning | Skill workflow + references + templates + **deterministic Python cleaning, statistics, plotting, provenance, power-planning, reconciliation and release QA** |
 | [`scientific-figure`](skills/scientific-figure) | Creates/reconstructs editable scientific figures from methods, equations, code, data, or existing figures | Skill workflow + references + **Python orchestration, audits, rendering, release and benchmark tooling** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | Builds/reviews evidence-first paper-reading, group-meeting, research-update, and technical-talk workflows | Skill workflow + references + templates + source-visual/diagram QA rules |
+| [`paper-reproduction`](skills/paper-reproduction) | Reconstructs published research as runnable, claim-scoped experiments with paper↔code traceability, pinned revisions, environment/run provenance, discrepancy analysis, and release handoff | Skill workflow + templates + schemas + **repository inspection, run ledger, provenance binding, claim reconciliation, readiness, and release tooling** |
 
 They can be used separately or chained together. A literature review can produce an audited evidence workspace for later figure or presentation work:
 
@@ -254,6 +255,14 @@ This is a presentation reasoning/QA skill rather than a standalone PPTX renderer
 
 See [`SKILL.md`](skills/academic-research-presentation/SKILL.md), [`references/`](skills/academic-research-presentation/references/), and [`templates/`](skills/academic-research-presentation/templates/).
 
+## Paper Reproduction — v1.2.0
+
+`paper-reproduction` turns a paper's published claims into a claim-scoped, auditable experiment workflow. It resolves paper/repository identity and revision, maps claims to code/config/data/checkpoints, records environment and run provenance, distinguishes blockers from discrepancies, and produces a reproducible handoff.
+
+The v1.2.0 release closes provenance and reconciliation gaps: target-run provenance fails closed if a required snapshot is incomplete or an execution-defining manifest disappears; metric rows must match the metric declared by their claim before they can support reconciliation; and repository commands run with a filtered environment unless additional non-secret variables are explicitly selected.
+
+See [`SKILL.md`](skills/paper-reproduction/SKILL.md), [`references/`](skills/paper-reproduction/references/), [`templates/`](skills/paper-reproduction/templates/), and the executable [`scripts/`](skills/paper-reproduction/scripts/) directory. Run its regression suite with `python -m unittest discover -s skills/paper-reproduction/tests -v`.
+
 ## Quick Start
 
 ```bash
@@ -267,6 +276,7 @@ cp -R skills/academic-manuscript-writing "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-data-analysis "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -R skills/paper-reproduction "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
 Reload Codex and invoke a skill explicitly:
@@ -299,6 +309,11 @@ Use standard mode, preserve mathematical notation, and deliver SVG + target-size
 ```text
 Use $academic-research-presentation to build a 15-slide paper-reading presentation from paper.pdf.
 Prioritize the paper's main figures and tables, and explain the evidence rather than filling slides with cards.
+```
+
+```text
+Use $paper-reproduction in REPO_REPRODUCE mode for Table 2 of this paper.
+Pin the paper-era repository revision, map the claim to code/config/data, run a smoke test first, and preserve target-run provenance and discrepancies.
 ```
 
 For Scientific Data Analysis and Scientific Figure, you can inspect local capabilities with:
@@ -372,6 +387,7 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 - **Literature Research:** `v1.6.1`, real-world-tested standard-workflow baseline with search/screening/study/synthesis provenance and reproducible handoff.
 - **Manuscript Reviewer:** `v1.1.0`, evidence-led pre-submission and revision/rebuttal audit baseline with canonical findings and regression-driven validation.
 - **Academic Manuscript Writing:** `v2.0.0`, evidence-traceable manuscript build/revision with dynamic writing profiles, manuscript contracts, revision lineage, and deterministic release QA.
+- **Paper Reproduction:** `v1.2.0`, claim-scoped reproduction workflow with fail-closed execution provenance, metric-to-claim reconciliation, and filtered command environments.
 - **Scientific Data Analysis:** `v1.6.1`, audit-first tabular analysis + prospective power/sample-size planning with deterministic reconciliation and release gating.
 - **Scientific Figure:** `v2.0.0`, stable production contract.
 - **Academic Research Presentation:** `v3.0.0`, focused on evidence-first presentation design, diagram safety, and complete acquisition of paper figures/tables.

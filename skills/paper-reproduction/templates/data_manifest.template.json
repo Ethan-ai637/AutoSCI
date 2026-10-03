@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "datasets": [
+    {
+      "dataset_id": "data_001",
+      "name": null,
+      "source": null,
+      "version": null,
+      "retrieval_status": "not_attempted",
+      "identity_method": null,
+      "identity": null,
+      "split": null,
+      "preprocessing": null,
+      "access_or_license_note": null,
+      "relationship_to_original": "unknown",
+      "notes": null
+    }
+  ]
+}

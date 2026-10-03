@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.1",
+  "skill_version": "1.2.0",
+  "mode": "REPO_REPRODUCE",
+  "profile": "standard",
+  "created_at": null,
+  "paper_id": "paper_001",
+  "repository_id": "repo_001",
+  "target_claims": [
+    {
+      "claim_id": "claim_001",
+      "type": "table_result",
+      "paper_locator": "Table X / row / column",
+      "statement": null,
+      "metric": null,
+      "reported": {
+        "value": null,
+        "unit": null,
+        "variation": null,
+        "aggregation": null
+      },
+      "scope": {
+        "dataset": null,
+        "dataset_version": null,
+        "split": null,
+        "model": null,
+        "condition": null,
+        "config": null,
+        "seed_policy": null,
+        "checkpoint": null,
+        "evaluation_protocol": null
+      },
+      "comparison_rule": {
+        "kind": "unspecified",
+        "predeclared": false,
+        "parameters": {}
+      },
+      "unknowns": []
+    }
+  ],
+  "resource_plan": {
+    "accelerator": null,
+    "memory_class": null,
+    "storage_class": null,
+    "duration_class": null,
+    "full_training_required": null,
+    "notes": null
+  },
+  "notes": null
+}

@@ -75,8 +75,9 @@ AutoSCI **不只是一组提示词**。我们把科研工作经验组织成可�
 | [`scientific-data-analysis`](skills/scientific-data-analysis) | 把科研表格数据的清洗、预设统计推断、效应量与不确定性、敏感性分析、可复现绘图，以及实验前 power / sample-size planning 组织成可审计工作流 | Skill 工作流 + references + templates + **确定性 Python 清洗、统计、绘图、provenance、power planning、reconciliation 与 release QA** |
 | [`scientific-figure`](skills/scientific-figure) | 从 Method、equation、code、data 或已有科研图创建/重构可编辑科研图 | Skill 工作流 + references + **Python 流程编排、审计、渲染、release 与 benchmark 工具链** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | 论文汇报、组会、科研进展与 technical talk 的 evidence-first 工作流 | Skill 工作流 + references + templates + source visual / diagram QA 规则 |
+| [`paper-reproduction`](skills/paper-reproduction) | 将已发表研究重构为可运行、按 claim 追踪的实验，覆盖 paper↔code 映射、版本固定、环境与运行 provenance、差异分析和 release 交付 | Skill 工作流 + templates + schemas + **仓库检查、run ledger、provenance 绑定、claim reconciliation、readiness 与 release 工具** |
 
-六个 Skill 可以独立安装，也可以串联使用。`literature-research` 可以先生成经过审计的证据工作区，再交给科研绘图或学术汇报流程继续消费：
+七个 Skill 可以独立安装，也可以串联使用。`literature-research` 可以先生成经过审计的证据工作区，再交给科研绘图或学术汇报流程继续消费：
 
 ```text
 研究问题 / 文献语料
@@ -250,6 +251,14 @@ V3 重点处理两个自动生成汇报中非常常见的问题：AI 自己脑�
 
 详见 [`SKILL.md`](skills/academic-research-presentation/SKILL.md)、[`references/`](skills/academic-research-presentation/references/) 和 [`templates/`](skills/academic-research-presentation/templates/)。
 
+## Paper Reproduction v1.2.0
+
+`paper-reproduction` 将论文中的已发表 claim 转化为按目标 claim 组织、可审计的实验工作流：核验论文与仓库身份及精确 revision，把 claim 映射到代码、配置、数据和 checkpoint，记录环境与运行 provenance，区分阻塞因素和结果差异，并生成可复现的交付物。
+
+v1.2.0 修复 provenance 和 reconciliation 缺口：target run 的 provenance 快照不完整或执行定义文件后来被删除时，preflight 会 fail closed；指标行必须匹配 claim 声明的 metric，才能进入 reconciliation；仓库命令默认只接收经过筛选的环境变量，额外变量必须显式选择且不能是常见凭据类型。
+
+详见 [`SKILL.md`](skills/paper-reproduction/SKILL.md)、[`references/`](skills/paper-reproduction/references/)、[`templates/`](skills/paper-reproduction/templates/) 和可执行的 [`scripts/`](skills/paper-reproduction/scripts/) 目录。回归检查命令：`python -m unittest discover -s skills/paper-reproduction/tests -v`。
+
 ## 快速开始
 
 ```bash
@@ -263,6 +272,7 @@ cp -R skills/academic-manuscript-writing "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-data-analysis "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -R skills/paper-reproduction "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
 重新加载 Codex 后，可以直接调用：
@@ -293,6 +303,11 @@ Use $scientific-figure to turn the Method section of paper.pdf into an editable 
 
 ```text
 Use $academic-research-presentation to build a paper-reading deck from paper.pdf.
+```
+
+```text
+Use $paper-reproduction in REPO_REPRODUCE mode for Table 2 of this paper.
+先固定 paper-era repository revision，将 claim 映射到代码/配置/数据，先做 smoke test，并保留 target-run provenance 与 discrepancy。
 ```
 
 Scientific Data Analysis 与 Scientific Figure 都可以直接检查本地环境：
@@ -366,6 +381,7 @@ AutoSCI/
 - `literature-research`: **v1.6.1**，已通过真实 standard workflow 回归，提供 search / screening / study / synthesis provenance 与可复现 handoff。
 - `manuscript-reviewer`: **v1.1.0**，面向投稿前与 rebuttal / revision 的 evidence-led manuscript audit，采用 canonical finding 与 regression-driven validation。
 - `academic-manuscript-writing`: **v2.0.0**，提供 evidence-traceable 论文撰写与修订、dynamic writing profile、manuscript contract、revision lineage 与确定性 release QA。
+- `paper-reproduction`: **v1.2.0**，提供按 claim 管理的复现流程，并对执行 provenance、metric-to-claim 对应关系和子进程环境执行 fail-closed 检查。
 - `scientific-data-analysis`: **v1.6.1**，audit-first 表格数据分析 + 前瞻性 power / sample-size planning，带 deterministic reconciliation 与 release gate。
 - `scientific-figure`: **v2.0.0 stable**。
 - `academic-research-presentation`: **v3.0.0**，当前重点是 evidence-first、diagram safety 与 source visual completeness。

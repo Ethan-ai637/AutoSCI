@@ -23,12 +23,16 @@ Do not change the meaning of `draft`, `standard`, `release`, the figure-spec sch
 
 Describe the concrete slide failure the change is intended to prevent, for example: a reversed/invented dependency arrow, clipped legend/axis/panel, unreadable main figure, excessive card/box layout, loss of side inputs/experimental conditions, or a narrative that hides negative/uncertain evidence.
 
+## Paper Reproduction changes
+
+Tie behavior changes to a concrete provenance, execution-safety, or claim-comparison failure. Add a regression case that demonstrates the invalid workspace or run is rejected, and preserve a valid-path case when changing a release gate.
+
 ## Validation
 
-Before opening a pull request:
+Run the changed skill's packaged regression suite and validators documented in its README. For `paper-reproduction`, run:
 
 ```bash
-python scripts/validate_repo.py
+python -m unittest discover -s skills/paper-reproduction/tests -v
 ```
 
 If changing scientific-figure scripts, also run relevant script-level tests or a representative preflight.

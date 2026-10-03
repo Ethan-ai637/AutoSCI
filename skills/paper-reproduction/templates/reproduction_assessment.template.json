@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.1",
+  "assessments": [
+    {
+      "claim_id": "claim_001",
+      "state": "not_attempted",
+      "supporting_run_ids": [],
+      "comparison_rule": null,
+      "reported": null,
+      "observed": null,
+      "material_deviations": [],
+      "limitations": [],
+      "notes": null
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autosci.local/schemas/paper-reproduction/reproduction_assessment.schema.json",
+  "title": "AutoSCI Reproduction Assessment",
+  "type": "object",
+  "required": ["schema_version", "assessments"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "assessments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim_id", "state", "supporting_run_ids"],
+        "properties": {
+          "claim_id": {"type": "string"},
+          "state": {"enum": ["exact_reproduction", "within_reported_variation", "numerically_different", "qualitatively_consistent", "partial_reproduction", "blocked_by_missing_data", "blocked_by_missing_artifact", "blocked_by_environment", "underspecified", "not_attempted"]},
+          "supporting_run_ids": {"type": "array", "items": {"type": "string"}},
+          "comparison_rule": {},
+          "reported": {},
+          "observed": {},
+          "material_deviations": {"type": "array"},
+          "limitations": {"type": "array"},
+          "notes": {"type": ["string", "null"]}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

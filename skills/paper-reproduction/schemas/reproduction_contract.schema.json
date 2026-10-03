@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autosci.local/schemas/paper-reproduction/reproduction_contract.schema.json",
+  "title": "AutoSCI Paper Reproduction Contract v1.1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "skill_version",
+    "mode",
+    "profile",
+    "target_claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "skill_version": {
+      "type": "string"
+    },
+    "mode": {
+      "enum": [
+        "REPO_REPRODUCE",
+        "PAPER_ONLY",
+        "REPO_AUDIT"
+      ]
+    },
+    "profile": {
+      "enum": [
+        "diagnostic",
+        "standard",
+        "release"
+      ]
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "paper_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "repository_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "target_claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim_id",
+          "type",
+          "paper_locator",
+          "comparison_rule"
+        ],
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "enum": [
+              "table_result",
+              "figure_result",
+              "ablation",
+              "benchmark",
+              "algorithm_behavior",
+              "runtime",
+              "resource",
+              "other"
+            ]
+          },
+          "paper_locator": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "statement": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "metric": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reported": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "scope": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "comparison_rule": {
+            "type": "object",
+            "required": [
+              "kind",
+              "predeclared"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string"
+              },
+              "predeclared": {
+                "type": "boolean"
+              },
+              "parameters": {
+                "type": "object"
+              }
+            },
+            "additionalProperties": true
+          },
+          "unknowns": {
+            "type": "array"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "resource_plan": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

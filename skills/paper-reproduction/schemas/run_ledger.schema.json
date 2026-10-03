@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autosci.local/schemas/paper-reproduction/run_ledger.schema.json",
+  "title": "AutoSCI Run Ledger Entry",
+  "type": "object",
+  "required": [
+    "run_id",
+    "run_kind",
+    "claim_ids",
+    "command",
+    "started_at",
+    "ended_at",
+    "exit_code"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "run_kind": {
+      "enum": [
+        "setup",
+        "smoke",
+        "target",
+        "diagnostic",
+        "exploratory"
+      ]
+    },
+    "claim_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "command": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cwd": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "started_at": {
+      "type": "string"
+    },
+    "ended_at": {
+      "type": "string"
+    },
+    "duration_seconds": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "exit_code": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "timed_out": {
+      "type": "boolean"
+    },
+    "source_commit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "git_dirty": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "patch_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "config": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "seed": {
+      "type": [
+        "string",
+        "integer",
+        "null"
+      ]
+    },
+    "inputs": {
+      "type": "object"
+    },
+    "stdout_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "stderr_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "outputs": {
+      "type": "array"
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "provenance_snapshot": {
+      "type": "object",
+      "properties": {
+        "captured_at": {
+          "type": "string"
+        },
+        "reproduction_contract_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "run_plan_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "repository_manifest_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "data_manifest_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "checkpoint_manifest_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "claim_code_map_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "environment_variable_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": true
+}

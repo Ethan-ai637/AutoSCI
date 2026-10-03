@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autosci.local/schemas/paper-reproduction/claim_code_map.schema.json",
+  "title": "AutoSCI Claim-Code Mapping Entry",
+  "type": "object",
+  "required": ["mapping_id", "claim_id", "mapping_status", "repo_artifacts"],
+  "properties": {
+    "mapping_id": {"type": "string"},
+    "claim_id": {"type": "string"},
+    "paper_object": {"type": ["string", "null"]},
+    "paper_locator": {"type": ["string", "null"]},
+    "repo_artifacts": {"type": "array"},
+    "input_artifacts": {"type": "array"},
+    "output_artifacts": {"type": "array"},
+    "mapping_status": {"enum": ["verified", "partial", "inferred", "unmapped"]},
+    "basis": {"type": ["string", "null"]},
+    "notes": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}
