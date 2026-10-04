@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "run_id": "baseline_seed0",
+  "attempt_id": "baseline_seed0_attempt01",
+  "condition_id": "baseline",
+  "seed": 0,
+  "replicate_id": null,
+  "status": "completed",
+  "source_commit": "",
+  "source_state": {
+    "dirty": false,
+    "patch_path": null,
+    "patch_sha256": null,
+    "source_snapshot_path": null,
+    "source_snapshot_sha256": null
+  },
+  "command": [],
+  "config_path": "configs/baseline.json",
+  "config_sha256": "",
+  "official_scope_manifest_sha256": {
+    "test": ""
+  },
+  "executed_scope_manifest_sha256": {
+    "test": ""
+  },
+  "observed_scope_manifests": {
+    "test": {
+      "path": "results/baseline_seed0/baseline_seed0_attempt01/scope-manifests/test.json",
+      "sha256": ""
+    }
+  },
+  "observed_scope_counts": {
+    "test": 0
+  },
+  "started_at": "",
+  "finished_at": "",
+  "runtime_seconds": 0,
+  "hardware": {},
+  "environment": {
+    "manifest_path": "results/baseline_seed0/baseline_seed0_attempt01/environment.json",
+    "manifest_sha256": ""
+  },
+  "log_path": "results/baseline_seed0/baseline_seed0_attempt01/run.log",
+  "log_sha256": "",
+  "metrics_path": "results/baseline_seed0/baseline_seed0_attempt01/metrics.json",
+  "metrics_sha256": "",
+  "checkpoint_path": null,
+  "checkpoint_sha256": null,
+  "checkpoint_metadata": null,
+  "failure_reason": null,
+  "retry_reason": null,
+  "exit_code": 0
+}

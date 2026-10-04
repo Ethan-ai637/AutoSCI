@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.1",
+  "run_id": "baseline_seed0",
+  "attempt_id": "baseline_seed0_attempt01",
+  "condition_id": "baseline",
+  "seed": 0,
+  "replicate_id": null,
+  "benchmark": {"name": "", "version": "", "suite_id": ""},
+  "scope_counts": {"test": 0},
+  "metrics": {"official_metric_name": 0.0},
+  "metric_metadata": {"official_metric_name": {"unit": "fraction", "aggregation_level": "mean_over_official_test_examples"}},
+  "raw_evaluator_output_path": "results/baseline_seed0/baseline_seed0_attempt01/raw-evaluator-output.json",
+  "raw_evaluator_output_sha256": "replace-with-sha256"
+}

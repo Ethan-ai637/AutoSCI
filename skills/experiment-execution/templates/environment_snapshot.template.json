@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.1",
+  "run_id": "baseline_seed0",
+  "attempt_id": "baseline_seed0_attempt01",
+  "platform": {
+    "operating_system": "Linux distribution and version",
+    "architecture": "x86_64",
+    "kernel": "kernel version"
+  },
+  "hardware": {
+    "cpu_model": "exact CPU model",
+    "logical_cpu_count": 1,
+    "system_memory_bytes": 1,
+    "accelerators": [
+      {
+        "kind": "gpu",
+        "model": "exact accelerator model",
+        "device_count": 1,
+        "memory_bytes_per_device": null
+      }
+    ]
+  },
+  "hardware_evidence": [
+    {
+      "command": ["replace-with-hardware-probe", "--exact-args"],
+      "path": "results/baseline_seed0/baseline_seed0_attempt01/hardware/probe-output.json",
+      "sha256": "replace-with-sha256"
+    }
+  ],
+  "software_versions": {
+    "python": "exact version",
+    "pytorch": "exact version",
+    "cuda_runtime": "exact version or not applicable"
+  },
+  "dependency_lock": null
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "base_commit": "replace-with-full-base-commit-sha",
+  "files": [
+    {
+      "path": "src/new_or_modified_file.py",
+      "sha256": "replace-with-file-sha256"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Experiment Execution Campaign",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "campaign_id",
+    "experiment_id",
+    "stage",
+    "protocol_path",
+    "protocol_sha256",
+    "source_commit",
+    "source_state",
+    "research_question",
+    "decision_rule",
+    "benchmark",
+    "data_policy",
+    "seed_policy",
+    "conditions",
+    "runs",
+    "resource_plan"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.1"},
+    "campaign_id": {"type": "string", "minLength": 1},
+    "experiment_id": {"type": "string", "minLength": 1},
+    "stage": {"enum": ["pilot", "confirmatory"]},
+    "protocol_path": {"type": "string", "minLength": 1},
+    "protocol_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "source_commit": {"type": "string", "pattern": "^(?:[a-fA-F0-9]{40}|[a-fA-F0-9]{64})$"},
+    "source_state": {
+      "type": "object",
+      "required": ["dirty", "patch_path", "patch_sha256", "source_snapshot_path", "source_snapshot_sha256"],
+      "properties": {
+        "dirty": {"type": "boolean"},
+        "patch_path": {"type": ["string", "null"]},
+        "patch_sha256": {"type": ["string", "null"], "pattern": "^[a-fA-F0-9]{64}$"},
+        "source_snapshot_path": {"type": ["string", "null"]},
+        "source_snapshot_sha256": {"type": ["string", "null"], "pattern": "^[a-fA-F0-9]{64}$"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"dirty": {"const": true}}},
+          "then": {"properties": {
+            "patch_path": {"type": "string", "minLength": 1},
+            "patch_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+            "source_snapshot_path": {"type": "string", "minLength": 1},
+            "source_snapshot_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}
+          }},
+          "else": {"properties": {
+            "patch_path": {"type": "null"},
+            "patch_sha256": {"type": "null"},
+            "source_snapshot_path": {"type": "null"},
+            "source_snapshot_sha256": {"type": "null"}
+          }}
+        }
+      ]
+    },
+    "research_question": {"type": "string", "minLength": 1},
+    "decision_rule": {"type": "string", "minLength": 1},
+    "benchmark": {
+      "type": "object",
+      "required": ["name", "version", "canonical_url", "official_code_url", "official_code_revision", "official_code_artifact_path", "official_code_artifact_sha256", "suite_id", "scope_policy", "required_scopes", "scope_manifests", "loader_entrypoint", "evaluator_entrypoint", "metric_entrypoint"],
+      "properties": {
+        "official_code_revision": {"type": "string", "minLength": 1},
+        "official_code_artifact_path": {"type": ["string", "null"]},
+        "official_code_artifact_sha256": {"type": ["string", "null"]},
+        "scope_policy": {"const": "full_official_benchmark"},
+        "required_scopes": {"type": "array", "minItems": 1, "uniqueItems": true},
+        "scope_manifests": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["scope_id", "official_source", "official_manifest_path", "official_manifest_sha256", "executed_manifest_path", "executed_manifest_sha256", "expected_unit_count"], "properties": {"scope_id": {"type": "string", "minLength": 1}, "official_source": {"type": "object", "required": ["url", "revision", "locator"], "properties": {"url": {"type": "string", "minLength": 1}, "revision": {"type": "string", "minLength": 1}, "locator": {"type": "string", "minLength": 1}}}, "expected_unit_count": {"type": "integer", "minimum": 1}}}}
+      },
+      "additionalProperties": true,
+      "allOf": [{"if": {"properties": {"official_code_revision": {"pattern": "^(?:[a-fA-F0-9]{40}|[a-fA-F0-9]{64})$"}}}, "else": {"properties": {"official_code_artifact_path": {"type": "string", "minLength": 1}, "official_code_artifact_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}}}}]
+    },
+    "data_policy": {
+      "type": "object",
+      "required": ["source", "full_official_scope", "subset", "generated_scientific_data", "custom_task_data", "official_loader", "official_evaluator"],
+      "properties": {
+        "source": {"const": "official_benchmark"},
+        "full_official_scope": {"const": true},
+        "subset": {"const": false},
+        "generated_scientific_data": {"const": false},
+        "custom_task_data": {"const": false},
+        "official_loader": {"const": true},
+        "official_evaluator": {"const": true}
+      },
+      "additionalProperties": true
+    },
+    "seed_policy": {"type": "object", "required": ["seeds", "replicate_ids", "rationale"], "properties": {"seeds": {"type": "array", "uniqueItems": true, "items": {"type": "integer"}}, "replicate_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}, "rationale": {"type": "string", "minLength": 1}, "confirmatory_basis": {"type": ["string", "null"]}}, "additionalProperties": true},
+    "resource_plan": {
+      "type": "object",
+      "required": ["accelerator", "memory_gb", "storage_gb", "expected_runtime_hours", "estimate_basis"],
+      "properties": {
+        "accelerator": {"type": "string", "minLength": 1},
+        "memory_gb": {"type": "number", "exclusiveMinimum": 0},
+        "storage_gb": {"type": "number", "exclusiveMinimum": 0},
+        "expected_runtime_hours": {"type": "number", "exclusiveMinimum": 0},
+        "estimate_basis": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    },
+    "conditions": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["condition_id", "randomness_mode", "config_path", "config_sha256", "checkpoint_policy", "checkpoint_selection_rule"], "properties": {"randomness_mode": {"enum": ["seeded_stochastic", "uncontrolled_stochastic", "deterministic"]}, "checkpoint_policy": {"enum": ["none", "optional", "required"]}, "checkpoint_selection_rule": {"type": ["string", "null"]}}}},
+    "runs": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["run_id", "condition_id", "seed", "replicate_id", "config_path", "config_sha256"], "properties": {"seed": {"type": ["integer", "null"]}, "replicate_id": {"type": ["string", "null"]}}}}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Experiment Execution"
+  short_description: "Full benchmarks, disciplined seeds, traceable runs"

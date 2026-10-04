@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Normalized Experiment Metrics Record",
+  "type": "object",
+  "required": ["schema_version", "run_id", "attempt_id", "condition_id", "seed", "replicate_id", "benchmark", "scope_counts", "metrics", "metric_metadata", "raw_evaluator_output_path", "raw_evaluator_output_sha256"],
+  "properties": {
+    "schema_version": {"const": "1.1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "attempt_id": {"type": "string", "minLength": 1},
+    "condition_id": {"type": "string", "minLength": 1},
+    "seed": {"type": ["integer", "null"]},
+    "replicate_id": {"type": ["string", "null"]},
+    "benchmark": {"type": "object", "required": ["name", "version", "suite_id"], "properties": {"name": {"type": "string"}, "version": {"type": "string"}, "suite_id": {"type": "string"}}},
+    "scope_counts": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "integer", "minimum": 0}},
+    "metrics": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "number"}},
+    "metric_metadata": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "object", "required": ["unit", "aggregation_level"], "properties": {"unit": {"type": "string", "minLength": 1}, "aggregation_level": {"type": "string", "minLength": 1}}}},
+    "raw_evaluator_output_path": {"type": "string", "minLength": 1},
+    "raw_evaluator_output_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}
+  },
+  "additionalProperties": true
+}

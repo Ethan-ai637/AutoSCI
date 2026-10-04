@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Experiment Execution Attempt Record",
+  "type": "object",
+  "required": [
+    "schema_version", "run_id", "attempt_id", "condition_id", "seed", "replicate_id", "status", "source_commit", "source_state", "command",
+    "config_path", "config_sha256", "official_scope_manifest_sha256", "executed_scope_manifest_sha256", "observed_scope_counts", "observed_scope_manifests",
+    "started_at", "finished_at", "runtime_seconds", "hardware", "environment",
+    "log_path", "log_sha256", "exit_code", "metrics_path", "metrics_sha256", "checkpoint_path", "checkpoint_sha256", "checkpoint_metadata", "failure_reason", "retry_reason"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "run_id": {"type": "string", "minLength": 1},
+    "attempt_id": {"type": "string", "minLength": 1},
+    "condition_id": {"type": "string", "minLength": 1},
+    "seed": {"type": ["integer", "null"]},
+    "replicate_id": {"type": ["string", "null"]},
+    "status": {"enum": ["completed", "failed", "interrupted", "oom", "cancelled"]},
+    "source_commit": {"type": "string", "pattern": "^(?:[a-fA-F0-9]{40}|[a-fA-F0-9]{64})$"},
+    "source_state": {
+      "type": "object",
+      "required": ["dirty", "patch_path", "patch_sha256", "source_snapshot_path", "source_snapshot_sha256"],
+      "properties": {
+        "dirty": {"type": "boolean"},
+        "patch_path": {"type": ["string", "null"]},
+        "patch_sha256": {"type": ["string", "null"], "pattern": "^[a-fA-F0-9]{64}$"},
+        "source_snapshot_path": {"type": ["string", "null"]},
+        "source_snapshot_sha256": {"type": ["string", "null"], "pattern": "^[a-fA-F0-9]{64}$"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"dirty": {"const": true}}},
+          "then": {"properties": {
+            "patch_path": {"type": "string", "minLength": 1},
+            "patch_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+            "source_snapshot_path": {"type": "string", "minLength": 1},
+            "source_snapshot_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}
+          }},
+          "else": {"properties": {
+            "patch_path": {"type": "null"},
+            "patch_sha256": {"type": "null"},
+            "source_snapshot_path": {"type": "null"},
+            "source_snapshot_sha256": {"type": "null"}
+          }}
+        }
+      ]
+    },
+    "command": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "config_path": {"type": "string", "minLength": 1},
+    "config_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "official_scope_manifest_sha256": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}},
+    "executed_scope_manifest_sha256": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}},
+    "observed_scope_counts": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "integer", "minimum": 0}},
+    "observed_scope_manifests": {"type": "object", "additionalProperties": {"type": "object", "required": ["path", "sha256"], "properties": {"path": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}}, "additionalProperties": false}},
+    "started_at": {"type": "string", "format": "date-time"},
+    "finished_at": {"type": "string", "format": "date-time"},
+    "runtime_seconds": {"type": "number", "minimum": 0},
+    "hardware": {"type": "object", "minProperties": 1},
+    "environment": {"type": "object", "required": ["manifest_path", "manifest_sha256"], "properties": {"manifest_path": {"type": ["string", "null"]}, "manifest_sha256": {"type": ["string", "null"], "pattern": "^[a-fA-F0-9]{64}$"}}, "additionalProperties": true},
+    "log_path": {"type": "string", "minLength": 1},
+    "log_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "exit_code": {"type": ["integer", "null"]},
+    "metrics_path": {"type": ["string", "null"]},
+    "metrics_sha256": {"type": ["string", "null"]},
+    "checkpoint_path": {"type": ["string", "null"]},
+    "checkpoint_sha256": {"type": ["string", "null"]},
+    "checkpoint_metadata": {"type": ["object", "null"], "required": ["run_id", "source_commit", "config_sha256", "seed", "replicate_id", "training_step_or_epoch", "selection_rule"], "properties": {"run_id": {"type": "string"}, "source_commit": {"type": "string"}, "config_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}, "seed": {"type": ["integer", "null"]}, "replicate_id": {"type": ["string", "null"]}, "training_step_or_epoch": {"type": ["string", "integer", "number"]}, "selection_rule": {"type": "string", "minLength": 1}}, "additionalProperties": true},
+    "failure_reason": {"type": ["string", "null"]},
+    "retry_reason": {"type": ["string", "null"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "completed"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "environment": {
+            "properties": {
+              "manifest_path": {"type": "string", "minLength": 1},
+              "manifest_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": true
+}
