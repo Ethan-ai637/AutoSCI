@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.1",
+  "campaign_id": "replace-with-unique-id",
+  "experiment_id": "replace-with-experiment-slug",
+  "stage": "pilot",
+  "protocol_path": "protocol.md",
+  "protocol_sha256": null,
+  "source_commit": null,
+  "source_state": {
+    "dirty": false,
+    "patch_path": null,
+    "patch_sha256": null,
+    "source_snapshot_path": null,
+    "source_snapshot_sha256": null
+  },
+  "research_question": "",
+  "decision_rule": "",
+  "benchmark": {
+    "name": "",
+    "version": "",
+    "canonical_url": "",
+    "official_code_url": "",
+    "official_code_revision": "replace-with-full-commit-sha-or-release-version",
+    "official_code_artifact_path": null,
+    "official_code_artifact_sha256": null,
+    "suite_id": "",
+    "scope_policy": "full_official_benchmark",
+    "expected_unit_name": "task",
+    "required_scopes": ["test"],
+    "scope_manifests": [
+      {
+        "scope_id": "test",
+        "role": "test",
+        "official_source": {
+          "url": "https://example.org/benchmark/task-list",
+          "revision": "release-or-commit",
+          "locator": "README section or source file and line range"
+        },
+        "official_manifest_path": "manifests/test.official.json",
+        "official_manifest_sha256": null,
+        "executed_manifest_path": "manifests/test.executed.json",
+        "executed_manifest_sha256": null,
+        "expected_unit_count": null
+      }
+    ],
+    "loader_entrypoint": "",
+    "evaluator_entrypoint": "",
+    "metric_entrypoint": ""
+  },
+  "data_policy": {
+    "source": "official_benchmark",
+    "full_official_scope": true,
+    "subset": false,
+    "generated_scientific_data": false,
+    "custom_task_data": false,
+    "official_loader": true,
+    "official_evaluator": true
+  },
+  "seed_policy": {
+    "seeds": [0],
+    "replicate_ids": [],
+    "rationale": "One seed for the pilot; do not make confirmatory claims from this stage.",
+    "confirmatory_basis": null
+  },
+  "conditions": [
+    {
+      "condition_id": "baseline",
+      "description": "",
+      "randomness_mode": "seeded_stochastic",
+      "config_path": "configs/baseline.json",
+      "config_sha256": null,
+      "checkpoint_policy": "none",
+      "checkpoint_selection_rule": null
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "baseline_seed0",
+      "condition_id": "baseline",
+      "seed": 0,
+      "replicate_id": null,
+      "config_path": "configs/baseline.json",
+      "config_sha256": null
+    }
+  ],
+  "resource_plan": {
+    "accelerator": "",
+    "memory_gb": null,
+    "storage_gb": null,
+    "expected_runtime_hours": null,
+    "estimate_basis": ""
+  }
+}

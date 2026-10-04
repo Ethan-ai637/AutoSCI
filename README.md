@@ -7,7 +7,7 @@
 <p align="center"><strong>Spend more time thinking about science, less time formatting it.</strong></p>
 
 <p align="center">
-  Open-source, local-first Codex skills for evidence-grounded manuscript writing and review, literature research, scientific data analysis, scientific figures, paper reading, group meetings, research updates, and technical presentations.
+  Open-source, local-first Codex skills for evidence-grounded manuscript writing and review, literature research, experiment execution, scientific data analysis, scientific figures, paper reading, group meetings, research updates, and technical presentations.
 </p>
 
 <p align="center">
@@ -27,6 +27,7 @@
   <img src="https://img.shields.io/badge/Scientific%20Data%20Analysis-v1.6.1-0f766e" alt="Scientific Data Analysis v1.6.1">
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
+  <img src="https://img.shields.io/badge/Experiment%20Execution-v1.10.0-1f6feb" alt="Experiment Execution v1.10.0">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
 </p>
 
@@ -65,7 +66,7 @@ This is not about replacing scientific judgment. It is about removing friction b
 
 ## Skills
 
-AutoSCI currently contains seven complementary, independently installable skills:
+AutoSCI currently contains eight complementary, independently installable skills:
 
 | Skill | What it does | Implementation |
 | --- | --- | --- |
@@ -76,6 +77,7 @@ AutoSCI currently contains seven complementary, independently installable skills
 | [`scientific-figure`](skills/scientific-figure) | Creates/reconstructs editable scientific figures from methods, equations, code, data, or existing figures | Skill workflow + references + **Python orchestration, audits, rendering, release and benchmark tooling** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | Builds/reviews evidence-first paper-reading, group-meeting, research-update, and technical-talk workflows | Skill workflow + references + templates + source-visual/diagram QA rules |
 | [`paper-reproduction`](skills/paper-reproduction) | Reconstructs published research as runnable, claim-scoped experiments with paper↔code traceability, pinned revisions, environment/run provenance, discrepancy analysis, and release handoff | Skill workflow + templates + schemas + **repository inspection, run ledger, provenance binding, claim reconciliation, readiness, and release tooling** |
+| [`experiment-execution`](skills/experiment-execution) | Turns an approved protocol into a benchmark-complete, staged-seed campaign with immutable configs, append-only attempts, traceable metrics/checkpoints, and provenance audits | Skill workflow + references + schemas + templates + **deterministic campaign preflight and run-ledger audit tooling** |
 
 They can be used separately or chained together. A literature review can produce an audited evidence workspace for later figure or presentation work:
 
@@ -263,6 +265,12 @@ The v1.2.0 release closes provenance and reconciliation gaps: target-run provena
 
 See [`SKILL.md`](skills/paper-reproduction/SKILL.md), [`references/`](skills/paper-reproduction/references/), [`templates/`](skills/paper-reproduction/templates/), and the executable [`scripts/`](skills/paper-reproduction/scripts/) directory. Run its regression suite with `python -m unittest discover -s skills/paper-reproduction/tests -v`.
 
+## Experiment Execution v1.10.0
+
+`experiment-execution` enforces full official benchmark scope, uses one seed per condition for exploratory pilots, and reserves predeclared multi-seed plans for confirmatory runs. It freezes protocol/config/source identity, records attempt-specific logs, metrics, checkpoints, hardware/environment evidence, and requires post-run integrity auditing. The companion experiment-planning, coding, packaging, and result-audit skills are optional; this workflow also works from an approved protocol on its own.
+
+See [`SKILL.md`](skills/experiment-execution/SKILL.md), [`references/`](skills/experiment-execution/references/), [`schemas/`](skills/experiment-execution/schemas/), [`templates/`](skills/experiment-execution/templates/), and [`scripts/`](skills/experiment-execution/scripts/). Download the [complete v1.10.0 package](releases/experiment-execution-v1.10.0.zip) and its [SHA-256 file](releases/experiment-execution-v1.10.0.zip.sha256).
+
 ## Quick Start
 
 ```bash
@@ -277,6 +285,7 @@ cp -R skills/scientific-data-analysis "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/paper-reproduction "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -R skills/experiment-execution "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
 Reload Codex and invoke a skill explicitly:
@@ -314,6 +323,11 @@ Prioritize the paper's main figures and tables, and explain the evidence rather 
 ```text
 Use $paper-reproduction in REPO_REPRODUCE mode for Table 2 of this paper.
 Pin the paper-era repository revision, map the claim to code/config/data, run a smoke test first, and preserve target-run provenance and discrepancies.
+```
+
+```text
+Use $experiment-execution to preflight and audit my benchmark campaign.
+Keep the complete official benchmark scope, use one seed for the pilot, preserve attempt-specific raw evidence, and do not mark incomplete runs as benchmark results.
 ```
 
 For Scientific Data Analysis and Scientific Figure, you can inspect local capabilities with:
@@ -360,11 +374,17 @@ AutoSCI/
 │   │   ├── assets/                     # structured templates
 │   │   ├── references/                 # workflow/domain knowledge
 │   │   └── scripts/                    # executable Python tooling
-│   └── academic-research-presentation/
+│   ├── academic-research-presentation/
 │       ├── SKILL.md                    # Codex skill entry point
 │       ├── references/                 # scientific presentation rules
 │       ├── templates/                  # evidence/storyboard/QA templates
 │       └── examples/                   # anti-pattern examples
+│   └── experiment-execution/
+│       ├── SKILL.md                    # benchmark-complete campaign workflow
+│       ├── references/                 # benchmark, seed, ledger, and migration rules
+│       ├── schemas/                    # campaign, attempt, metric, environment contracts
+│       ├── templates/                  # campaign and attempt artifact templates
+│       └── scripts/                    # campaign preflight and provenance audit
 ├── README.md
 ├── README_zh.md
 └── LICENSE
@@ -391,6 +411,7 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 - **Scientific Data Analysis:** `v1.6.1`, audit-first tabular analysis + prospective power/sample-size planning with deterministic reconciliation and release gating.
 - **Scientific Figure:** `v2.0.0`, stable production contract.
 - **Academic Research Presentation:** `v3.0.0`, focused on evidence-first presentation design, diagram safety, and complete acquisition of paper figures/tables.
+- **Experiment Execution:** `v1.10.0`, benchmark-complete campaign preflight and attempt-level provenance audit with staged seed use.
 
 ## Acknowledgements
 
