@@ -27,7 +27,7 @@
   <img src="https://img.shields.io/badge/Scientific%20Data%20Analysis-v1.6.1-0f766e" alt="Scientific Data Analysis v1.6.1">
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
-  <img src="https://img.shields.io/badge/Experiment%20Execution-v1.10.0-1f6feb" alt="Experiment Execution v1.10.0">
+  <img src="https://img.shields.io/badge/Experiment%20Execution-v1.11.0-1f6feb" alt="Experiment Execution v1.11.0">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
 </p>
 
@@ -265,11 +265,11 @@ The v1.2.0 release closes provenance and reconciliation gaps: target-run provena
 
 See [`SKILL.md`](skills/paper-reproduction/SKILL.md), [`references/`](skills/paper-reproduction/references/), [`templates/`](skills/paper-reproduction/templates/), and the executable [`scripts/`](skills/paper-reproduction/scripts/) directory. Run its regression suite with `python -m unittest discover -s skills/paper-reproduction/tests -v`.
 
-## Experiment Execution v1.10.0
+## Experiment Execution v1.11.0
 
-`experiment-execution` enforces full official benchmark scope, uses one seed per condition for exploratory pilots, and reserves predeclared multi-seed plans for confirmatory runs. It freezes protocol/config/source identity, records attempt-specific logs, metrics, checkpoints, hardware/environment evidence, and requires post-run integrity auditing. The companion experiment-planning, coding, packaging, and result-audit skills are optional; this workflow also works from an approved protocol on its own.
+`experiment-execution` enforces full official benchmark scope, uses one seed per condition for exploratory pilots, and reserves predeclared multi-seed plans for confirmatory runs. It freezes protocol/config/source identity, records attempt-specific logs, metrics, checkpoints, hardware/environment evidence, and requires post-run integrity auditing. The companion experiment-planning, coding, packaging, and result-audit skills are optional; this workflow also works from an approved protocol on its own. Numeric gates now include a rationale register: confirmatory seed counts need a predeclared power/precision basis, and runtime checks derive their bound from timestamp precision instead of a fixed seconds/percentage allowance.
 
-See [`SKILL.md`](skills/experiment-execution/SKILL.md), [`references/`](skills/experiment-execution/references/), [`schemas/`](skills/experiment-execution/schemas/), [`templates/`](skills/experiment-execution/templates/), and [`scripts/`](skills/experiment-execution/scripts/). Download the [complete v1.10.0 package](releases/experiment-execution-v1.10.0.zip) and its [SHA-256 file](releases/experiment-execution-v1.10.0.zip.sha256).
+See [`SKILL.md`](skills/experiment-execution/SKILL.md), [`references/`](skills/experiment-execution/references/), [`schemas/`](skills/experiment-execution/schemas/), [`templates/`](skills/experiment-execution/templates/), and [`scripts/`](skills/experiment-execution/scripts/). Download the [complete v1.11.0 package](releases/experiment-execution-v1.11.0.zip) and its [SHA-256 file](releases/experiment-execution-v1.11.0.zip.sha256).
 
 ## Quick Start
 
@@ -411,7 +411,7 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 - **Scientific Data Analysis:** `v1.6.1`, audit-first tabular analysis + prospective power/sample-size planning with deterministic reconciliation and release gating.
 - **Scientific Figure:** `v2.0.0`, stable production contract.
 - **Academic Research Presentation:** `v3.0.0`, focused on evidence-first presentation design, diagram safety, and complete acquisition of paper figures/tables.
-- **Experiment Execution:** `v1.10.0`, benchmark-complete campaign preflight and attempt-level provenance audit with staged seed use.
+- **Experiment Execution:** `v1.11.0`, benchmark-complete campaign preflight and attempt-level provenance audit with staged seed use.
 
 ## Acknowledgements
 

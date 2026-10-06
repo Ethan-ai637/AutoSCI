@@ -27,7 +27,7 @@
   <img src="https://img.shields.io/badge/Scientific%20Data%20Analysis-v1.6.1-0f766e" alt="Scientific Data Analysis v1.6.1">
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
-  <img src="https://img.shields.io/badge/Experiment%20Execution-v1.10.0-1f6feb" alt="Experiment Execution v1.10.0">
+  <img src="https://img.shields.io/badge/Experiment%20Execution-v1.11.0-1f6feb" alt="Experiment Execution v1.11.0">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
 </p>
 
@@ -261,11 +261,11 @@ v1.2.0 修复 provenance 和 reconciliation 缺口：target run 的 provenance �
 
 详见 [`SKILL.md`](skills/paper-reproduction/SKILL.md)、[`references/`](skills/paper-reproduction/references/)、[`templates/`](skills/paper-reproduction/templates/) 和可执行的 [`scripts/`](skills/paper-reproduction/scripts/) 目录。回归检查命令：`python -m unittest discover -s skills/paper-reproduction/tests -v`。
 
-## Experiment Execution v1.10.0
+## Experiment Execution v1.11.0
 
-`experiment-execution` 强制使用完整官方 benchmark 范围；探索性 pilot 每个 condition 只跑一个 seed，confirmatory 阶段才使用预先声明的多 seed 计划。它冻结 protocol/config/source identity，记录 attempt 专属日志、指标、checkpoint、硬件与环境证据，并要求执行后完整性审计。实验规划、编码、远程打包和结果审计 skill 都是可选搭档；仅安装本 Skill 时，也能从已批准的 protocol 独立完成 campaign 工作流。
+`experiment-execution` 强制使用完整官方 benchmark 范围；探索性 pilot 每个 condition 只跑一个 seed，confirmatory 阶段才使用预先声明的多 seed 计划。它冻结 protocol/config/source identity，记录 attempt 专属日志、指标、checkpoint、硬件与环境证据，并要求执行后完整性审计。实验规划、编码、远程打包和结果审计 skill 都是可选搭档；仅安装本 Skill 时，也能从已批准的 protocol 独立完成 campaign 工作流。数字门槛均附有依据分类：confirmatory seed 数量须预先按功效/精度论证，runtime 校验容差按时间戳精度推导，不再使用固定秒数或百分比。
 
-详见 [`SKILL.md`](skills/experiment-execution/SKILL.md)、[`references/`](skills/experiment-execution/references/)、[`schemas/`](skills/experiment-execution/schemas/)、[`templates/`](skills/experiment-execution/templates/) 和 [`scripts/`](skills/experiment-execution/scripts/)。下载[完整 v1.10.0 ZIP 包](releases/experiment-execution-v1.10.0.zip)及 [SHA-256 校验文件](releases/experiment-execution-v1.10.0.zip.sha256)。
+详见 [`SKILL.md`](skills/experiment-execution/SKILL.md)、[`references/`](skills/experiment-execution/references/)、[`schemas/`](skills/experiment-execution/schemas/)、[`templates/`](skills/experiment-execution/templates/) 和 [`scripts/`](skills/experiment-execution/scripts/)。下载[完整 v1.11.0 ZIP 包](releases/experiment-execution-v1.11.0.zip)及 [SHA-256 校验文件](releases/experiment-execution-v1.11.0.zip.sha256)。
 
 ## 快速开始
 
@@ -405,7 +405,7 @@ AutoSCI/
 - `scientific-data-analysis`: **v1.6.1**，audit-first 表格数据分析 + 前瞻性 power / sample-size planning，带 deterministic reconciliation 与 release gate。
 - `scientific-figure`: **v2.0.0 stable**。
 - `academic-research-presentation`: **v3.0.0**，当前重点是 evidence-first、diagram safety 与 source visual completeness。
-- `experiment-execution`: **v1.10.0**，完整 benchmark campaign preflight、分阶段 seed 管理与 attempt 级 provenance audit。
+- `experiment-execution`: **v1.11.0**，完整 benchmark campaign preflight、分阶段 seed 管理与 attempt 级 provenance audit。
 
 ## 致谢与说明
 

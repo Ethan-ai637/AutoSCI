@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -12,6 +13,17 @@ from typing import Any
 from preflight_campaign import check_scope_manifest, sha256, validate_campaign
 
 STATUSES = {"completed", "failed", "interrupted", "oom", "cancelled"}
+
+
+def _timestamp_half_resolution_seconds(value: str) -> float:
+    """Return half a timestamp's displayed tick, rounded to nearest tick.
+
+    Python datetime has microsecond precision, so fractional digits beyond six
+    do not increase the precision of the parsed interval.
+    """
+    match = re.search(r"\.(\d+)(?=(?:Z|[+-]\d{2}:?\d{2})?$)", value)
+    digits = min(len(match.group(1)), 6) if match else 0
+    return 0.5 * (10 ** -digits)
 
 
 def _strict_equal(actual: Any, expected: Any) -> bool:
@@ -446,11 +458,15 @@ def audit_ledger(campaign_path: Path, ledger_path: Path) -> tuple[dict[str, Any]
             errors.append(f"{label}: runtime_seconds must be a finite non-negative number")
         elif len(parsed_times) == 2 and parsed_times["finished_at"] >= parsed_times["started_at"]:
             elapsed_seconds = (parsed_times["finished_at"] - parsed_times["started_at"]).total_seconds()
-            tolerance_seconds = max(5.0, elapsed_seconds * 0.02)
+            timestamp_uncertainty = sum(
+                _timestamp_half_resolution_seconds(row[key])
+                for key in ["started_at", "finished_at"]
+            )
+            tolerance_seconds = timestamp_uncertainty + math.ulp(float(runtime)) + math.ulp(elapsed_seconds)
             if abs(runtime - elapsed_seconds) > tolerance_seconds:
                 errors.append(
                     f"{label}: runtime_seconds differs from the started_at/finished_at interval "
-                    f"by more than {tolerance_seconds:g} seconds"
+                    f"beyond the bound implied by timestamp precision ({tolerance_seconds:g} seconds)"
                 )
         for key in ["hardware", "environment"]:
             if not isinstance(row.get(key), dict) or not row[key]:
