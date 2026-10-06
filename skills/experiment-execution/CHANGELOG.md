@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.12.0
+
+- Allow one-seed confirmatory runs; additional seeds are optional unless a benchmark protocol or statistical claim requires them.
+- Clarify that late seed search for a higher score is optional optimization/selection and cannot be reported as an unbiased or robust estimate.
+- Add campaign schema 1.2 `decision_thresholds` with required source, locator, applicability, and derivation fields; fail preflight for unsupported or incomplete threshold entries.
+- Add instructions to leave unsupported numeric goals qualitative or blocked instead of inventing pass/fail values.
+
 ## 1.11.0
 
 - Add a source-backed rationale register that separates statistical design floors, local research policy, benchmark-defined scope, technical formats, and structural validation.

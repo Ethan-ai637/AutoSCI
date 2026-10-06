@@ -181,12 +181,54 @@ def validate_campaign(campaign_path: Path) -> tuple[dict[str, Any], list[str], P
         return {}, [f"cannot read campaign JSON: {exc}"], root
     if not isinstance(campaign, dict):
         return {}, ["campaign root must be a JSON object"], root
-    if campaign.get("schema_version") != "1.1":
-        errors.append("schema_version must be '1.1'; migrate the campaign before preflight")
+    if campaign.get("schema_version") != "1.2":
+        errors.append("schema_version must be '1.2'; migrate the campaign before preflight")
 
     for key in ["campaign_id", "experiment_id", "research_question", "decision_rule"]:
         if not isinstance(campaign.get(key), str) or not campaign[key].strip():
             errors.append(f"{key}: non-empty value is required")
+    thresholds = campaign.get("decision_thresholds")
+    if not isinstance(thresholds, list):
+        errors.append("decision_thresholds must be a list; use [] when no numeric pass/fail/continue/stop threshold is planned")
+        thresholds = []
+    threshold_ids: set[str] = set()
+    threshold_basis_types = {
+        "official_benchmark_protocol", "domain_standard", "peer_reviewed_source",
+        "statistical_design", "local_empirical_evidence", "resource_constraint",
+        "repository_policy", "mathematical_derivation",
+    }
+    threshold_operators = {"<", "<=", ">", ">=", "=="}
+    for index, threshold in enumerate(thresholds):
+        label = f"decision_thresholds[{index}]"
+        if not isinstance(threshold, dict):
+            errors.append(f"{label} must be an object")
+            continue
+        allowed_threshold_keys = {
+            "threshold_id", "decision", "operator", "value", "unit", "basis_type",
+            "basis_reference", "source_locator", "applicability", "derivation",
+        }
+        extra_threshold_keys = set(threshold) - allowed_threshold_keys
+        if extra_threshold_keys:
+            errors.append(f"{label} contains unsupported field(s): {sorted(extra_threshold_keys)}")
+        threshold_id = threshold.get("threshold_id")
+        if not isinstance(threshold_id, str) or not threshold_id.strip():
+            errors.append(f"{label}.threshold_id must be a non-empty string")
+        elif threshold_id in threshold_ids:
+            errors.append(f"duplicate decision threshold id: {threshold_id}")
+        else:
+            threshold_ids.add(threshold_id)
+        for key in ["decision", "unit", "basis_reference", "source_locator", "applicability", "derivation"]:
+            if not isinstance(threshold.get(key), str) or not threshold[key].strip():
+                errors.append(f"{label}.{key} must explain the threshold and its evidence basis")
+        operator = threshold.get("operator")
+        if not isinstance(operator, str) or operator not in threshold_operators:
+            errors.append(f"{label}.operator must be one of {sorted(threshold_operators)}")
+        value = threshold.get("value")
+        if not isinstance(value, (int, float)) or isinstance(value, bool) or not math.isfinite(value):
+            errors.append(f"{label}.value must be a finite number")
+        basis_type = threshold.get("basis_type")
+        if not isinstance(basis_type, str) or basis_type not in threshold_basis_types:
+            errors.append(f"{label}.basis_type must identify a recognized evidence or policy source")
     if not is_full_sha(campaign.get("source_commit")):
         errors.append("source_commit must be a full immutable 40- or 64-character commit SHA")
     resource_plan = campaign.get("resource_plan")
@@ -405,22 +447,19 @@ def validate_campaign(campaign_path: Path) -> tuple[dict[str, Any], list[str], P
         if mode == "seeded_stochastic":
             if campaign.get("stage") == "pilot" and len(seeds) != 1:
                 errors.append(f"pilot campaigns require exactly one seed for seeded condition {cid}")
-            if campaign.get("stage") == "confirmatory" and len(seeds) < 2:
-                errors.append(f"confirmatory campaigns require at least two seeds for seeded condition {cid}")
             expected_pairs.update((cid, mode, seed) for seed in seeds)
         elif mode == "uncontrolled_stochastic":
             if campaign.get("stage") == "pilot" and len(replicate_ids) != 1:
                 errors.append(f"pilot campaigns require exactly one replicate for uncontrolled condition {cid}")
-            if campaign.get("stage") == "confirmatory" and len(replicate_ids) < 2:
-                errors.append(f"confirmatory campaigns require at least two replicates for uncontrolled condition {cid}")
             expected_pairs.update((cid, mode, replicate_id) for replicate_id in replicate_ids)
         elif mode == "deterministic":
             expected_pairs.add((cid, mode, None))
     if run_pairs != expected_pairs:
         errors.append("runs must enumerate exactly one run per declared seed/replicate and exactly one per deterministic condition")
-    if campaign.get("stage") == "confirmatory" and any(c.get("randomness_mode") in {"seeded_stochastic", "uncontrolled_stochastic"} for c in condition_by_id.values()):
-        if not isinstance(seed_policy.get("confirmatory_basis"), str) or not seed_policy["confirmatory_basis"].strip():
-            errors.append("confirmatory stochastic campaigns require a predeclared seed/replicate-count basis")
+    has_multiple_stochastic_runs = len(seeds) > 1 or len(replicate_ids) > 1
+    if campaign.get("stage") == "confirmatory" and has_multiple_stochastic_runs:
+        if not isinstance(seed_policy.get("additional_runs_basis"), str) or not seed_policy["additional_runs_basis"].strip():
+            errors.append("campaigns with multiple seeds/replicates require a predeclared basis for adding repeats")
 
     return {
         "campaign": campaign,

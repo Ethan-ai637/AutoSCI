@@ -5,15 +5,16 @@ Every condition declares `randomness_mode`: `seeded_stochastic`, `uncontrolled_s
 ## Pilot/screening
 
 - Use exactly one predeclared run per condition: one seed for `seeded_stochastic`, one `replicate_id` for `uncontrolled_stochastic`, and one seedless run for `deterministic`.
-- The one-run pilot rule is a repository policy for limiting screening cost and preventing seed shopping; it is not a statistical recommendation for estimating performance or variance. Follow a stricter local policy if present, and never use the pilot as confirmatory evidence.
+- The one-run pilot rule is a repository policy for limiting screening cost and preventing seed shopping; it is not a statistical recommendation for estimating performance or variance. Never use the pilot as confirmatory evidence.
 - Run the complete official benchmark scope even in a pilot. The pilot economizes on seeds and conditions, not examples/tasks.
 - Use the pilot only for gross execution checks and a predeclared continue/stop decision. Do not report its single-seed result as robust, statistically significant, or confirmatory.
 - Do not launch a seed grid before deciding which conditions merit confirmation.
 
 ## Confirmatory runs
 
-- Freeze the condition/config set and seed list in the protocol before confirmatory outcomes are observed.
-- Use at least two distinct seeds for `seeded_stochastic` conditions and at least two declared replicate IDs for `uncontrolled_stochastic` conditions. This is only the mathematical floor for obtaining a between-run sample-variance estimate; it is not enough by itself to establish adequate power or precision. Choose the actual count from a benchmark-mandated protocol or a predeclared power/precision analysis based on the estimand, effect of interest, and variance evidence. Document assumptions and cite the basis. If that count is unaffordable, reduce conditions before seed count or mark the confirmatory claim underpowered/incomplete; do not imply the two-run floor is statistically sufficient.
+- One seed/replicate is sufficient for an ordinary run unless the benchmark protocol or the claim being tested requires repeated-run uncertainty estimates. Multiple seeds are optional, not a default requirement. If the analysis will estimate between-run variation or compare stochastic methods statistically, choose the count from the benchmark protocol or a predeclared power/precision design and cite the assumptions; do not invent a universal count.
+- If additional seeds are used to search for a higher-scoring final run, classify the work as score optimization/selection, predeclare a finite seed set and selection rule, preserve every tried seed and outcome, and disclose the selection. Do not present the selected run as an unbiased estimate, robustness result, or confirmatory evidence. For claim-bearing reporting, follow the benchmark's official aggregation/selection protocol; never choose a favorable seed after seeing scores unless the research question explicitly studies that selection strategy.
+- Freeze any multi-run statistical analysis and run count before observing those outcomes. A later seed search is a separate exploratory optimization stage, not a retroactive confirmatory campaign.
 - Run each planned seed over the full benchmark scope. Seeds are not a license to average away incomplete tasks or failed attempts.
 - For `deterministic` conditions, declare why one run is sufficient and keep all other sources of randomness controlled/recorded. If one campaign mixes deterministic and stochastic conditions, apply the appropriate rule to each condition separately.
 

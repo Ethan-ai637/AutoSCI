@@ -13,6 +13,7 @@
     "source_state",
     "research_question",
     "decision_rule",
+    "decision_thresholds",
     "benchmark",
     "data_policy",
     "seed_policy",
@@ -21,7 +22,7 @@
     "resource_plan"
   ],
   "properties": {
-    "schema_version": {"const": "1.1"},
+    "schema_version": {"const": "1.2"},
     "campaign_id": {"type": "string", "minLength": 1},
     "experiment_id": {"type": "string", "minLength": 1},
     "stage": {"enum": ["pilot", "confirmatory"]},
@@ -58,6 +59,26 @@
     },
     "research_question": {"type": "string", "minLength": 1},
     "decision_rule": {"type": "string", "minLength": 1},
+    "decision_thresholds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["threshold_id", "decision", "operator", "value", "unit", "basis_type", "basis_reference", "source_locator", "applicability", "derivation"],
+        "properties": {
+          "threshold_id": {"type": "string", "minLength": 1},
+          "decision": {"type": "string", "minLength": 1},
+          "operator": {"enum": ["<", "<=", ">", ">=", "=="]},
+          "value": {"type": "number"},
+          "unit": {"type": "string", "minLength": 1},
+          "basis_type": {"enum": ["official_benchmark_protocol", "domain_standard", "peer_reviewed_source", "statistical_design", "local_empirical_evidence", "resource_constraint", "repository_policy", "mathematical_derivation"]},
+          "basis_reference": {"type": "string", "minLength": 1},
+          "source_locator": {"type": "string", "minLength": 1},
+          "applicability": {"type": "string", "minLength": 1},
+          "derivation": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
     "benchmark": {
       "type": "object",
       "required": ["name", "version", "canonical_url", "official_code_url", "official_code_revision", "official_code_artifact_path", "official_code_artifact_sha256", "suite_id", "scope_policy", "required_scopes", "scope_manifests", "loader_entrypoint", "evaluator_entrypoint", "metric_entrypoint"],
@@ -86,7 +107,7 @@
       },
       "additionalProperties": true
     },
-    "seed_policy": {"type": "object", "required": ["seeds", "replicate_ids", "rationale"], "properties": {"seeds": {"type": "array", "uniqueItems": true, "items": {"type": "integer"}}, "replicate_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}, "rationale": {"type": "string", "minLength": 1}, "confirmatory_basis": {"type": ["string", "null"]}}, "additionalProperties": true},
+    "seed_policy": {"type": "object", "required": ["seeds", "replicate_ids", "rationale"], "properties": {"seeds": {"type": "array", "uniqueItems": true, "items": {"type": "integer"}}, "replicate_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}, "rationale": {"type": "string", "minLength": 1}, "additional_runs_basis": {"type": ["string", "null"]}}, "additionalProperties": true},
     "resource_plan": {
       "type": "object",
       "required": ["accelerator", "memory_gb", "storage_gb", "expected_runtime_hours", "estimate_basis"],

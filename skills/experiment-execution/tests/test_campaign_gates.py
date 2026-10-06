@@ -66,7 +66,7 @@ def prepare_campaign(root: Path, stage: str = "pilot", seeds: list[int] | None =
         })
     seed_list = seeds if seeds is not None else [13]
     campaign = {
-        "schema_version": "1.1",
+        "schema_version": "1.2",
         "campaign_id": "campaign_test",
         "experiment_id": "exp_test",
         "stage": stage,
@@ -77,6 +77,7 @@ def prepare_campaign(root: Path, stage: str = "pilot", seeds: list[int] | None =
                          "source_snapshot_path": None, "source_snapshot_sha256": None},
         "research_question": "Does the method improve the benchmark metric?",
         "decision_rule": "Continue only if the predeclared margin is met.",
+        "decision_thresholds": [],
         "benchmark": {
             "name": "OfficialBench", "version": "1.0", "canonical_url": "https://example.invalid/bench",
             "official_code_url": "https://example.invalid/code", "official_code_revision": "b" * 40,
@@ -88,7 +89,7 @@ def prepare_campaign(root: Path, stage: str = "pilot", seeds: list[int] | None =
         "data_policy": {"source": "official_benchmark", "full_official_scope": True, "subset": False,
                         "generated_scientific_data": False, "custom_task_data": False, "official_loader": True, "official_evaluator": True},
         "seed_policy": {"seeds": seed_list, "replicate_ids": [], "rationale": "Predeclared pilot/confirmation seed policy.",
-                        "confirmatory_basis": "Prior variance and precision target." if stage == "confirmatory" else None},
+                        "additional_runs_basis": "Prior variance and precision target." if stage == "confirmatory" and len(seed_list) > 1 else None},
         "conditions": [{"condition_id": "baseline", "description": "baseline", "randomness_mode": "seeded_stochastic", "config_path": "configs/baseline.json",
                         "config_sha256": digest(ws / "configs" / "baseline.json"), "checkpoint_policy": "none", "checkpoint_selection_rule": None}],
         "runs": [{"run_id": f"baseline_seed{seed}", "condition_id": "baseline", "seed": seed, "replicate_id": None,
@@ -233,7 +234,7 @@ class CampaignGateTests(unittest.TestCase):
             campaign_path = prepare_campaign(Path(td), stage="confirmatory")
             campaign = json.loads(campaign_path.read_text(encoding="utf-8"))
             campaign["seed_policy"].update({"seeds": [], "replicate_ids": ["rep01", "rep02"],
-                                             "confirmatory_basis": "Two preregistered API replicates for a precision estimate."})
+                                             "additional_runs_basis": "Two preregistered API replicates for a precision estimate."})
             campaign["conditions"][0]["randomness_mode"] = "uncontrolled_stochastic"
             planned = campaign["runs"][0]
             campaign["runs"] = [{**planned, "run_id": f"baseline_{rid}", "seed": None, "replicate_id": rid}
@@ -379,7 +380,7 @@ class CampaignGateTests(unittest.TestCase):
             self.assertIn("observed scope counts", cp.stdout)
             self.assertIn("training_step_or_epoch", cp.stdout)
 
-    def test_pilot_rejects_multiple_seeds_and_confirmatory_rejects_one(self):
+    def test_pilot_rejects_multiple_seeds_and_confirmatory_allows_one(self):
         with tempfile.TemporaryDirectory() as td:
             pilot = prepare_campaign(Path(td) / "pilot", seeds=[1, 2])
             cp = run_script("preflight_campaign.py", str(pilot))
@@ -388,8 +389,7 @@ class CampaignGateTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             confirmatory = prepare_campaign(Path(td) / "confirmatory", stage="confirmatory", seeds=[1])
             cp = run_script("preflight_campaign.py", str(confirmatory))
-            self.assertNotEqual(cp.returncode, 0)
-            self.assertIn("at least two", cp.stdout)
+            self.assertEqual(cp.returncode, 0, cp.stdout)
 
     def test_subset_and_changed_execution_manifest_are_rejected(self):
         with tempfile.TemporaryDirectory() as td:
