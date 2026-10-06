@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.11.0
+
+- Add a source-backed rationale register that separates statistical design floors, local research policy, benchmark-defined scope, technical formats, and structural validation.
+- Clarify that two stochastic replicates are only a variance-estimation floor, not evidence of adequate power; require a justified predeclared count.
+- Replace the arbitrary fixed runtime mismatch allowance with a bound derived from timestamp precision and floating-point representation.
+
 ## 1.10.0
 
 - Make companion skills optional so the campaign workflow remains usable when installed by itself.

@@ -13,7 +13,7 @@ Set `schema_version` to `1.1` only after adding those fields and the dirty-sourc
 
 ## Attempt records
 
-Run-record rows continue to use schema version `1.0`. Every ledger row must include `schema_version: "1.0"`; the audit rejects missing or unknown versions. The audit also requires `runtime_seconds` to match the interval between process `started_at` and `finished_at`, within max(5 seconds, 2% of elapsed time). For older records with insufficient timestamp precision, recover timestamps/runtime only from preserved logs or scheduler records; never alter times merely to pass the audit. Metrics records, environment snapshots, and source snapshot manifests retain their own independent schema versions.
+Run-record rows continue to use schema version `1.0`. Every ledger row must include `schema_version: "1.0"`; the audit rejects missing or unknown versions. The audit requires `runtime_seconds` to match the `started_at`/`finished_at` interval within a bound derived from the two serialized timestamps' displayed precision and floating-point representation error. The former fixed `max(5 seconds, 2% of elapsed time)` allowance is retired because it was not grounded in a measurement standard. For older records whose timestamps cannot support this precision check, recover precise values only from preserved logs or scheduler records; never alter times merely to pass the audit. Metrics records, environment snapshots, and source snapshot manifests retain their own independent schema versions.
 
 ## Metrics record 1.0 to 1.1
 
