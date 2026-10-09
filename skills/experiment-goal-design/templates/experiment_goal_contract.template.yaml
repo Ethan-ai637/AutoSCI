@@ -1,0 +1,131 @@
+contract_version: "4.0"
+skill_version: "4.0.0"
+status: draft # draft | reviewed | approved | blocked
+created_at: "YYYY-MM-DD"
+outcome_accessed_at: null # Set if any design decision was made after seeing relevant outcomes.
+
+research_context:
+  question: ""
+  field_and_subfield: ""
+  target_venue_or_standard: null
+  claim_scope: ""
+  intended_contribution: ""
+  known_limitations: []
+
+claims:
+  - claim_id: "C1"
+    claim: ""
+    claim_type: "" # comparative | mechanism | generalization | robustness | efficiency | causal | other
+    target_population_task_setting: ""
+    hypothesis_or_estimand: ""
+    falsification_interpretation: ""
+    claim_limit: ""
+    primary_goal_id: "G1"
+
+evaluation_protocols:
+  - protocol_id: "P1"
+    linked_goal_ids: ["G1"]
+    scope_type: "" # official_benchmark | non_benchmark_dataset | field_protocol | study_population
+    benchmark_claim: false # true only when making a claim on a named official benchmark.
+    name: ""
+    version_or_release: ""
+    official_source_url: ""
+    source_ids: ["S1"]
+    protocol_locator: ""
+    official_code_revision: null
+    track_or_suite: null
+    target_population_or_task: ""
+    required_splits_tasks_and_counts: []
+    loader_entrypoint: null
+    evaluator_entrypoint: null
+    metric_entrypoint: null
+    scope_source_locator: ""
+    loader_evaluator_source_locator: ""
+    metric_source_locator: ""
+    primary_metric_and_aggregation: ""
+    complete_scope_rule: ""
+    full_scope_confirmation: null
+    deviations: []
+
+comparators:
+  - comparator_id: "B1"
+    method_or_system: ""
+    source_ids: ["S1"]
+    implementation_checkpoint_version: ""
+    fairness_and_matching_protocol: ""
+    known_mismatches: []
+
+conditions:
+  - condition_id: "COND1"
+    description: ""
+    method_or_system: ""
+    role: "" # proposed_method | baseline | control | ablation
+    comparator_id: null
+    tested_factor_levels: {}
+    linked_goal_ids: ["G1"]
+    evaluation_protocol_ids: ["P1"]
+    randomness_mode: "" # seeded_stochastic | uncontrolled_stochastic | deterministic
+    planned_runs_per_condition: 1
+    randomness_and_run_rationale: "One run is the default; select a specific seed/replicate before execution."
+
+goals:
+  - goal_id: "G1"
+    claim_id: "C1"
+    evaluation_protocol_ids: ["P1"]
+    condition_ids: ["COND1"]
+    question: ""
+    primary_metric_and_unit: ""
+    official_aggregation_and_direction: ""
+    experimental_factor: ""
+    controlled_variables: []
+    protocol_deviations_and_justification: []
+    analysis_unit: ""
+    comparison_ids: ["B1"]
+    analysis_and_uncertainty_method: ""
+    assumptions_and_multiplicity: ""
+    falsifier_or_interpretation_rule: ""
+    numeric_gate_ids: []
+    exploratory_or_confirmatory: exploratory
+
+decision_thresholds: [] # Leave empty when the goal is estimation/comparison without a justified decision cutoff.
+# Example fields for each registered item:
+# - threshold_id: T1
+#   decision: "Name the metric, comparator, population/task, and decision direction."
+#   operator: ">="
+#   value: 0.0 # Actual proposed numeric cutoff after prospective formula; do not copy a source score as a cutoff without justification.
+#   unit: ""
+#   basis_type: "" # official_benchmark_protocol | domain_standard | peer_reviewed_source | statistical_design | local_empirical_evidence | resource_constraint | repository_policy | mathematical_derivation
+#   basis_reference: "S1; S2 plus their full citations/official URLs."
+#   source_locator: "S1: exact section/table/page; S2: exact appendix/code path."
+#   applicability: "Explain the match to this metric, comparator, population/task, benchmark version, and decision."
+#   derivation: "Separate each source's stated rule/value from the proposed cutoff; show source-to-input mapping, formula, units, assumptions, and sensitivity."
+#   evidence_status: "" # supported | derived | contested | unsupported
+#   decision_owner: ""
+#   frozen_before_outcome_access: true
+#   disposition: "Use only if supported/derived. If contested or unsupported, remove the gate or leave the decision unresolved."
+
+run_plan:
+  runs_per_condition: 1
+  seed_or_randomness_policy: "One run/seed is the default. State controlled and uncontrolled sources of randomness."
+  why_additional_runs_are_or_are_not_needed: ""
+  if_score_selection_is_studied: null
+
+sources:
+  - source_id: "S1"
+    citation_or_official_name: ""
+    doi_or_url: ""
+    version_venue_year: ""
+    source_type: "" # official_protocol | field_standard | peer_reviewed_study | statistical_guidance | other
+    exact_locator: ""
+    accessed_at: "YYYY-MM-DD"
+    evidence_used: ""
+    applicability_limitations: []
+
+review:
+  benchmark_and_scope_alignment: "pending"
+  strongest_relevant_comparators: "pending"
+  numeric_threshold_evidence: "pending"
+  seed_repeat_rationale: "pending"
+  unresolved_decisions: []
+  reviewer: null
+  reviewed_at: null

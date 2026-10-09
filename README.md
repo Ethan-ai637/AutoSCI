@@ -7,7 +7,7 @@
 <p align="center"><strong>Spend more time thinking about science, less time formatting it.</strong></p>
 
 <p align="center">
-  Open-source, local-first Codex skills for evidence-grounded manuscript writing and review, literature research, experiment execution, scientific data analysis, scientific figures, paper reading, group meetings, research updates, and technical presentations.
+  Open-source, local-first Codex skills for evidence-grounded manuscript writing and review, literature research, experiment goal design and execution, scientific data analysis, scientific figures, paper reading, group meetings, research updates, and technical presentations.
 </p>
 
 <p align="center">
@@ -28,6 +28,7 @@
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
   <img src="https://img.shields.io/badge/Experiment%20Execution-v1.12.0-1f6feb" alt="Experiment Execution v1.12.0">
+  <img src="https://img.shields.io/badge/Experiment%20Goal%20Design-v4.0.0-6b7280" alt="Experiment Goal Design v4.0.0">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
 </p>
 
@@ -66,7 +67,7 @@ This is not about replacing scientific judgment. It is about removing friction b
 
 ## Skills
 
-AutoSCI currently contains eight complementary, independently installable skills:
+AutoSCI currently contains nine complementary, independently installable skills:
 
 | Skill | What it does | Implementation |
 | --- | --- | --- |
@@ -77,6 +78,7 @@ AutoSCI currently contains eight complementary, independently installable skills
 | [`scientific-figure`](skills/scientific-figure) | Creates/reconstructs editable scientific figures from methods, equations, code, data, or existing figures | Skill workflow + references + **Python orchestration, audits, rendering, release and benchmark tooling** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | Builds/reviews evidence-first paper-reading, group-meeting, research-update, and technical-talk workflows | Skill workflow + references + templates + source-visual/diagram QA rules |
 | [`paper-reproduction`](skills/paper-reproduction) | Reconstructs published research as runnable, claim-scoped experiments with paper↔code traceability, pinned revisions, environment/run provenance, discrepancy analysis, and release handoff | Skill workflow + templates + schemas + **repository inspection, run ledger, provenance binding, claim reconciliation, readiness, and release tooling** |
+| [`experiment-goal-design`](skills/experiment-goal-design) | Turns a research claim into literature-aligned, benchmark-comparable goals; requires traceable evidence for numeric gates, records conditions/controls, and drafts an approval-ready protocol | Skill workflow + evidence/threshold references + goal, protocol, and comparability templates |
 | [`experiment-execution`](skills/experiment-execution) | Turns an approved protocol into a benchmark-complete, staged-seed campaign with immutable configs, append-only attempts, traceable metrics/checkpoints, and provenance audits | Skill workflow + references + schemas + templates + **deterministic campaign preflight and run-ledger audit tooling** |
 
 They can be used separately or chained together. A literature review can produce an audited evidence workspace for later figure or presentation work:
@@ -265,6 +267,12 @@ The v1.2.0 release closes provenance and reconciliation gaps: target-run provena
 
 See [`SKILL.md`](skills/paper-reproduction/SKILL.md), [`references/`](skills/paper-reproduction/references/), [`templates/`](skills/paper-reproduction/templates/), and the executable [`scripts/`](skills/paper-reproduction/scripts/) directory. Run its regression suite with `python -m unittest discover -s skills/paper-reproduction/tests -v`.
 
+## Experiment Goal Design v4.0.0
+
+`experiment-goal-design` is the upstream planning step for a proposed research claim. It compares field-defining and directly relevant studies with official benchmark protocols across dataset/version/scope, split, loader, metric, baselines, controlled variables, analysis, and compute context. A named benchmark must always use its complete official scope; a hand-picked subset cannot support a narrower claim. A numeric success or stop threshold is allowed only with applicable evidence or an explicit derivation and precise locator; unsupported gates are removed in favor of an estimation/comparison goal or recorded as unresolved. One run/seed per condition is the default; late seed search for score optimization is optional and must be disclosed. Version 4.0.0 records conditions and protocol source locators, creates an owner-reviewable protocol draft, and maps only compatible goal groups to execution campaigns after approval.
+
+See [`SKILL.md`](skills/experiment-goal-design/SKILL.md), [`references/evidence-and-thresholds.md`](skills/experiment-goal-design/references/evidence-and-thresholds.md), and [`templates/`](skills/experiment-goal-design/templates/). Download the [complete v4.0.0 package](releases/experiment-goal-design-v4.0.0.zip) and its [SHA-256 file](releases/experiment-goal-design-v4.0.0.zip.sha256). Previous [v3.0.0](releases/experiment-goal-design-v3.0.0.zip), [v2.0.0](releases/experiment-goal-design-v2.0.0.zip), and [v1.0.0](releases/experiment-goal-design-v1.0.0.zip) packages remain available. Review the [three-round independent audit log](releases/experiment-goal-design-audit-log.md).
+
 ## Experiment Execution v1.12.0
 
 `experiment-execution` enforces full official benchmark scope and makes one seed sufficient by default; repeats are optional when the official protocol or a statistical claim needs them. A late seed search for a higher score is an optimization/selection step, not required experimentation or unbiased evidence. Every numeric goal or decision gate must be registered with its source, locator, applicability, and derivation; unsupported thresholds block that decision instead of being guessed. The skill freezes protocol/config/source identity, records attempt-specific artifacts, and audits provenance. Companion skills remain optional.
@@ -285,6 +293,7 @@ cp -R skills/scientific-data-analysis "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/paper-reproduction "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -R skills/experiment-goal-design "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/experiment-execution "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
@@ -379,6 +388,10 @@ AutoSCI/
 │       ├── references/                 # scientific presentation rules
 │       ├── templates/                  # evidence/storyboard/QA templates
 │       └── examples/                   # anti-pattern examples
+│   ├── experiment-goal-design/
+│   │   ├── SKILL.md                    # claim-to-goal workflow with source-grounded thresholds
+│   │   ├── references/                 # comparability and numeric decision evidence
+│   │   └── templates/                  # goal contract, comparability matrix, design note
 │   └── experiment-execution/
 │       ├── SKILL.md                    # benchmark-complete campaign workflow
 │       ├── references/                 # benchmark, seed, ledger, and migration rules
@@ -412,6 +425,7 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 - **Scientific Figure:** `v2.0.0`, stable production contract.
 - **Academic Research Presentation:** `v3.0.0`, focused on evidence-first presentation design, diagram safety, and complete acquisition of paper figures/tables.
 - **Experiment Execution:** `v1.12.0`, benchmark-complete campaign preflight and attempt-level provenance audit with staged seed use.
+- **Experiment Goal Design:** `v4.0.0`, full-official-scope benchmark goals, source-grounded thresholds, condition matrices, approved protocol drafts, and compatible campaign handoff.
 
 ## Acknowledgements
 
