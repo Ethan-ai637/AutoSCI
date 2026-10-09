@@ -63,7 +63,7 @@ AutoSCI **不只是一组提示词**。我们把科研工作经验组织成可�
 
 我们希望研究者把更多注意力留给真正需要创造力和判断力的事情：提出问题、设计方法、完成实验、理解结果、讨论局限，以及想清楚下一步值得探索什么。
 
-这并不是让 AI 替代科研思考，而是减少一个好想法变成清晰科研表达之间的摩擦。
+让 AI 承担重复整理工作，可以减少好想法转化为清晰科研表达时的摩擦，也让研究者把精力放在科研判断上。
 
 > **自动化繁琐工作，保持科学表达准确，把更多空间还给科研想象力。**
 
@@ -207,7 +207,7 @@ Skill 支持 `exploratory / standard / systematic` 三种 profile，并明确区
 
 ## Manuscript Reviewer v1.1.0
 
-`manuscript-reviewer` 是一个 evidence-first 的科学论证审计 Skill，面向投稿前自检以及 rebuttal / revision 复审。它关注的不是“模拟审稿人给分”，而是一个更具体的问题：**论文写出的结论，是否正好等于现有证据真正支持的范围。**
+`manuscript-reviewer` 是一个 evidence-first 的科学论证审计 Skill，面向投稿前自检以及 rebuttal / revision 复审。它围绕一个具体问题开展检查：**论文写出的结论是否落在现有证据真正支持的范围内。**
 
 它会把核心复合 claim 拆成 atomic propositions，追踪到实验、Figure、Table、公式与 citation；检查数值和 notation 一致性；在比较结果前检查 protocol 与 provenance 是否可比；区分 confirmed finding、author query 与 coverage gap；并在 revision 中追踪旧问题是 resolved、partially resolved、persistent 还是 no longer material。
 
@@ -245,7 +245,7 @@ Skill 使用 canonical finding record 作为唯一事实源，让 Executive Summ
 
 ## Academic Research Presentation V3
 
-这个 Skill 的目标不是批量生产“漂亮模板 PPT”，而是帮助 Codex 做出更接近科研人员真正使用的汇报：**主图主表优先、信息密度足够、证据完整、方法关系正确。**
+这个 Skill 帮助 Codex 制作科研人员实际使用的汇报，重点呈现：**主图主表、足够的信息密度、完整证据和正确的方法关系。**
 
 核心优先级是：科学正确性 → 原始证据完整 → Figure/Table/Equation → 技术机制 → 叙事与视觉表达。
 
