@@ -267,7 +267,7 @@ v1.2.0 修复 provenance 和 reconciliation 缺口：target run 的 provenance �
 
 `experiment-goal-design` 是研究主张提出后的实验设计环节。它对照领域代表性研究和官方 benchmark protocol，比较数据集/版本/范围、split、loader、metric、baseline、控制变量、分析方法和计算资源。凡是使用某个官方 benchmark 作为科学证据，都必须完整执行其官方范围，不能以“研究问题较窄”为由手选子集。数值成功门槛或停止阈值必须有适用证据或明确推导，并给出精确定位；依据不足时移除臆造门槛，改为估计/比较目标，或记录尚待决定的问题。默认每个条件一次运行、一个 seed；最终换 seed 寻找更高分属于可选策略，不是实验必做项，且必须披露选择过程。v4.0.0 加入明确的条件矩阵、protocol 来源定位和待负责人批准的 `protocol.md` 草稿；只有兼容的目标组才能进入同一个 execution campaign。
 
-详见 [`SKILL.md`](skills/experiment-goal-design/SKILL.md)、[`references/evidence-and-thresholds.md`](skills/experiment-goal-design/references/evidence-and-thresholds.md) 和 [`templates/`](skills/experiment-goal-design/templates/)。下载[完整 v4.0.0 ZIP 包](releases/experiment-goal-design-v4.0.0.zip)及 [SHA-256 校验文件](releases/experiment-goal-design-v4.0.0.zip.sha256)；此前的 [v3.0.0](releases/experiment-goal-design-v3.0.0.zip)、[v2.0.0](releases/experiment-goal-design-v2.0.0.zip) 与 [v1.0.0](releases/experiment-goal-design-v1.0.0.zip) ZIP 包仍保留。三轮独立审计记录见[审计日志](releases/experiment-goal-design-audit-log.md)。
+详见 [`SKILL.md`](skills/experiment-goal-design/SKILL.md)、[`references/evidence-and-thresholds.md`](skills/experiment-goal-design/references/evidence-and-thresholds.md) 和 [`templates/`](skills/experiment-goal-design/templates/)。下载[当前完整 v4.0.0 ZIP 包](releases/experiment-goal-design-v4.0.0.zip)及 [SHA-256 校验文件](releases/experiment-goal-design-v4.0.0.zip.sha256)。仓库当前版本只保留最新版完整 ZIP，旧版 ZIP 不再纳入当前文件树。三轮独立审计记录见[审计日志](releases/experiment-goal-design-audit-log.md)。
 
 ## Experiment Execution v1.12.0
 
