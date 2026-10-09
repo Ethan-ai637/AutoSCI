@@ -142,7 +142,7 @@ paper / method / results
 
 ## Under the Hood
 
-The repository intentionally combines **agent instructions, domain knowledge, structured templates, and executable code** rather than hiding the workflow behind a black-box service.
+The repository combines **agent instructions, domain knowledge, structured templates, and executable code** in an inspectable workflow.
 
 ### Scientific Figure: executable pipeline
 
@@ -229,7 +229,7 @@ See [`SKILL.md`](skills/academic-manuscript-writing/SKILL.md), [`references/`](s
 
 ## Scientific Data Analysis — v1.6.1
 
-`scientific-data-analysis` is an audit-first workflow for scientific tabular data. It locks the scientific question, estimand, independent analysis unit, variable roles, exclusions and analysis family before inference; records cleaning decisions instead of silently changing data; reports effect magnitude and uncertainty alongside significance tests; supports declared sensitivity analyses and multiplicity correction; and produces reproducible plots whose cohorts are reconciled against the statistical results.
+`scientific-data-analysis` is an audit-first workflow for scientific tabular data. It locks the scientific question, estimand, independent analysis unit, variable roles, exclusions and analysis family before inference; records cleaning decisions and their rationale; reports effect magnitude and uncertainty alongside significance tests; supports declared sensitivity analyses and multiplicity correction; and produces reproducible plots whose cohorts are reconciled against the statistical results.
 
 It also has a separate **pre-data planning** branch for prospective power/sample-size work. Current planning families cover two-group Welch means, paired means, independent proportions, and prespecified heteroscedastic Welch contrasts, with explicit assumption provenance, scenario analysis, approximation-adequacy checks, and deterministic power-result reconciliation. It deliberately does not use observed/post-hoc power as evidence after a completed study.
 
@@ -253,9 +253,9 @@ See [`SKILL.md`](skills/scientific-figure/SKILL.md), [`STABILITY.md`](skills/sci
 
 Its priority order is scientific fidelity → source visual integrity → figures/tables/equations → technical mechanism → narrative and visual polish.
 
-V3 specifically addresses two recurring automated-slide failures: invented or directionally wrong custom flowcharts, and incomplete/contaminated screenshots of paper figures. It emphasizes evidence-first slides, complete source visuals, one hero scientific visual per slide by default, canvas-first composition, and rendered QA instead of trusting the source layout blindly.
+V3 addresses two recurring automated-slide failures: custom flowcharts with invented or reversed directions, and paper-figure screenshots that are incomplete or contaminated. It emphasizes evidence-first slides, complete source visuals, one hero scientific visual per slide by default, canvas-first composition, and render checks against the source layout.
 
-This is a presentation reasoning/QA skill rather than a standalone PPTX renderer; pair it with the slide-generation toolchain available in your Codex environment.
+This skill guides presentation reasoning and quality checks. Pair it with the slide-generation toolchain available in your Codex environment.
 
 See [`SKILL.md`](skills/academic-research-presentation/SKILL.md), [`references/`](skills/academic-research-presentation/references/), and [`templates/`](skills/academic-research-presentation/templates/).
 
@@ -275,7 +275,7 @@ See [`SKILL.md`](skills/experiment-goal-design/SKILL.md), [`references/evidence-
 
 ## Experiment Execution v1.12.0
 
-`experiment-execution` enforces full official benchmark scope and makes one seed sufficient by default; repeats are optional when the official protocol or a statistical claim needs them. A late seed search for a higher score is an optimization/selection step, not required experimentation or unbiased evidence. Every numeric goal or decision gate must be registered with its source, locator, applicability, and derivation; unsupported thresholds block that decision instead of being guessed. The skill freezes protocol/config/source identity, records attempt-specific artifacts, and audits provenance. Companion skills remain optional.
+`experiment-execution` enforces full official benchmark scope and makes one seed sufficient by default; repeats are optional when the official protocol or a statistical claim needs them. A late seed search for a higher score is an optional optimization step. Report all tried runs and identify the selected score as selection-conditioned; it does not establish an unbiased or robust estimate. Register every numeric goal or decision gate with its source, locator, applicability, and derivation. When a threshold lacks support, leave the decision unresolved until its basis is established. The skill freezes protocol/config/source identity, records attempt-specific artifacts, and audits provenance. Companion skills remain optional.
 
 See [`SKILL.md`](skills/experiment-execution/SKILL.md), [`references/`](skills/experiment-execution/references/), [`schemas/`](skills/experiment-execution/schemas/), [`templates/`](skills/experiment-execution/templates/), and [`scripts/`](skills/experiment-execution/scripts/). Download the [complete v1.12.0 package](releases/experiment-execution-v1.12.0.zip) and its [SHA-256 file](releases/experiment-execution-v1.12.0.zip.sha256).
 
@@ -326,7 +326,7 @@ Use standard mode, preserve mathematical notation, and deliver SVG + target-size
 
 ```text
 Use $academic-research-presentation to build a 15-slide paper-reading presentation from paper.pdf.
-Prioritize the paper's main figures and tables, and explain the evidence rather than filling slides with cards.
+Use the paper's main figures and tables as the focus, and explain the evidence on each slide.
 ```
 
 ```text
@@ -412,7 +412,7 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 - **Structure before coordinates.**
 - **Editable source artifacts before flattened screenshots.**
 - **Deterministic code for deterministic failure modes.**
-- **Render, inspect, and refine instead of trusting generation blindly.**
+- **Render, inspect, and refine every deliverable with a visual preview.**
 - **Add workflow complexity only when a reproducible failure justifies it.**
 
 ## Project Status
