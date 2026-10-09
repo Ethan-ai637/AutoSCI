@@ -1,0 +1,4 @@
+interface:
+  display_name: "Experiment Goal Design"
+  short_description: "Evidence-aligned goals and justified decision thresholds"
+  default_prompt: "Turn this research claim into a literature- and benchmark-aligned experiment goal contract and protocol draft. Use full official benchmark scope; record conditions and controls; do not invent numeric thresholds; cite exact evidence or derivation for every decision gate; default to one run/seed per condition. Late seed selection for a higher score is optional and must be disclosed. Do not imply the protocol is approved."

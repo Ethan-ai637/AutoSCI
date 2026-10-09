@@ -7,7 +7,7 @@
 <p align="center"><strong>把时间留给科研本身，把繁琐留给工具。</strong></p>
 
 <p align="center">
-  面向证据驱动的论文写作与审稿、文献研究、实验执行、科研数据分析、科研绘图、论文阅读、组会汇报、科研进展与学术表达工作的开源、本地优先 Codex Skills。
+  面向证据驱动的论文写作与审稿、文献研究、实验目标设计与执行、科研数据分析、科研绘图、论文阅读、组会汇报、科研进展与学术表达工作的开源、本地优先 Codex Skills。
 </p>
 
 <p align="center">
@@ -28,6 +28,7 @@
   <img src="https://img.shields.io/badge/Scientific%20Figure-v2.0%20stable-2ea44f" alt="Scientific Figure v2.0">
   <img src="https://img.shields.io/badge/Research%20Presentation-v3-blue" alt="Research Presentation v3">
   <img src="https://img.shields.io/badge/Experiment%20Execution-v1.12.0-1f6feb" alt="Experiment Execution v1.12.0">
+  <img src="https://img.shields.io/badge/Experiment%20Goal%20Design-v4.0.0-6b7280" alt="Experiment Goal Design v4.0.0">
   <img src="https://img.shields.io/badge/Python-tooling-3776AB" alt="Python tooling">
 </p>
 
@@ -77,9 +78,10 @@ AutoSCI **不只是一组提示词**。我们把科研工作经验组织成可�
 | [`scientific-figure`](skills/scientific-figure) | 从 Method、equation、code、data 或已有科研图创建/重构可编辑科研图 | Skill 工作流 + references + **Python 流程编排、审计、渲染、release 与 benchmark 工具链** |
 | [`academic-research-presentation`](skills/academic-research-presentation) | 论文汇报、组会、科研进展与 technical talk 的 evidence-first 工作流 | Skill 工作流 + references + templates + source visual / diagram QA 规则 |
 | [`paper-reproduction`](skills/paper-reproduction) | 将已发表研究重构为可运行、按 claim 追踪的实验，覆盖 paper↔code 映射、版本固定、环境与运行 provenance、差异分析和 release 交付 | Skill 工作流 + templates + schemas + **仓库检查、run ledger、provenance 绑定、claim reconciliation、readiness 与 release 工具** |
+| [`experiment-goal-design`](skills/experiment-goal-design) | 把研究主张转化为与领域文献及官方 benchmark protocol 可比的实验目标；数值门槛必须有依据，记录条件/控制变量并生成待批准 protocol 草稿 | Skill 工作流 + 门槛证据 references + goal / protocol / 可比性模板 |
 | [`experiment-execution`](skills/experiment-execution) | 将已批准 protocol 转成完整 benchmark 范围、分阶段 seed、配置冻结、append-only attempt 记录和可审计 provenance 的实验 campaign | Skill 工作流 + references + schemas + templates + **确定性 campaign preflight 与 run-ledger audit 工具** |
 
-八个 Skill 可以独立安装，也可以串联使用。`literature-research` 可以先生成经过审计的证据工作区，再交给科研绘图或学术汇报流程继续消费：
+九个 Skill 可以独立安装，也可以串联使用。`literature-research` 可以先生成经过审计的证据工作区，再交给科研绘图或学术汇报流程继续消费：
 
 ```text
 研究问题 / 文献语料
@@ -261,6 +263,12 @@ v1.2.0 修复 provenance 和 reconciliation 缺口：target run 的 provenance �
 
 详见 [`SKILL.md`](skills/paper-reproduction/SKILL.md)、[`references/`](skills/paper-reproduction/references/)、[`templates/`](skills/paper-reproduction/templates/) 和可执行的 [`scripts/`](skills/paper-reproduction/scripts/) 目录。回归检查命令：`python -m unittest discover -s skills/paper-reproduction/tests -v`。
 
+## Experiment Goal Design v4.0.0
+
+`experiment-goal-design` 是研究主张提出后的实验设计环节。它对照领域代表性研究和官方 benchmark protocol，比较数据集/版本/范围、split、loader、metric、baseline、控制变量、分析方法和计算资源。凡是使用某个官方 benchmark 作为科学证据，都必须完整执行其官方范围，不能以“研究问题较窄”为由手选子集。数值成功门槛或停止阈值必须有适用证据或明确推导，并给出精确定位；依据不足时移除臆造门槛，改为估计/比较目标，或记录尚待决定的问题。默认每个条件一次运行、一个 seed；最终换 seed 寻找更高分属于可选策略，不是实验必做项，且必须披露选择过程。v4.0.0 加入明确的条件矩阵、protocol 来源定位和待负责人批准的 `protocol.md` 草稿；只有兼容的目标组才能进入同一个 execution campaign。
+
+详见 [`SKILL.md`](skills/experiment-goal-design/SKILL.md)、[`references/evidence-and-thresholds.md`](skills/experiment-goal-design/references/evidence-and-thresholds.md) 和 [`templates/`](skills/experiment-goal-design/templates/)。下载[完整 v4.0.0 ZIP 包](releases/experiment-goal-design-v4.0.0.zip)及 [SHA-256 校验文件](releases/experiment-goal-design-v4.0.0.zip.sha256)；此前的 [v3.0.0](releases/experiment-goal-design-v3.0.0.zip)、[v2.0.0](releases/experiment-goal-design-v2.0.0.zip) 与 [v1.0.0](releases/experiment-goal-design-v1.0.0.zip) ZIP 包仍保留。三轮独立审计记录见[审计日志](releases/experiment-goal-design-audit-log.md)。
+
 ## Experiment Execution v1.12.0
 
 `experiment-execution` 强制使用完整官方 benchmark 范围；默认一个 seed 即可完成一次实验，只有官方协议或统计结论确实需要时才增加重复。最后阶段换 seed 寻找更高分属于可选的优化/选择步骤，既不是实验必做项，也不能当作无偏或稳健证据。所有数值目标和决策门槛都必须登记来源、定位、适用性与推导；依据不足时暂停该决策，不猜一个数值。Skill 冻结 protocol/config/source identity，记录 attempt artifacts 并审计 provenance；其他配套 skill 可选。
@@ -281,6 +289,7 @@ cp -R skills/scientific-data-analysis "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/paper-reproduction "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -R skills/experiment-goal-design "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/experiment-execution "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
@@ -373,6 +382,10 @@ AutoSCI/
 │       ├── references/                 # 科研汇报规则
 │       ├── templates/                  # evidence/storyboard/QA 模板
 │       └── examples/                   # anti-pattern 示例
+│   ├── experiment-goal-design/
+│   │   ├── SKILL.md                    # 研究主张到实验目标；门槛绑定来源
+│   │   ├── references/                 # 可比性与数值决策依据
+│   │   └── templates/                  # 目标契约、可比性矩阵、设计说明
 │   └── experiment-execution/
 │       ├── SKILL.md                    # benchmark 完整范围 campaign 工作流
 │       ├── references/                 # benchmark、seed、ledger 与迁移规则
@@ -402,6 +415,7 @@ AutoSCI/
 - `manuscript-reviewer`: **v1.1.0**，面向投稿前与 rebuttal / revision 的 evidence-led manuscript audit，采用 canonical finding 与 regression-driven validation。
 - `academic-manuscript-writing`: **v2.0.0**，提供 evidence-traceable 论文撰写与修订、dynamic writing profile、manuscript contract、revision lineage 与确定性 release QA。
 - `paper-reproduction`: **v1.2.0**，提供按 claim 管理的复现流程，并对执行 provenance、metric-to-claim 对应关系和子进程环境执行 fail-closed 检查。
+- `experiment-goal-design`: **v4.0.0**，要求 benchmark 使用完整官方范围，记录条件/控制变量与数值门槛依据，生成待批准 protocol 草稿并映射 execution campaign。
 - `scientific-data-analysis`: **v1.6.1**，audit-first 表格数据分析 + 前瞻性 power / sample-size planning，带 deterministic reconciliation 与 release gate。
 - `scientific-figure`: **v2.0.0 stable**。
 - `academic-research-presentation`: **v3.0.0**，当前重点是 evidence-first、diagram safety 与 source visual completeness。
