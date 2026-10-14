@@ -1,0 +1,33 @@
+name: npm distribution checks
+
+on:
+  push:
+    paths:
+      - 'package.json'
+      - 'bin/**'
+      - 'scripts/check-package.mjs'
+      - 'tests/**'
+      - 'skills/**'
+      - '.github/workflows/npm-distribution.yml'
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'bin/**'
+      - 'scripts/check-package.mjs'
+      - 'tests/**'
+      - 'skills/**'
+      - '.github/workflows/npm-distribution.yml'
+
+jobs:
+  verify-npm-distribution:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['20', '22']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Verify CLI and npm package contents
+        run: npm run check

@@ -13,6 +13,7 @@
 <p align="center">
   <a href="README_zh.md">中文</a> ·
   <a href="#quick-start">Quick Start</a> ·
+  <a href="docs/INSTALLATION.md">Installation</a> ·
   <a href="#skills">Skills</a> ·
   <a href="#under-the-hood">Under the Hood</a> ·
   <a href="skills/scientific-figure/scripts/">Python Tools</a> ·
@@ -281,6 +282,28 @@ See [`SKILL.md`](skills/experiment-execution/SKILL.md), [`references/`](skills/e
 
 ## Quick Start
 
+**Recommended — install all nine Skills with npm/npx (no repository clone required):**
+
+```bash
+npx skills add Ethan-ai637/AutoSCI --skill '*' --agent codex --global --yes
+```
+
+Install just one Skill:
+
+```bash
+npx skills add Ethan-ai637/AutoSCI --skill scientific-figure --agent codex --global --yes
+```
+
+Or use AutoSCI's own npm CLI directly from GitHub (no npm-registry release required):
+
+```bash
+npm exec --yes --package=github:Ethan-ai637/AutoSCI -- autosci install --all --global
+```
+
+The Node.js installer also supports `autosci list`, per-Skill installation, `--agent`, `--dir`, and `--dry-run`. It does not overwrite existing Skills unless `--force` is supplied. See the [complete installation guide](docs/INSTALLATION.md), including manual ZIP/Git installation. The npm public registry package has **not yet been verified as published**.
+
+**Manual installation (clone and copy):**
+
 ```bash
 git clone https://github.com/Ethan-ai637/AutoSCI.git
 cd AutoSCI
@@ -348,6 +371,8 @@ python skills/scientific-figure/scripts/doctor.py
 ```
 
 ## Repository Layout
+
+The root `package.json`, `bin/autosci.mjs`, `tests/`, and `scripts/check-package.mjs` provide distribution tooling around the self-contained research Skills.
 
 ```text
 AutoSCI/
