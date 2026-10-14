@@ -13,6 +13,7 @@
 <p align="center">
   <a href="README.md">English</a> ·
   <a href="#快速开始">快速开始</a> ·
+  <a href="docs/INSTALLATION.md">安装指南</a> ·
   <a href="#目前包含的-skills">Skills</a> ·
   <a href="#底层是怎么工作的">底层实现</a> ·
   <a href="skills/scientific-figure/scripts/">Python 工具</a> ·
@@ -277,6 +278,28 @@ v1.2.0 修复 provenance 和 reconciliation 缺口：target run 的 provenance �
 
 ## 快速开始
 
+**推荐：使用 npm/npx 一条命令安装全部九个 Skill，不用先克隆仓库。**
+
+```bash
+npx skills add Ethan-ai637/AutoSCI --skill '*' --agent codex --global --yes
+```
+
+只安装单个 Skill：
+
+```bash
+npx skills add Ethan-ai637/AutoSCI --skill paper-reproduction --agent codex --global --yes
+```
+
+也可以用 AutoSCI 自带的 npm 命令入口，直接从 GitHub 安装（不依赖 npm 官方仓库上架）：
+
+```bash
+npm exec --yes --package=github:Ethan-ai637/AutoSCI -- autosci install --all --global
+```
+
+支持 `autosci list`、按名称安装、`--agent`、`--dir` 和 `--dry-run`。默认不覆盖已有 Skill；只有指定 `--force` 才会覆盖。详细说明请参考 [安装指南](docs/INSTALLATION.md)，包含 Git/ZIP 手动方式。目前**不声明已经在 npm 官方仓库发布**。
+
+**传统方式：克隆并复制 Skill 目录。**
+
 ```bash
 git clone https://github.com/Ethan-ai637/AutoSCI.git
 cd AutoSCI
@@ -342,6 +365,8 @@ python skills/scientific-figure/scripts/doctor.py
 ```
 
 ## 仓库结构
+
+根目录的 `package.json`、`bin/autosci.mjs`、`tests/` 与 `scripts/check-package.mjs` 负责统一安装、打包验证；各科研 Skill 仍然独立维护。
 
 ```text
 AutoSCI/

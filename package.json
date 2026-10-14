@@ -1,0 +1,36 @@
+{
+  "name": "autosci-research-skills",
+  "version": "0.1.0",
+  "description": "Install AutoSCI's evidence-grounded, local-first research agent skills",
+  "type": "module",
+  "bin": {
+    "autosci": "./bin/autosci.mjs"
+  },
+  "files": [
+    "bin/",
+    "skills/",
+    "README.md",
+    "README_zh.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node bin/autosci.mjs verify && npm test && node scripts/check-package.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "agent-skills",
+    "codex",
+    "academic-research",
+    "science",
+    "reproducibility"
+  ],
+  "homepage": "https://github.com/Ethan-ai637/AutoSCI#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ethan-ai637/AutoSCI.git"
+  },
+  "license": "MIT"
+}
