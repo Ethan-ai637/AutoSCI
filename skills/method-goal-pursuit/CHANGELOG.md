@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.0
+
+- Distinguish incomplete technical attempts from valid scientific runs: recovery may correct a supported fault with a new attempt ID and the same predeclared seed/replicate.
+- Require full-scope reruns after incomplete attempts, preserve immutable attempt artifacts, and keep partial metrics/predictions out of method tuning.
+- Clarify that recovery does not add a statistical replicate; valid unfavorable results lead to a new method candidate rather than a score-seeking retry.
+- Add recovery history, same-seed confirmation, resource-envelope, and API retry fields to the method iteration template.
+- Self-audit finding: v2.0.0 preserved failed attempts but could be read to forbid correcting an incomplete technical run, or to confuse a recovery attempt with an extra seed.
+
 ## 2.0.0
 
 - Add an explicit outcome-access gate for open benchmark selection, record prior exposure, and separate exploratory adaptation from confirmatory claims.
