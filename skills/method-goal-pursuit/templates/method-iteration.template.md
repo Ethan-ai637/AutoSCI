@@ -101,6 +101,9 @@
 - Technical retry rule for incomplete attempts and frozen API retry policy:
 - Partial-run and failure handling:
 - Matched resource dimensions, units, values, and evidence/derivation:
+- Exploratory runs: one complete valid run per condition, with one seed when controllable:
+- Additional repeats: none | planned count, source and locator or statistical derivation, rationale, and freeze date:
+- Confirmatory seed/replicate count and analysis frozen before outcomes: yes | no | not applicable
 - Full-campaign runtime estimate and evidence:
 - Peak memory estimate and evidence:
 - Storage estimate and evidence:

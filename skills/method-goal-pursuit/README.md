@@ -1,12 +1,12 @@
 # Method Goal Pursuit
 
-**Version:** 2.1.0
+**Version:** 2.2.0
 
 method-goal-pursuit sustains a method-paper goal through evidence-led method iterations. Every round keeps the main experiment central and proposes a concrete next method candidate, even when earlier candidates have no positive evidence. The skill preserves the declared contribution and venue goal while retaining unfavorable and incomplete results in the record.
 
 Benchmark choice uses evidence for task fit, real-world grounding, documented challenge, data coverage, evaluation validity, and complete-scope access. Project-specific outcome artifacts stay outside an open selection decision; prior exposure is recorded. Scientific runs cover the complete official scope, with the exact task inventory and per-attempt scope audit preserved.
 
-The main experiment compares the proposed method with a small, justified set of relevant baselines and SOTA methods under documented resource budgets. Controlled SOTA comparators require accessible, compatible source and separately verified required assets. Access fallbacks are ranked before outcomes, and valid unfavorable comparators remain in the comparison. Exploratory screening uses one complete valid run per condition by default. A technical recovery of an incomplete attempt keeps the same predeclared seed or API replicate identity, preserves the failed attempt, and reruns the full official scope; it does not add a statistical replicate. Partial metrics stay out of method tuning. Numeric gates require a source or derivation; unsupported values remain unresolved.
+The main experiment compares the proposed method with a small, justified set of relevant baselines and SOTA methods under documented resource budgets. Controlled SOTA comparators require accessible, compatible source and separately verified required assets. Access fallbacks are ranked before outcomes, and valid unfavorable comparators remain in the comparison. Early and exploratory screening uses one complete valid run per condition. Additional seeds or replicates are optional; add them only when a documented protocol, claim, or statistical plan justifies them. Record the exact source locator or derivation and freeze the rationale and count before outcomes. A technical recovery of an incomplete attempt keeps the same predeclared seed or API replicate identity, preserves the failed attempt, and reruns the full official scope; it does not add a statistical replicate. Partial metrics stay out of method tuning. Numeric gates require a source or derivation; unsupported values remain unresolved.
 
 ## Included files
 

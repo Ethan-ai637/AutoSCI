@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.0
+
+- Make one complete valid run per condition the explicit early-experiment default, with one seed when controllable.
+- State that multi-seed/multi-replicate runs are optional and never a generic requirement for preliminary work, continued method iteration, or paper readiness.
+- Allow additional repeats only in a predeclared confirmatory campaign when the official protocol, claim, or supported statistical plan justifies them; freeze the rationale and count before outcomes.
+- Add repeat-policy and confirmatory-count fields to the method iteration template.
+- Self-audit finding: v2.1.0 defaulted exploratory work to one run but did not explicitly reject automatic seed expansion as a general progress or paper-readiness gate.
+
 ## 2.1.0
 
 - Distinguish incomplete technical attempts from valid scientific runs: recovery may correct a supported fault with a new attempt ID and the same predeclared seed/replicate.
