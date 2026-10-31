@@ -1,83 +1,84 @@
 ---
 name: method-goal-pursuit
-description: Keep a method-paper goal active by selecting task-relevant, challenging real-world benchmarks and centering main experiments on a small, justified baseline and SOTA comparison set.
+description: Sustain a method-paper goal through evidence-led method iterations, full-scope benchmark experiments, and runnable open-source baseline and SOTA comparisons.
 ---
 
 # Method Goal Pursuit
 
-Use this Skill to keep a declared method-paper contribution moving through evidence-led iterations centered on the main experiment. Choose benchmarks that directly represent the research task, document meaningful difficulty, and reflect real-world use. Keep the approved benchmark scope, metrics, decision rules, and protocol obligations stable while improving the method candidate. Apply it to autonomous method-research loops, including AutoSOTA-style work.
+Use this Skill when pursuing a method-paper contribution through repeated experiment and method-design cycles, including AutoSOTA-style workflows. Keep the declared contribution and venue goal active while improving the method against a frozen evaluation contract. Each round must produce a concrete method candidate, a falsifiable hypothesis, and a main experiment that can test it.
 
-The working commitment is persistent pursuit with honest evidence. A candidate that underperforms creates a reason to revise the method and test another defensible candidate. The cycle must keep producing a concrete next experiment. A diagnostic report or NO-GO label alone does not complete an iteration.
-
-This Skill cannot promise score gains, novelty, or acceptance. It never hides an unfavorable result, changes an evaluation rule to create a favorable result, or claims an unobserved improvement.
+The research direction remains active when a candidate has no positive result. Use evidence to change the method and test a defensible next candidate. Keep unfavorable and inconclusive outcomes visible. The Skill supports forward progress; it cannot guarantee a score gain, novelty, or acceptance.
 
 ## Invariants
 
-- Keep the user's declared method contribution and venue goal active. Do not reframe the project as a benchmark report, finding-only paper, or lower-tier target solely because an early candidate fails. Change the goal or target only when the user explicitly changes it.
-- The absence of positive evidence for the current candidate is not a stopping reason. Use the result to propose the next evidence-grounded method and experiment while the approved goal remains active.
-- Make the main experiment the center of each iteration. Compare the proposed method with a small, rationale-selected set of relevant baselines and SOTA methods. Select comparators by claim relevance, strength, protocol comparability, and reproducibility; explain the selection without inventing a universal count.
-- Select benchmarks for conclusion value: direct fit to the research claim, evidence of real-world relevance, and documented challenge. Read [Benchmark selection](references/benchmark-selection.md), record sources and tradeoffs, and freeze the choice before outcome access. Do not choose a benchmark because it appears easier for the proposed method.
-- Prefer official benchmarks grounded in real-world data or validated operational tasks. Do not use toy or synthetic/generated research data as benchmark evidence. If a benchmark has limited real-world coverage, state the boundary and add a complementary real-world benchmark only when it is needed for the claim.
-- A SOTA method used in the controlled main experiment must have publicly accessible source code under a clearly identified open-source license compatible with the planned research use, plus downloadable required checkpoints/assets. Verify the repository, pinned revision, license, and artifact access before selection. If code or required files are unavailable, record the blocker and replace it with the next strongest comparable open-source method. Keep published-paper scores labeled as literature results, never as rerun baseline measurements.
-- Freeze the approved benchmark/version, complete official task and split scope, loader, evaluator, metric, baseline, analysis, acceptance rule, and relevant API contract. Preserve independent API freeze rules for each API condition, including model/version, endpoint, prompts, decoding parameters, retries, caching, and request-selection rules when applicable.
-- Use the complete official benchmark scope for every scientific candidate and baseline run. A minimal experiment may reduce the number of conditions; it must preserve complete benchmark coverage for each condition.
-- Keep every numeric success, continue, stop, or resource gate tied to its applicable source or derivation under `experiment-goal-design` and `experiment-execution`. Never invent a score margin, seed count, threshold, or stopping rule. If no threshold is justified, use a prespecified estimation/comparison goal or leave the decision unresolved.
-- Default to one run/seed per condition. Add repeats when the official protocol or the scientific claim requires them, with the count justified and frozen before outcomes. Preserve every attempt and disclose any optional late seed selection.
-- Compare the proposed method with a small, justified set of relevant baselines and SOTA methods under the same declared resource budget and evaluation contract. Include the strongest directly comparable methods when their protocols can be matched. Match the budget dimensions that govern the method, such as training compute, inference tokens/API calls, data access, tuning trials, and wall-clock allocation. Record the selection rationale and exact accounting. If comparable budgets cannot be established, report the resource difference and keep the performance comparison qualified.
-- Keep failures, null results, and deviations in the research record. A favorable claim must be supported by observed results under the frozen contract.
-- Do not launch costly remote compute or incur API expense without the authorization required by the project and user.
+- Preserve the user's method-paper contribution and venue goal. Do not reframe the work as a findings-only paper, a benchmark report, or a lower-tier submission solely because a candidate fails. Change the goal only when the user does.
+- Make the main experiment the center of each iteration. Compare the proposed method with a small, justified set of relevant baselines and SOTA methods. Explain each method's claim relevance, strength, protocol compatibility, and reproducibility. Do not invent a universal comparator count.
+- Select benchmarks for claim fit, real-world relevance, documented challenge, evaluation validity, and full-scope feasibility. Use the benchmark-selection procedure. Do not select a benchmark because observed results make it look favorable.
+- Keep project-specific outcome artifacts out of an open benchmark-selection decision. Follow local instructions about required files; if they require reading result-bearing material before selection is frozen, record the exposure and do not claim outcome-independent selection. Benchmark papers and official documentation may establish task design and difficulty; disclose when published evaluations materially informed the choice.
+- Prefer official benchmarks with evidence tied to the intended population, domain, workflow, and deployment setting. Record the data collection period or version date, currentness relative to the claim, and known population or distribution limits. Do not impose an arbitrary age cutoff.
+- Use every task, example, and split required by the official protocol for every scientific condition. Reduce the number of conditions when resources are limited; never reduce benchmark coverage. Do not use hand-picked subsets, toy benchmark tasks, synthetic or generated research data, or replacement loaders/evaluators as scientific evidence. Isolated engineering fixtures are not research evidence.
+- Freeze the benchmark version, official scope inventory, loader, evaluator, metric and aggregation, comparator set, analysis, decision rules, and applicable API contract before confirmatory outcomes are accessed. For every run, retain the loader-emitted scope manifest and audit complete coverage. A benchmark change or a post-outcome selection must be labeled and justified in the record.
+- A controlled SOTA comparator must have publicly accessible source under a clearly identified open-source license compatible with the planned use. Verify the separate terms and availability of every required checkpoint, dataset, and asset; pin the source revision and record verified download locations and hashes. If source or required assets are inaccessible, unavailable, or incompatible, use the next strongest comparable open-source candidate and document why.
+- Freeze a ranked fallback list for access or implementation failures before outcome review. Do not replace a comparator because its valid result is unfavorable. If a full-scope attempt fails, preserve it as incomplete, record the failure, and use only a predeclared fallback or a prospectively approved protocol revision.
+- Tie every numeric success, continuation, stopping, and resource gate to an applicable source or explicit derivation with a precise locator. Never invent a score margin, threshold, seed count, or stopping rule. When no numeric gate is justified, prespecify an estimate or comparison objective and leave unresolved decisions explicit.
+- Exploratory screening uses exactly one run per condition: one seed when controllable, one replicate for an uncontrolled stochastic API, and one run for a deterministic method. Use additional repeats only in a predeclared confirmatory campaign when justified by the protocol or claim. Keep API conditions under their independent freeze rules.
+- Match the resource budget dimensions that govern each method, such as training compute, inference tokens or API calls, data access, tuning trials, and wall-clock allocation. Record units, amounts, evidence, and unavoidable mismatches. Before campaign preflight, include finite positive estimates for full-scope runtime, peak memory, and storage, the intended accelerator class, and the evidence basis. Qualify conclusions when budgets cannot be matched.
+- Preserve all attempts, failures, null results, deviations, and raw artifacts. A favorable claim requires observed evidence under the frozen contract. Do not launch costly remote compute or incur API expense without the required authorization.
 
-## Iteration workflow
+## Workflow
 
-### 1. Restore the active goal
+### 1. Restore the active goal and check outcome access
 
-Read the current research state, findings, approved goal contract, and protocol. Write the active contribution and target venue in the iteration record. List the evaluation and resource invariants that remain frozen. If benchmark selection is still open, defer method-specific outcome review until the benchmark is selected and frozen. If the protocol is missing or unapproved, draft the next experiment and identify the approval needed before execution.
+Read the project instructions, research state, approved goal contract, and protocol. Check whether the benchmark and evaluation contract are already frozen. If they are frozen, inspect findings, logs, metrics, and other relevant outcomes. If benchmark selection is open, first inspect only material allowed by the outcome-access rule above. Record the active contribution, target venue, current benchmark-selection state, and evaluation/resource invariants.
+
+If the protocol is missing or unapproved, prepare the next protocol draft and identify the approval needed before execution. Planning an experiment does not authorize its execution.
 
 ### 2. Select or confirm the benchmark
 
-Read [Benchmark selection](references/benchmark-selection.md). Preserve an already approved benchmark contract across method iterations. If benchmark choice is still open, compare official candidates against the claim, real-world grounding, documented difficulty, evaluation quality, and protocol comparability before reviewing method-specific outcomes. Record the evidence and decision before accessing outcomes that could influence selection. Select one main benchmark when it fully answers the claim; add a small complementary set only when the claim requires broader coverage. Use every selected benchmark's complete official scope. If no suitable full-scope benchmark is accessible, keep the campaign blocked at that dependency and propose a valid access path or a user-approved protocol change.
+Read [Benchmark selection](references/benchmark-selection.md). Preserve an approved benchmark contract across method iterations. For an open selection, compare official candidates using primary sources for task fit, real-world grounding, documented challenge, evaluation validity, and access. Record rejected candidates and the evidence for each decision. Freeze the selected benchmark before reviewing project outcomes that could influence the choice.
 
-### 3. Learn from the latest attempt
+Record the exact version or revision, official task and split inventory, expected counts or immutable identifiers, data provenance and time range, loader/evaluator/metric versions, access route, scope-completion rule, and planned per-attempt manifest. Select one main benchmark if its full official scope can answer the claim. Add a complementary benchmark only for a distinct claim dimension. If full-scope access is unavailable, identify the dependency and keep the scientific run blocked.
 
-Inspect the recorded result, logs, configuration, and protocol-compliance evidence. State what the outcome supports, what it rules out, and what remains uncertain. Treat diagnosis as an input to method design. Keep the next method candidate and experiment as required outputs of the round.
+When relevant project outcomes were already seen, retain that history and classify the selection accordingly. Use an untouched outcome source or independent official benchmark for a confirmatory claim when prior exposure could have influenced benchmark or candidate selection.
+
+### 3. Interpret the latest attempt
+
+After the benchmark-selection gate is satisfied, inspect the attempt, configuration, result artifacts, and protocol-compliance evidence. State what the evidence supports, what it rules out, and what remains uncertain. Separate valid unfavorable results from incomplete execution. Treat diagnosis as input to method design; a diagnostic or NO-GO report alone does not complete the iteration.
 
 ### 4. Propose the next method candidate
 
-Choose a candidate that addresses a specific failure mechanism or tests a credible new mechanism. Ground the proposal in relevant literature, theory, prior experiments, or a clearly labeled engineering hypothesis. Record:
+Choose a method change that addresses a supported failure mechanism or tests a credible new mechanism. Ground it in relevant literature, theory, a prior result, or a clearly labeled engineering hypothesis. Record the exact change, affected component, mechanism, falsifiable prediction on the frozen metric, motivation with source or locator, and a main alternative explanation. Prefer a meaningful method change over arbitrary parameter movement. Select one lead candidate; list alternatives only when they test distinct mechanisms.
 
-- the exact method change and the component it affects;
-- the mechanism connecting that change to the active research claim;
-- a falsifiable directional hypothesis on the frozen metric;
-- the source, prior result, or reasoning that motivates the change;
-- the main failure mode and the evidence that would distinguish it.
+### 5. Qualify and freeze the comparator set
 
-Prefer a meaningful method change over arbitrary hyperparameter movement. Do not call a proposed improvement an observed result. If several candidates are plausible, select one lead candidate and list alternatives only when they add a distinct testable mechanism.
+Select a small set covering the strongest directly comparable SOTA methods and canonical baselines needed to interpret the claim. Before outcome review, record the rationale for each selection and omission, ranked access-failure fallbacks, source repository and pinned revision, code license, setup and entry point, required asset licenses and download checks, and protocol differences.
 
-### 5. Design the main experiment
+Check code and configuration readiness with static checks, dependency resolution, import checks, or command help. Do not run a partial benchmark evaluation as a smoke test. A smoke check on an isolated engineering fixture may validate plumbing only and must never enter the evidence record. Full comparability is established only by the complete official-scope campaign and subsequent audit. Do not infer runnability from a public repository or a published score alone.
 
-Make the experiment that directly tests the paper's main claim the primary deliverable. Include the lead method and a small, justified comparator set covering relevant baselines and SOTA methods. Prefer the strongest directly comparable SOTA methods and canonical baselines needed to interpret the result. Every controlled SOTA comparator must have accessible code under a compatible open-source license and downloadable required artifacts; replace unavailable methods with the next strongest comparable option and record the reason. Explain why each selected method is relevant and why any obvious alternative is omitted. Add an ablation only when it isolates a mechanism needed for the main claim. Keep every condition on the complete official benchmark scope under the frozen loader and evaluator. Define the condition matrix, configs, one-seed default, matched resource budget, metric, expected artifacts, and analysis before running.
+### 6. Design the main experiment
 
-Use the already-approved success or decision rule. Do not move the goalposts after inspecting results. When the goal has no defensible numerical gate, compare the prespecified estimate and uncertainty and state the limits of a single run.
+Make the main claim test the primary experiment. Define the condition matrix, immutable configs, complete benchmark scope for each condition, one-run exploratory plan, matched resource budget, frozen metric and analysis, numeric gate sources or estimation objective, expected artifacts, and protocol-compliance checks. Add an ablation only when it isolates a claim-critical mechanism.
 
-Use `experiment-execution` for campaign preflight, run identity, attempt records, scope manifests, and provenance audit when it is installed. Hand off only an approved protocol and a validated campaign. Keep method iteration planning separate from authorization to execute.
+Estimate the full campaign's runtime, peak memory, and storage using a stated evidence basis; name the intended accelerator class. Use the approved decision rule and do not move it after outcomes. When no defensible numerical gate exists, report the prespecified estimate, uncertainty where available, and limits of the run.
 
-### 6. Record and continue
+Use the installed experiment-execution workflow for campaign preflight, immutable configs, attempt identity, provenance, scope manifests, and result audit. If that Skill is unavailable, record the equivalent checks in the protocol. Hand off only an approved protocol and a preflighted campaign; keep planning separate from permission to execute.
 
-Append the candidate, hypothesis, frozen contract, budget match, planned experiment, outcomes, and next action to the method iteration record. Mark each statement as `planned`, `observed`, `incomplete`, or `blocked` as appropriate. Preserve raw evidence and failures.
+### 7. Record and continue
 
-If a candidate improves the frozen metric under the declared comparison, record the evidence and plan the next validation step required by the approved protocol. If it does not, name the next evidence-based method candidate and its experiment. If resources or protocol approval prevent a run, retain the active goal, specify a viable candidate, and state the exact dependency needed to test it. A user pause or an explicit goal change is recorded as such.
+Append the candidate, hypothesis, benchmark and comparator decisions, frozen contract, budget, planned experiment, outcomes, and next action to the method iteration record. Mark claims as planned, observed, incomplete, or blocked. Preserve raw evidence and failed attempts.
+
+If a candidate supports the prespecified comparison, record the evidence and next validation needed. If it does not, name the next evidence-based method candidate and experiment while retaining the active goal. If resources or approval prevent execution, state the exact dependency and a viable next action. Record a user pause or goal change only when the user makes that decision.
 
 ## Required output for every round
 
-Every iteration ends with a concise forward plan containing:
+1. Active method-paper claim and target venue.
+2. Benchmark selection state and evidence for task fit, real-world grounding, challenge, data coverage, and evaluation validity.
+3. Outcome-access status, and evidence-based interpretation of the latest attempt when available.
+4. Next method candidate and falsifiable mechanism hypothesis.
+5. Main experiment with complete official scope, a small justified comparator set, and predeclared access fallbacks.
+6. Comparator source, revision, code and asset terms, download verification, and protocol compatibility.
+7. Frozen metric, analysis, threshold sources or estimation objective, and one-run exploratory plan.
+8. Matched budget accounting and full-scope runtime, memory, storage, and accelerator estimates with evidence.
+9. Required approval/resource dependency and next executable action.
 
-1. active method-paper claim and target venue;
-2. selected benchmark and evidence for task fit, real-world relevance, and challenge;
-3. evidence-based interpretation of the last attempt;
-4. next method candidate and falsifiable mechanism hypothesis;
-5. main experiment with complete benchmark scope and a small, justified baseline/SOTA comparator set whose code and required artifacts are accessible;
-6. equal-budget comparison and resource accounting for every selected comparator;
-7. frozen metric, protocol, threshold evidence, and one-seed plan;
-8. required approval/resource dependency and next executable action.
-
-Use [`references/benchmark-selection.md`](references/benchmark-selection.md) for benchmark choice, [`references/iteration-policy.md`](references/iteration-policy.md) for continuation and reporting boundaries, and [`templates/method-iteration.template.md`](templates/method-iteration.template.md) for each round's record.
+Use [Benchmark selection](references/benchmark-selection.md) for benchmark choice, [Iteration policy](references/iteration-policy.md) for outcome and continuation rules, and [Method iteration template](templates/method-iteration.template.md) for the round record.
