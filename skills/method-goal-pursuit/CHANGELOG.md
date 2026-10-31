@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0
+
+- Add evidence-led benchmark selection for task relevance, real-world grounding, documented difficulty, evaluation validity, and access.
+- Require benchmark choice to be recorded and frozen before outcome access; preserve the full official scope across every condition.
+- Add benchmark selection evidence and rationale to the iteration record template.
+- Self-audit finding: v1.1.0 protected full scope after selection but did not explain how to choose conclusion-relevant, challenging, real-world benchmarks.
+
 ## 1.1.0
 
 - Make the main experiment the center of every method-pursuit iteration.

@@ -16,6 +16,24 @@
 - Approved goal contract and protocol paths/hashes:
 - Intended positive increment under the frozen metric:
 
+## Benchmark selection record
+
+- Target task and intended real-world use:
+- Selection status: `frozen_before_outcomes | exploratory_after_outcomes | awaiting_user_decision`:
+- Selection date/owner:
+
+| Candidate benchmark/version | Official source and locator | Task-to-claim fit | Real-world provenance | Documented challenge evidence | Evaluation validity/risks | Full-scope protocol/access | Decision and limitations |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| | | | | | | | |
+
+- Selected main benchmark/version:
+- Why its full official scope can answer the central claim:
+- Evidence that the tasks/data reflect the target setting:
+- Evidence for task difficulty/information value:
+- Complementary benchmark(s), if needed for a distinct part of the claim:
+- Important candidates omitted and evidence-based reason:
+- Selection frozen before outcome access: `yes | no`:
+
 ## Frozen evaluation contract
 
 - Benchmark/version:

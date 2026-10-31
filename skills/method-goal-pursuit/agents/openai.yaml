@@ -1,4 +1,4 @@
 interface:
   display_name: "Method Goal Pursuit"
-  short_description: "Evidence-led method iteration toward a fixed research goal"
-  default_prompt: "Use $method-goal-pursuit to advance this method-paper goal. Keep the protocol fixed, propose the next evidence-based method candidate, and center the main experiment on a small, justified set of full-scope, equal-budget comparisons with runnable, openly licensed baselines and SOTA methods."
+  short_description: "Main experiments on relevant, challenging real-world benchmarks"
+  default_prompt: "Use $method-goal-pursuit to advance this method-paper goal. Select and freeze a task-relevant, challenging real-world benchmark before outcome review, preserve its full official scope, and center the main experiment on a small, justified set of runnable, openly licensed baseline and SOTA comparisons."
