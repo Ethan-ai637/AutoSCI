@@ -1,11 +1,11 @@
 ---
 name: method-goal-pursuit
-description: Keep a method-paper goal active across experiment cycles by proposing evidence-grounded method changes, full-scope tests, and equal-budget baseline comparisons after each outcome.
+description: Keep a method-paper goal active across cycles by centering the main experiment on a small, justified baseline and SOTA comparison set, with evidence-grounded method changes and equal-budget full-scope tests.
 ---
 
 # Method Goal Pursuit
 
-Use this Skill to keep a declared method-paper contribution moving through evidence-led iterations. Keep the research goal, target venue, benchmark scope, metrics, decision rules, and protocol obligations stable while improving the method candidate. Apply it to autonomous method-research loops, including AutoSOTA-style work.
+Use this Skill to keep a declared method-paper contribution moving through evidence-led iterations centered on the main experiment. Keep the research goal, target venue, benchmark scope, metrics, decision rules, and protocol obligations stable while improving the method candidate. Apply it to autonomous method-research loops, including AutoSOTA-style work.
 
 The working commitment is persistent pursuit with honest evidence. A candidate that underperforms creates a reason to revise the method and test another defensible candidate. The cycle must keep producing a concrete next experiment. A diagnostic report or NO-GO label alone does not complete an iteration.
 
@@ -15,11 +15,13 @@ This Skill cannot promise score gains, novelty, or acceptance. It never hides an
 
 - Keep the user's declared method contribution and venue goal active. Do not reframe the project as a benchmark report, finding-only paper, or lower-tier target solely because an early candidate fails. Change the goal or target only when the user explicitly changes it.
 - The absence of positive evidence for the current candidate is not a stopping reason. Use the result to propose the next evidence-grounded method and experiment while the approved goal remains active.
+- Make the main experiment the center of each iteration. Compare the proposed method with a small, rationale-selected set of relevant baselines and SOTA methods. Select comparators by claim relevance, strength, protocol comparability, and reproducibility; explain the selection without inventing a universal count.
+- A SOTA method used in the controlled main experiment must have publicly accessible source code under a clearly identified open-source license compatible with the planned research use, plus downloadable required checkpoints/assets. Verify the repository, pinned revision, license, and artifact access before selection. If code or required files are unavailable, record the blocker and replace it with the next strongest comparable open-source method. Keep published-paper scores labeled as literature results, never as rerun baseline measurements.
 - Freeze the approved benchmark/version, complete official task and split scope, loader, evaluator, metric, baseline, analysis, acceptance rule, and relevant API contract. Preserve independent API freeze rules for each API condition, including model/version, endpoint, prompts, decoding parameters, retries, caching, and request-selection rules when applicable.
 - Use the complete official benchmark scope for every scientific candidate and baseline run. A minimal experiment may reduce the number of conditions; it must preserve complete benchmark coverage for each condition.
 - Keep every numeric success, continue, stop, or resource gate tied to its applicable source or derivation under `experiment-goal-design` and `experiment-execution`. Never invent a score margin, seed count, threshold, or stopping rule. If no threshold is justified, use a prespecified estimation/comparison goal or leave the decision unresolved.
 - Default to one run/seed per condition. Add repeats when the official protocol or the scientific claim requires them, with the count justified and frozen before outcomes. Preserve every attempt and disclose any optional late seed selection.
-- Compare the proposed method with a relevant baseline under the same declared resource budget and evaluation contract. Match the budget dimensions that govern the method, such as training compute, inference tokens/API calls, data access, tuning trials, and wall-clock allocation. Record the basis and exact accounting. If comparable budgets cannot be established, report the resource difference and keep the performance comparison qualified.
+- Compare the proposed method with a small, justified set of relevant baselines and SOTA methods under the same declared resource budget and evaluation contract. Include the strongest directly comparable methods when their protocols can be matched. Match the budget dimensions that govern the method, such as training compute, inference tokens/API calls, data access, tuning trials, and wall-clock allocation. Record the selection rationale and exact accounting. If comparable budgets cannot be established, report the resource difference and keep the performance comparison qualified.
 - Keep failures, null results, and deviations in the research record. A favorable claim must be supported by observed results under the frozen contract.
 - Do not launch costly remote compute or incur API expense without the authorization required by the project and user.
 
@@ -45,9 +47,9 @@ Choose a candidate that addresses a specific failure mechanism or tests a credib
 
 Prefer a meaningful method change over arbitrary hyperparameter movement. Do not call a proposed improvement an observed result. If several candidates are plausible, select one lead candidate and list alternatives only when they add a distinct testable mechanism.
 
-### 4. Design the smallest valid experiment
+### 4. Design the main experiment
 
-Include the lead method and a strong, relevant baseline. Add an ablation only when it isolates a mechanism needed for the claim. Keep all runs on the complete official benchmark scope under the frozen loader and evaluator. Define the exact condition matrix, configs, one-seed default, matched resource budget, metric, expected artifacts, and analysis before running.
+Make the experiment that directly tests the paper's main claim the primary deliverable. Include the lead method and a small, justified comparator set covering relevant baselines and SOTA methods. Prefer the strongest directly comparable SOTA methods and canonical baselines needed to interpret the result. Every controlled SOTA comparator must have accessible code under a compatible open-source license and downloadable required artifacts; replace unavailable methods with the next strongest comparable option and record the reason. Explain why each selected method is relevant and why any obvious alternative is omitted. Add an ablation only when it isolates a mechanism needed for the main claim. Keep every condition on the complete official benchmark scope under the frozen loader and evaluator. Define the condition matrix, configs, one-seed default, matched resource budget, metric, expected artifacts, and analysis before running.
 
 Use the already-approved success or decision rule. Do not move the goalposts after inspecting results. When the goal has no defensible numerical gate, compare the prespecified estimate and uncertainty and state the limits of a single run.
 
@@ -66,8 +68,8 @@ Every iteration ends with a concise forward plan containing:
 1. active method-paper claim and target venue;
 2. evidence-based interpretation of the last attempt;
 3. next method candidate and falsifiable mechanism hypothesis;
-4. minimal condition matrix with complete benchmark scope;
-5. equal-budget baseline and resource accounting;
+4. main experiment with complete benchmark scope and a small, justified baseline/SOTA comparator set whose code and required artifacts are accessible;
+5. equal-budget comparison and resource accounting for every selected comparator;
 6. frozen metric, protocol, threshold evidence, and one-seed plan;
 7. required approval/resource dependency and next executable action.
 
