@@ -11,7 +11,8 @@ const cli = join(root, 'bin', 'autosci.mjs');
 const skills = [
   'academic-manuscript-writing', 'academic-research-presentation',
   'experiment-execution', 'experiment-goal-design', 'literature-research',
-  'manuscript-reviewer', 'paper-reproduction', 'scientific-data-analysis', 'scientific-figure',
+  'manuscript-reviewer', 'method-goal-pursuit', 'paper-reproduction',
+  'scientific-data-analysis', 'scientific-figure',
 ];
 function run(args, { cwd = root, env = {} } = {}) {
   return spawnSync(process.execPath, [cli, ...args], {
@@ -24,7 +25,7 @@ function scratch(t) {
   return path;
 }
 
-test('all nine skills are discoverable, with valid SKILL.md frontmatter', () => {
+test('all ten skills are discoverable, with valid SKILL.md frontmatter', () => {
   const result = run(['list']);
   assert.equal(result.status, 0, result.stderr);
   assert.deepEqual(result.stdout.trim().split('\n'), skills);
