@@ -275,13 +275,13 @@ See [`SKILL.md`](skills/paper-reproduction/SKILL.md), [`references/`](skills/pap
 
 See [`SKILL.md`](skills/experiment-goal-design/SKILL.md), [`references/evidence-and-thresholds.md`](skills/experiment-goal-design/references/evidence-and-thresholds.md), and [`templates/`](skills/experiment-goal-design/templates/). Download the [current complete v4.0.0 package](releases/experiment-goal-design-v4.0.0.zip) and its [SHA-256 file](releases/experiment-goal-design-v4.0.0.zip.sha256). The current repository tree keeps only the latest complete package; earlier ZIP archives are omitted. Review the [three-round independent audit log](releases/experiment-goal-design-audit-log.md).
 
-## Method Goal Pursuit v2.1.0
+## Method Goal Pursuit v2.2.0
 
 `method-goal-pursuit` sustains a method-paper goal through evidence-led method iterations, including AutoSOTA-style workflows. Each round proposes a concrete next method and keeps the main experiment central, even when earlier candidates lack positive evidence. The declared contribution and venue goal remain active; unfavorable and incomplete outcomes stay visible.
 
-Version 2.1.0 clarifies how to recover from an incomplete technical attempt: preserve its artifacts, correct a supported fault, and rerun the complete official scope with the same predeclared seed or API replicate identity. Such recovery does not add a statistical replicate, and partial metrics stay out of method tuning. It retains v2.0.0's outcome-access gate, exact official scope inventory and audit, real-world benchmark evidence, verified open-source comparator assets, and resource estimates before preflight.
+Version 2.2.0 makes one complete valid run per condition the early-experiment default. Additional seeds or replicates are optional; an applicable protocol, claim, or statistical plan must justify them with a source locator or derivation, and the rationale and count are frozen before outcomes. They are not a general paper-readiness requirement. It retains v2.1.0's same-seed recovery for incomplete technical attempts and v2.0.0's benchmark outcome gate, complete-scope audit, open-source comparator checks, and resource estimates.
 
-See [`SKILL.md`](skills/method-goal-pursuit/SKILL.md), [`references/benchmark-selection.md`](skills/method-goal-pursuit/references/benchmark-selection.md), [`references/iteration-policy.md`](skills/method-goal-pursuit/references/iteration-policy.md), and [`templates/`](skills/method-goal-pursuit/templates/). Download the [current complete v2.1.0 package](releases/method-goal-pursuit-v2.1.0.zip) and its [SHA-256 file](releases/method-goal-pursuit-v2.1.0.zip.sha256).
+See [`SKILL.md`](skills/method-goal-pursuit/SKILL.md), [`references/benchmark-selection.md`](skills/method-goal-pursuit/references/benchmark-selection.md), [`references/iteration-policy.md`](skills/method-goal-pursuit/references/iteration-policy.md), and [`templates/`](skills/method-goal-pursuit/templates/). Download the [current complete v2.2.0 package](releases/method-goal-pursuit-v2.2.0.zip) and its [SHA-256 file](releases/method-goal-pursuit-v2.2.0.zip.sha256).
 
 ## Experiment Execution v1.12.0
 
@@ -470,7 +470,7 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 - **Academic Research Presentation:** `v3.0.0`, focused on evidence-first presentation design, diagram safety, and complete acquisition of paper figures/tables.
 - **Experiment Execution:** `v1.12.0`, benchmark-complete campaign preflight and attempt-level provenance audit with staged seed use.
 - **Experiment Goal Design:** `v4.0.0`, full-official-scope benchmark goals, source-grounded thresholds, condition matrices, approved protocol drafts, and compatible campaign handoff.
-- **Method Goal Pursuit:** `v2.1.0`, benchmark choice records outcome exposure and full official scope; incomplete technical attempts can recover on the same seed or API replicate without counting as extra replicates.
+- **Method Goal Pursuit:** `v2.2.0`, preliminary work uses one seed by default; extra seeds remain optional and require a predeclared evidence-based reason.
 
 ## Acknowledgements
 

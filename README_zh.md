@@ -271,13 +271,13 @@ v1.2.0 修复 provenance 和 reconciliation 缺口：target run 的 provenance �
 
 详见 [`SKILL.md`](skills/experiment-goal-design/SKILL.md)、[`references/evidence-and-thresholds.md`](skills/experiment-goal-design/references/evidence-and-thresholds.md) 和 [`templates/`](skills/experiment-goal-design/templates/)。下载[当前完整 v4.0.0 ZIP 包](releases/experiment-goal-design-v4.0.0.zip)及 [SHA-256 校验文件](releases/experiment-goal-design-v4.0.0.zip.sha256)。仓库当前版本只保留最新版完整 ZIP，旧版 ZIP 不再纳入当前文件树。三轮独立审计记录见[审计日志](releases/experiment-goal-design-audit-log.md)。
 
-## Method Goal Pursuit v2.1.0
+## Method Goal Pursuit v2.2.0
 
 `method-goal-pursuit` 用于持续推进方法论文目标，包括 AutoSOTA 式方法探索。每一轮都以 main experiment 为中心，提出可检验的新方法候选；当前候选缺少正向证据时，继续依据失败机制、文献或明确标注的假设调整方法。论文贡献与目标会场持续保留，失败和未完成结果留在研究记录中。
 
-v2.1.0 明确未完成技术 attempt 的恢复方式：保留原始工件，修复有依据的技术故障，使用同一预先登记的 seed 或 API replicate identity 重跑完整官方范围。恢复 attempt 不增加统计重复，部分指标不得用于方法调参。该版本保留 v2.0.0 的 benchmark 结果访问门槛、官方范围清单与逐次审计、真实世界证据、开源对照资产核验和 preflight 资源估算要求。
+v2.2.0 明确前期实验每个条件默认只跑一次、可控时使用一个 seed。额外 seed 或 replicate 是可选项；必须由适用的 protocol、研究主张或统计分析支持，并记录精确来源定位或推导，在看结果前冻结理由和数量。它不构成论文推进或投稿的通用门槛。该版本保留 v2.1.0 的技术故障同 seed/replicate 完整重跑规则，以及 v2.0.0 的结果访问门槛、完整范围审计、开源对照核验和资源估算要求。
 
-详见 [`SKILL.md`](skills/method-goal-pursuit/SKILL.md)、[`references/benchmark-selection.md`](skills/method-goal-pursuit/references/benchmark-selection.md)、[`references/iteration-policy.md`](skills/method-goal-pursuit/references/iteration-policy.md) 和 [`templates/`](skills/method-goal-pursuit/templates/)。下载[当前完整 v2.1.0 ZIP 包](releases/method-goal-pursuit-v2.1.0.zip)及 [SHA-256 校验文件](releases/method-goal-pursuit-v2.1.0.zip.sha256)。
+详见 [`SKILL.md`](skills/method-goal-pursuit/SKILL.md)、[`references/benchmark-selection.md`](skills/method-goal-pursuit/references/benchmark-selection.md)、[`references/iteration-policy.md`](skills/method-goal-pursuit/references/iteration-policy.md) 和 [`templates/`](skills/method-goal-pursuit/templates/)。下载[当前完整 v2.2.0 ZIP 包](releases/method-goal-pursuit-v2.2.0.zip)及 [SHA-256 校验文件](releases/method-goal-pursuit-v2.2.0.zip.sha256)。
 
 ## Experiment Execution v1.12.0
 
@@ -460,7 +460,7 @@ AutoSCI/
 - `academic-manuscript-writing`: **v2.0.0**，提供 evidence-traceable 论文撰写与修订、dynamic writing profile、manuscript contract、revision lineage 与确定性 release QA。
 - `paper-reproduction`: **v1.2.0**，提供按 claim 管理的复现流程，并对执行 provenance、metric-to-claim 对应关系和子进程环境执行 fail-closed 检查。
 - `experiment-goal-design`: **v4.0.0**，要求 benchmark 使用完整官方范围，记录条件/控制变量与数值门槛依据，生成待批准 protocol 草稿并映射 execution campaign。
-- `method-goal-pursuit`: **v2.1.0**，完整官方范围实验的未完成技术 attempt 可用同一 seed/API replicate 恢复，部分结果不会变成统计重复或方法调参依据。
+- `method-goal-pursuit`: **v2.2.0**，前期实验默认一个 seed；额外 seed 可选，需有依据并事前冻结。
 - `scientific-data-analysis`: **v1.6.1**，audit-first 表格数据分析 + 前瞻性 power / sample-size planning，带 deterministic reconciliation 与 release gate。
 - `scientific-figure`: **v2.0.0 stable**。
 - `academic-research-presentation`: **v3.0.0**，当前重点是 evidence-first、diagram safety 与 source visual completeness。

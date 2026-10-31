@@ -18,7 +18,7 @@ A candidate must specify:
 - a relevant source, prior result, theoretical argument, or explicitly provisional engineering hypothesis;
 - an experiment that can distinguish the proposed mechanism from the previous candidate and baseline.
 
-Do not recycle a valid unfavorable configuration without a reasoned method change. Keep exploratory candidate generation separate from confirmatory claims. Exploratory screening uses one complete valid run per condition. Additional valid repeats belong in a prospectively declared confirmatory campaign when justified by the protocol or claim. Technical recovery of an incomplete attempt is handled separately below and does not add a seed or replicate.
+Do not recycle a valid unfavorable configuration without a reasoned method change. Keep exploratory candidate generation separate from confirmatory claims. Early and exploratory screening uses one complete valid run per condition. Multi-seed or multi-replicate evaluation is optional; it is not a default requirement for preliminary experiments, continued method work, or paper readiness. Add valid repeats only in a prospectively declared confirmatory campaign when the official protocol, claim, or supported statistical plan justifies them. Record the applicable source and locator or statistical derivation, then freeze the rationale and count before viewing those outcomes. Common practice or venue reputation alone does not justify a repeat count. One seed remains valid when no supported requirement calls for more. Do not add seeds automatically to improve a weak score. Technical recovery of an incomplete attempt is handled separately below and does not add a seed or replicate.
 
 ## Outcome access and benchmark choice
 
