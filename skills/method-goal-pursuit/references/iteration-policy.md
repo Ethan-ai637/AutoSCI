@@ -24,9 +24,13 @@ Do not recycle a failed configuration without a reasoned change. Keep explorator
 
 Define the intended positive increment using the approved goal and metric. Do not make an unregistered effect-size cutoff. When no justified threshold exists, state a directional hypothesis and report the estimate with appropriate uncertainty and limitations.
 
-Compare method and baseline under the same benchmark version, official scope, splits, loader, evaluator, metric, and declared resource budget. Budget accounting should identify the relevant units, such as accelerator time/FLOPs, training tokens, inference tokens/API calls, data access, or tuning trials. Freeze the accounting rule before outcomes. Report any unavoidable mismatch and qualify the conclusion.
+Center the paper's main experiment on the central method claim. Compare the candidate with a small, justified set of relevant baselines and SOTA methods under the same benchmark version, official scope, splits, loader, evaluator, metric, and declared resource budget. Select comparators by claim relevance, strength, protocol comparability, and reproducibility. Include the strongest directly comparable SOTA methods and canonical baselines needed to interpret the result. State the rationale for selected methods and any obvious omission. Comparator count follows relevance and protocol comparability; no universal count applies.
 
-The minimum condition matrix may contain the proposed method and one strong comparator, with only mechanism-relevant ablations. “Minimum” refers to the number of conditions; it never authorizes benchmark subsampling, synthetic research data, or evaluator substitution.
+Every SOTA method used in the controlled main experiment must have publicly accessible source code under a clearly identified open-source license compatible with the planned research use, and required checkpoints/assets must be downloadable. Verify the repository URL, pinned revision, license terms, setup instructions, and download route before finalizing the comparator set. If the source repository is private, unavailable, or unusable, the license is not open or compatible, or a required checkpoint/asset cannot be obtained, record the candidate and blocker, then replace it with the next strongest comparable open-source method. Keep literature-reported scores in a separate literature comparison; never present them as a locally rerun baseline result.
+
+Budget accounting should identify the relevant units, such as accelerator time/FLOPs, training tokens, inference tokens/API calls, data access, or tuning trials. Freeze the accounting rule before outcomes. Report any unavoidable mismatch and qualify the conclusion.
+
+Keep the main experiment dominant. The condition matrix can stay small by limiting it to the proposed method, selected comparators, and only mechanism-relevant ablations. “Small” applies to the number of compared methods and conditions; it never authorizes benchmark subsampling, synthetic research data, or evaluator substitution. Do not let broad ablation, benchmark, or hyperparameter catalogs displace the primary comparison.
 
 ## Frozen contract
 

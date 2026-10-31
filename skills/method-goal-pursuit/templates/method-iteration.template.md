@@ -12,6 +12,7 @@
 
 - Method-paper claim:
 - Target venue/track:
+- Main experiment:
 - Approved goal contract and protocol paths/hashes:
 - Intended positive increment under the frozen metric:
 
@@ -47,12 +48,15 @@
 
 ## Minimal valid experiment
 
-| Condition | Role | Config/hash | Full benchmark scope | Seed/replicate |
-| --- | --- | --- | --- | --- |
-| Proposed method | Candidate | | Complete official scope | One predeclared run by default |
-| Comparator | Strong baseline | | Same complete scope | Matched seed when applicable |
-| Optional ablation | Include only if mechanism-relevant | | Same complete scope | One predeclared run by default |
+| Condition | Role | Selection rationale | Code/license/revision | Required artifact access | Config/hash | Full benchmark scope | Seed/replicate |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Proposed method | Candidate | Tests the main claim | | | | Complete official scope | One predeclared run by default |
+| Selected comparator(s) | Relevant baseline(s) and SOTA method(s) | Small set; explain relevance, strength, and protocol match | Public repository, license, pinned revision | Download route and verified availability | | Same complete scope | Matched seed when applicable |
+| Optional ablation | Include only if mechanism-relevant | Isolates a claim-critical component | | | | Same complete scope | One predeclared run by default |
 
+- Comparator selection rationale and sources:
+- Unavailable SOTA candidates replaced, with access blocker and replacement rationale:
+- Obvious SOTA/baseline omission and reason, if applicable:
 - Matched resource-budget dimensions and units:
 - Budget values and evidence/derivation:
 - Expected output schema and artifacts:
