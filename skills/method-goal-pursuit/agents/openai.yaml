@@ -1,0 +1,4 @@
+interface:
+  display_name: "Method Goal Pursuit"
+  short_description: "Evidence-led method iteration toward a fixed research goal"
+  default_prompt: "Use $method-goal-pursuit to advance this method-paper goal. Keep the protocol fixed, propose the next evidence-based method candidate, and design a full-scope experiment against an equal-budget baseline."

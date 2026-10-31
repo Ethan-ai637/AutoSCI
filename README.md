@@ -68,7 +68,7 @@ This is not about replacing scientific judgment. It is about removing friction b
 
 ## Skills
 
-AutoSCI currently contains nine complementary, independently installable skills:
+AutoSCI currently contains ten complementary, independently installable skills:
 
 | Skill | What it does | Implementation |
 | --- | --- | --- |
@@ -80,6 +80,7 @@ AutoSCI currently contains nine complementary, independently installable skills:
 | [`academic-research-presentation`](skills/academic-research-presentation) | Builds/reviews evidence-first paper-reading, group-meeting, research-update, and technical-talk workflows | Skill workflow + references + templates + source-visual/diagram QA rules |
 | [`paper-reproduction`](skills/paper-reproduction) | Reconstructs published research as runnable, claim-scoped experiments with paper↔code traceability, pinned revisions, environment/run provenance, discrepancy analysis, and release handoff | Skill workflow + templates + schemas + **repository inspection, run ledger, provenance binding, claim reconciliation, readiness, and release tooling** |
 | [`experiment-goal-design`](skills/experiment-goal-design) | Turns a research claim into literature-aligned, benchmark-comparable goals; requires traceable evidence for numeric gates, records conditions/controls, and drafts an approval-ready protocol | Skill workflow + evidence/threshold references + goal, protocol, and comparability templates |
+| [`method-goal-pursuit`](skills/method-goal-pursuit) | Sustains a method-paper goal through evidence-grounded method revisions, full-scope experiments, and equal-budget baselines | Iteration workflow + continuation policy + method iteration template |
 | [`experiment-execution`](skills/experiment-execution) | Turns an approved protocol into a benchmark-complete, staged-seed campaign with immutable configs, append-only attempts, traceable metrics/checkpoints, and provenance audits | Skill workflow + references + schemas + templates + **deterministic campaign preflight and run-ledger audit tooling** |
 
 They can be used separately or chained together. A literature review can produce an audited evidence workspace for later figure or presentation work:
@@ -274,6 +275,12 @@ See [`SKILL.md`](skills/paper-reproduction/SKILL.md), [`references/`](skills/pap
 
 See [`SKILL.md`](skills/experiment-goal-design/SKILL.md), [`references/evidence-and-thresholds.md`](skills/experiment-goal-design/references/evidence-and-thresholds.md), and [`templates/`](skills/experiment-goal-design/templates/). Download the [current complete v4.0.0 package](releases/experiment-goal-design-v4.0.0.zip) and its [SHA-256 file](releases/experiment-goal-design-v4.0.0.zip.sha256). The current repository tree keeps only the latest complete package; earlier ZIP archives are omitted. Review the [three-round independent audit log](releases/experiment-goal-design-audit-log.md).
 
+## Method Goal Pursuit v1.0.0
+
+`method-goal-pursuit` supports method-paper and autonomous research loops, including AutoSOTA-style goal pursuit. It keeps the contribution, venue target, and evaluation contract active while iterating evidence-grounded method candidates. Every round produces a falsifiable hypothesis, the smallest condition matrix that still covers the complete official benchmark scope, an equal-budget baseline, and a concrete next action. One run/seed per condition is the default. Failed candidates inform the next method proposal, and all outcomes remain visible in the research record. Metric, protocol, threshold, benchmark, and API freeze rules remain active. The workflow cannot promise score gains or acceptance.
+
+See [`SKILL.md`](skills/method-goal-pursuit/SKILL.md), [`references/iteration-policy.md`](skills/method-goal-pursuit/references/iteration-policy.md), and [`templates/`](skills/method-goal-pursuit/templates/). Download the [complete v1.0.0 package](releases/method-goal-pursuit-v1.0.0.zip) and its [SHA-256 file](releases/method-goal-pursuit-v1.0.0.zip.sha256).
+
 ## Experiment Execution v1.12.0
 
 `experiment-execution` enforces full official benchmark scope and makes one seed sufficient by default; repeats are optional when the official protocol or a statistical claim needs them. A late seed search for a higher score is an optional optimization step. Report all tried runs and identify the selected score as selection-conditioned; it does not establish an unbiased or robust estimate. Register every numeric goal or decision gate with its source, locator, applicability, and derivation. When a threshold lacks support, leave the decision unresolved until its basis is established. The skill freezes protocol/config/source identity, records attempt-specific artifacts, and audits provenance. Companion skills remain optional.
@@ -317,6 +324,7 @@ cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/paper-reproduction "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/experiment-goal-design "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -R skills/method-goal-pursuit "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/experiment-execution "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
@@ -360,6 +368,11 @@ Pin the paper-era repository revision, map the claim to code/config/data, run a 
 ```text
 Use $experiment-execution to preflight and audit my benchmark campaign.
 Keep the complete official benchmark scope, use one seed for the pilot, preserve attempt-specific raw evidence, and do not mark incomplete runs as benchmark results.
+```
+
+```text
+Use $method-goal-pursuit to continue this method-paper project after the latest candidate underperformed.
+Keep the approved goal and evaluation contract fixed, propose the next evidence-based method, and define a full-scope experiment against an equal-budget baseline.
 ```
 
 For Scientific Data Analysis and Scientific Figure, you can inspect local capabilities with:
@@ -417,6 +430,10 @@ AutoSCI/
 │   │   ├── SKILL.md                    # claim-to-goal workflow with source-grounded thresholds
 │   │   ├── references/                 # comparability and numeric decision evidence
 │   │   └── templates/                  # goal contract, comparability matrix, design note
+│   ├── method-goal-pursuit/
+│   │   ├── SKILL.md                    # evidence-led method iteration toward a fixed goal
+│   │   ├── references/                 # continuation, comparison, and reporting policy
+│   │   └── templates/                  # per-iteration candidate and experiment record
 │   └── experiment-execution/
 │       ├── SKILL.md                    # benchmark-complete campaign workflow
 │       ├── references/                 # benchmark, seed, ledger, and migration rules
@@ -451,6 +468,7 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 - **Academic Research Presentation:** `v3.0.0`, focused on evidence-first presentation design, diagram safety, and complete acquisition of paper figures/tables.
 - **Experiment Execution:** `v1.12.0`, benchmark-complete campaign preflight and attempt-level provenance audit with staged seed use.
 - **Experiment Goal Design:** `v4.0.0`, full-official-scope benchmark goals, source-grounded thresholds, condition matrices, approved protocol drafts, and compatible campaign handoff.
+- **Method Goal Pursuit:** `v1.0.0`, evidence-led method iteration with a fixed research goal, complete benchmark coverage, and equal-budget baseline comparisons.
 
 ## Acknowledgements
 

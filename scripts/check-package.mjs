@@ -10,7 +10,7 @@ const manifest = JSON.parse(output)[0];
 const shipped = new Set(manifest.files.map((file) => file.path));
 const skills = readdirSync(join(root, 'skills'), { withFileTypes: true })
   .filter((item) => item.isDirectory()).map((item) => item.name);
-assert.ok(skills.length >= 9, 'Expected at least the nine released AutoSCI Skills');
+assert.ok(skills.length >= 10, 'Expected at least ten released AutoSCI Skills');
 assert.ok(shipped.has('bin/autosci.mjs'), 'CLI binary missing from npm package');
 for (const name of skills) {
   assert.ok(shipped.has('skills/' + name + '/SKILL.md'),
