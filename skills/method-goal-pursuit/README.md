@@ -1,18 +1,18 @@
 # Method Goal Pursuit
 
-**Version:** 1.2.0
+**Version:** 2.0.0
 
-`method-goal-pursuit` supports method-paper and autonomous research loops, including AutoSOTA-style goal pursuit. It keeps the contribution, venue target, and evaluation contract active while iterating evidence-grounded method candidates around the main experiment.
+method-goal-pursuit sustains a method-paper goal through evidence-led method iterations. Every round keeps the main experiment central and proposes a concrete next method candidate, even when earlier candidates have no positive evidence. The skill preserves the declared contribution and venue goal while retaining unfavorable and incomplete results in the record.
 
-Every round produces a falsifiable method hypothesis, the main experiment over the complete official benchmark scope, and a small rationale-selected set of baseline and SOTA comparators under equal budgets. Benchmark selection uses claim relevance, evidence of real-world grounding, documented challenge, and evaluation validity. Controlled SOTA comparators must have accessible code under a compatible open-source license and downloadable required artifacts; unavailable methods are replaced with comparable runnable alternatives. One run/seed per condition is the default. Failed candidates inform the next method proposal, and all outcomes remain visible in the research record. The Skill sets no universal comparator or benchmark count.
+Benchmark choice uses evidence for task fit, real-world grounding, documented challenge, data coverage, evaluation validity, and complete-scope access. Project-specific outcome artifacts stay outside an open selection decision; prior exposure is recorded. Scientific runs cover the complete official scope, with the exact task inventory and per-attempt scope audit preserved.
 
-The Skill preserves metric, protocol, threshold, benchmark, and API freeze rules. It does not promise score gains or acceptance, authorize costly execution, or permit favorable result selection.
+The main experiment compares the proposed method with a small, justified set of relevant baselines and SOTA methods under documented resource budgets. Controlled SOTA comparators require accessible, compatible source and separately verified required assets. Access fallbacks are ranked before outcomes, and valid unfavorable comparators remain in the comparison. Exploratory screening uses one run per condition by default. Numeric gates require a source or derivation; unsupported values remain unresolved.
 
 ## Included files
 
-- `SKILL.md` — workflow and non-negotiable research invariants
-- `references/benchmark-selection.md` — evidence-led task relevance, real-world grounding, difficulty, and protocol selection
-- `references/iteration-policy.md` — continuation, evidence, and reporting boundaries
-- `templates/method-iteration.template.md` — reusable per-round record
-- `agents/openai.yaml` — Codex UI metadata
-- `VERSION` and `CHANGELOG.md` — release identity and changes
+- [SKILL.md](SKILL.md) — workflow, outcome-access gate, and research invariants
+- [references/benchmark-selection.md](references/benchmark-selection.md) — benchmark evidence, scope freeze, and selection procedure
+- [references/iteration-policy.md](references/iteration-policy.md) — candidate, comparator, outcome, and continuation rules
+- [templates/method-iteration.template.md](templates/method-iteration.template.md) — reusable per-round record
+- [agents/openai.yaml](agents/openai.yaml) — Codex UI metadata
+- VERSION and CHANGELOG.md — release identity and changes

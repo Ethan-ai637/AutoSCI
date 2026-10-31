@@ -1,4 +1,4 @@
 interface:
   display_name: "Method Goal Pursuit"
-  short_description: "Main experiments on relevant, challenging real-world benchmarks"
-  default_prompt: "Use $method-goal-pursuit to advance this method-paper goal. Select and freeze a task-relevant, challenging real-world benchmark before outcome review, preserve its full official scope, and center the main experiment on a small, justified set of runnable, openly licensed baseline and SOTA comparisons."
+  short_description: "Full-scope method experiments on real-world benchmarks"
+  default_prompt: "Use $method-goal-pursuit to advance this method-paper goal. Freeze a task-relevant, challenging benchmark before project outcome review, preserve its complete official scope, and center the main experiment on justified runnable baseline and SOTA comparisons."

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.0
+
+- Add an explicit outcome-access gate for open benchmark selection, record prior exposure, and separate exploratory adaptation from confirmatory claims.
+- Freeze the exact official task/split inventory, loader/evaluator versions, expected scope, and per-attempt manifest audit; prohibit subset smoke evaluations as research evidence.
+- Add data provenance, time range, population coverage, currentness, and deployment-fit checks without arbitrary age or difficulty cutoffs.
+- Qualify SOTA code, checkpoints, datasets, and other required assets separately by revision, license, access route, and verifiable download; predeclare ranked access fallbacks and prohibit replacing an unfavorable valid comparator.
+- Require full-campaign runtime, memory, storage, accelerator, and evidence estimates before preflight; make exploratory one-run policy explicit.
+- Self-audit finding: v1.2.0 stated freeze-before-outcome and accessibility goals but did not prevent early findings exposure, establish the exact scope audit contract, or distinguish a runnable baseline from a public repository and downloadable file.
+
 ## 1.2.0
 
 - Add evidence-led benchmark selection for task relevance, real-world grounding, documented difficulty, evaluation validity, and access.
