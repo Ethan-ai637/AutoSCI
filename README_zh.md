@@ -80,9 +80,10 @@ AutoSCI **不只是一组提示词**。我们把科研工作经验组织成可�
 | [`academic-research-presentation`](skills/academic-research-presentation) | 论文汇报、组会、科研进展与 technical talk 的 evidence-first 工作流 | Skill 工作流 + references + templates + source visual / diagram QA 规则 |
 | [`paper-reproduction`](skills/paper-reproduction) | 将已发表研究重构为可运行、按 claim 追踪的实验，覆盖 paper↔code 映射、版本固定、环境与运行 provenance、差异分析和 release 交付 | Skill 工作流 + templates + schemas + **仓库检查、run ledger、provenance 绑定、claim reconciliation、readiness 与 release 工具** |
 | [`experiment-goal-design`](skills/experiment-goal-design) | 把研究主张转化为与领域文献及官方 benchmark protocol 可比的实验目标；数值门槛必须有依据，记录条件/控制变量并生成待批准 protocol 草稿 | Skill 工作流 + 门槛证据 references + goal / protocol / 可比性模板 |
+| [`method-goal-pursuit`](skills/method-goal-pursuit) | 持续推进方法论文目标；依据证据迭代方法，在完整 benchmark 上与等预算 baseline 对照 | 迭代工作流 + 持续推进规则 + 方法迭代记录模板 |
 | [`experiment-execution`](skills/experiment-execution) | 将已批准 protocol 转成完整 benchmark 范围、分阶段 seed、配置冻结、append-only attempt 记录和可审计 provenance 的实验 campaign | Skill 工作流 + references + schemas + templates + **确定性 campaign preflight 与 run-ledger audit 工具** |
 
-九个 Skill 可以独立安装，也可以串联使用。`literature-research` 可以先生成经过审计的证据工作区，再交给科研绘图或学术汇报流程继续消费：
+十个 Skill 可以独立安装，也可以串联使用。`literature-research` 可以先生成经过审计的证据工作区，再交给科研绘图或学术汇报流程继续消费：
 
 ```text
 研究问题 / 文献语料
@@ -270,6 +271,12 @@ v1.2.0 修复 provenance 和 reconciliation 缺口：target run 的 provenance �
 
 详见 [`SKILL.md`](skills/experiment-goal-design/SKILL.md)、[`references/evidence-and-thresholds.md`](skills/experiment-goal-design/references/evidence-and-thresholds.md) 和 [`templates/`](skills/experiment-goal-design/templates/)。下载[当前完整 v4.0.0 ZIP 包](releases/experiment-goal-design-v4.0.0.zip)及 [SHA-256 校验文件](releases/experiment-goal-design-v4.0.0.zip.sha256)。仓库当前版本只保留最新版完整 ZIP，旧版 ZIP 不再纳入当前文件树。三轮独立审计记录见[审计日志](releases/experiment-goal-design-audit-log.md)。
 
+## Method Goal Pursuit v1.0.0
+
+`method-goal-pursuit` 面向方法论文和 AutoSOTA 式持续方法探索。它保持论文贡献、目标会场和评测协议有效，依据文献与实验结果迭代方法候选。每一轮都给出可检验假设、最小条件矩阵、完整官方 benchmark 范围、等预算 baseline 和明确的下一步行动。默认每个条件运行一次、使用一个 seed。失败候选推动下一轮方法调整，所有结果都留在研究记录中。指标、protocol、门槛、benchmark 和 API 冻结规则持续生效。该流程无法承诺分数增长或论文录用。
+
+详见 [`SKILL.md`](skills/method-goal-pursuit/SKILL.md)、[`references/iteration-policy.md`](skills/method-goal-pursuit/references/iteration-policy.md) 和 [`templates/`](skills/method-goal-pursuit/templates/)。下载[完整 v1.0.0 ZIP 包](releases/method-goal-pursuit-v1.0.0.zip)及 [SHA-256 校验文件](releases/method-goal-pursuit-v1.0.0.zip.sha256)。
+
 ## Experiment Execution v1.12.0
 
 `experiment-execution` 强制使用完整官方 benchmark 范围；默认一个 seed 即可完成一次实验，只有官方协议或统计结论确实需要时才增加重复。最后阶段换 seed 寻找更高分属于可选的优化/选择步骤，既不是实验必做项，也不能当作无偏或稳健证据。所有数值目标和决策门槛都必须登记来源、定位、适用性与推导；依据不足时暂停该决策，不猜一个数值。Skill 冻结 protocol/config/source identity，记录 attempt artifacts 并审计 provenance；其他配套 skill 可选。
@@ -313,6 +320,7 @@ cp -R skills/scientific-figure "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/academic-research-presentation "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/paper-reproduction "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/experiment-goal-design "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -R skills/method-goal-pursuit "${CODEX_HOME:-$HOME/.codex}/skills/"
 cp -R skills/experiment-execution "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
@@ -354,6 +362,11 @@ Use $paper-reproduction in REPO_REPRODUCE mode for Table 2 of this paper.
 ```text
 Use $experiment-execution to preflight and audit my benchmark campaign.
 保留完整官方 benchmark 范围；pilot 每个 condition 只用一个 seed；保存 attempt 原始证据，不得把不完整运行写成 benchmark 结果。
+```
+
+```text
+Use $method-goal-pursuit to continue this method-paper project after the latest candidate underperformed.
+保持已批准的研究目标和评测协议，提出下一个有依据的方法，并设计完整 benchmark 范围、等预算 baseline 的实验。
 ```
 
 Scientific Data Analysis 与 Scientific Figure 都可以直接检查本地环境：
@@ -411,6 +424,10 @@ AutoSCI/
 │   │   ├── SKILL.md                    # 研究主张到实验目标；门槛绑定来源
 │   │   ├── references/                 # 可比性与数值决策依据
 │   │   └── templates/                  # 目标契约、可比性矩阵、设计说明
+│   ├── method-goal-pursuit/
+│   │   ├── SKILL.md                    # 固定目标下的证据驱动方法迭代
+│   │   ├── references/                 # 持续推进、比较与报告规则
+│   │   └── templates/                  # 每轮候选与实验记录
 │   └── experiment-execution/
 │       ├── SKILL.md                    # benchmark 完整范围 campaign 工作流
 │       ├── references/                 # benchmark、seed、ledger 与迁移规则
@@ -441,6 +458,7 @@ AutoSCI/
 - `academic-manuscript-writing`: **v2.0.0**，提供 evidence-traceable 论文撰写与修订、dynamic writing profile、manuscript contract、revision lineage 与确定性 release QA。
 - `paper-reproduction`: **v1.2.0**，提供按 claim 管理的复现流程，并对执行 provenance、metric-to-claim 对应关系和子进程环境执行 fail-closed 检查。
 - `experiment-goal-design`: **v4.0.0**，要求 benchmark 使用完整官方范围，记录条件/控制变量与数值门槛依据，生成待批准 protocol 草稿并映射 execution campaign。
+- `method-goal-pursuit`: **v1.0.0**，保持方法论文目标持续推进，以完整 benchmark 和等预算 baseline 验证有依据的方法候选。
 - `scientific-data-analysis`: **v1.6.1**，audit-first 表格数据分析 + 前瞻性 power / sample-size planning，带 deterministic reconciliation 与 release gate。
 - `scientific-figure`: **v2.0.0 stable**。
 - `academic-research-presentation`: **v3.0.0**，当前重点是 evidence-first、diagram safety 与 source visual completeness。
