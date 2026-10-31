@@ -271,13 +271,13 @@ v1.2.0 修复 provenance 和 reconciliation 缺口：target run 的 provenance �
 
 详见 [`SKILL.md`](skills/experiment-goal-design/SKILL.md)、[`references/evidence-and-thresholds.md`](skills/experiment-goal-design/references/evidence-and-thresholds.md) 和 [`templates/`](skills/experiment-goal-design/templates/)。下载[当前完整 v4.0.0 ZIP 包](releases/experiment-goal-design-v4.0.0.zip)及 [SHA-256 校验文件](releases/experiment-goal-design-v4.0.0.zip.sha256)。仓库当前版本只保留最新版完整 ZIP，旧版 ZIP 不再纳入当前文件树。三轮独立审计记录见[审计日志](releases/experiment-goal-design-audit-log.md)。
 
-## Method Goal Pursuit v2.0.0
+## Method Goal Pursuit v2.1.0
 
 `method-goal-pursuit` 用于持续推进方法论文目标，包括 AutoSOTA 式方法探索。每一轮都以 main experiment 为中心，提出可检验的新方法候选；当前候选缺少正向证据时，继续依据失败机制、文献或明确标注的假设调整方法。论文贡献与目标会场持续保留，失败和未完成结果留在研究记录中。
 
-v2.0.0 为尚未冻结的 benchmark 选择加入结果访问门槛，并记录此前看过的结果。评估协议固定官方 task/split 清单、loader/evaluator 版本和每次运行的完整范围审计。Benchmark 选择核验任务匹配、真实世界来源、难度依据、数据时期与人群覆盖、评测有效性和全量访问条件。所有科学条件都使用完整官方范围。main experiment 与少量有依据的 baseline 和 SOTA Method 进行等预算比较。受控 SOTA 对比要求源码公开且许可兼容，权重和其他必需资产分别核验许可、下载和校验信息。访问失败的候选提前排序备用；有效但不利的结果保留在对照中。探索性筛选每个条件运行一次。数值门槛需要适用来源或推导；preflight 前估计完整运行的时间、内存、存储和加速器类型。
+v2.1.0 明确未完成技术 attempt 的恢复方式：保留原始工件，修复有依据的技术故障，使用同一预先登记的 seed 或 API replicate identity 重跑完整官方范围。恢复 attempt 不增加统计重复，部分指标不得用于方法调参。该版本保留 v2.0.0 的 benchmark 结果访问门槛、官方范围清单与逐次审计、真实世界证据、开源对照资产核验和 preflight 资源估算要求。
 
-详见 [`SKILL.md`](skills/method-goal-pursuit/SKILL.md)、[`references/benchmark-selection.md`](skills/method-goal-pursuit/references/benchmark-selection.md)、[`references/iteration-policy.md`](skills/method-goal-pursuit/references/iteration-policy.md) 和 [`templates/`](skills/method-goal-pursuit/templates/)。下载[当前完整 v2.0.0 ZIP 包](releases/method-goal-pursuit-v2.0.0.zip)及 [SHA-256 校验文件](releases/method-goal-pursuit-v2.0.0.zip.sha256)。
+详见 [`SKILL.md`](skills/method-goal-pursuit/SKILL.md)、[`references/benchmark-selection.md`](skills/method-goal-pursuit/references/benchmark-selection.md)、[`references/iteration-policy.md`](skills/method-goal-pursuit/references/iteration-policy.md) 和 [`templates/`](skills/method-goal-pursuit/templates/)。下载[当前完整 v2.1.0 ZIP 包](releases/method-goal-pursuit-v2.1.0.zip)及 [SHA-256 校验文件](releases/method-goal-pursuit-v2.1.0.zip.sha256)。
 
 ## Experiment Execution v1.12.0
 
@@ -460,7 +460,7 @@ AutoSCI/
 - `academic-manuscript-writing`: **v2.0.0**，提供 evidence-traceable 论文撰写与修订、dynamic writing profile、manuscript contract、revision lineage 与确定性 release QA。
 - `paper-reproduction`: **v1.2.0**，提供按 claim 管理的复现流程，并对执行 provenance、metric-to-claim 对应关系和子进程环境执行 fail-closed 检查。
 - `experiment-goal-design`: **v4.0.0**，要求 benchmark 使用完整官方范围，记录条件/控制变量与数值门槛依据，生成待批准 protocol 草稿并映射 execution campaign。
-- `method-goal-pursuit`: **v2.0.0**，benchmark 选择记录结果暴露、任务与真实世界匹配及难度依据；main experiment 使用完整官方范围，并与少量核验过的开源 baseline / SOTA Method 按已记录预算比较。
+- `method-goal-pursuit`: **v2.1.0**，完整官方范围实验的未完成技术 attempt 可用同一 seed/API replicate 恢复，部分结果不会变成统计重复或方法调参依据。
 - `scientific-data-analysis`: **v1.6.1**，audit-first 表格数据分析 + 前瞻性 power / sample-size planning，带 deterministic reconciliation 与 release gate。
 - `scientific-figure`: **v2.0.0 stable**。
 - `academic-research-presentation`: **v3.0.0**，当前重点是 evidence-first、diagram safety 与 source visual completeness。

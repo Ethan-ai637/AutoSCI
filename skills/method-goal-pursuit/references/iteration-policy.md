@@ -18,7 +18,7 @@ A candidate must specify:
 - a relevant source, prior result, theoretical argument, or explicitly provisional engineering hypothesis;
 - an experiment that can distinguish the proposed mechanism from the previous candidate and baseline.
 
-Do not recycle a failed configuration without a reasoned change. Keep exploratory candidate generation separate from confirmatory claims. Exploratory screening uses one run per condition. Additional repeats belong in a prospectively declared confirmatory campaign when justified by the protocol or claim.
+Do not recycle a valid unfavorable configuration without a reasoned method change. Keep exploratory candidate generation separate from confirmatory claims. Exploratory screening uses one complete valid run per condition. Additional valid repeats belong in a prospectively declared confirmatory campaign when justified by the protocol or claim. Technical recovery of an incomplete attempt is handled separately below and does not add a seed or replicate.
 
 ## Outcome access and benchmark choice
 
@@ -41,6 +41,14 @@ Check implementation readiness with static checks, dependency resolution, import
 Budget accounting should identify relevant units such as accelerator time/FLOPs, training tokens, inference tokens/API calls, data access, tuning trials, and wall-clock allocation. Freeze the accounting rule before outcome review. Report unavoidable mismatch and qualify the comparison. Before preflight, estimate full-scope runtime, peak memory, and storage, identify the accelerator class, and cite the evidence used for each estimate.
 
 The condition matrix can stay small by limiting it to the proposed method, selected comparators, and mechanism-relevant ablations. Small applies to the number of conditions; it never authorizes benchmark subsampling, synthetic research data, or evaluator substitution. Do not let an ablation or parameter catalog displace the primary comparison.
+
+## Incomplete execution and technical recovery
+
+Treat an attempt as incomplete when it fails before producing a valid result over the complete frozen scope, including failures that leave missing outputs or an unverifiable scope manifest. Do not treat partial metrics or predictions as a benchmark result or use them to choose or tune the next method candidate. Follow mandatory local artifact-access rules and record any exposure; exclude exposed partial outcomes from the next-candidate rationale. Error messages, environment diagnostics, and provenance may be inspected to identify the technical fault. If partial outcomes have been accessed, classify subsequent candidate evaluation as exploratory and use an untouched outcome source for a confirmatory claim.
+
+When a specific technical fault has a supported correction, preserve the original attempt unchanged and record its cause, artifacts, and config/source/environment hashes. Make a new attempt with a new identity and rerun the complete official scope using the same predeclared seed or replicate. The correction must preserve method semantics, comparator identity, benchmark, metric, analysis, and decision rules. A stateful resume is allowed only when the official protocol supports it and the final audit proves full-scope coverage.
+
+A technical recovery is not an additional statistical replicate. Count only one complete valid run per condition during exploratory screening. If the correction changes method behavior or any frozen contract element, register a new candidate or approve a protocol revision before execution. If a complete valid result is unfavorable, do not classify it as a technical failure or rerun it for a more favorable score; use the evidence to design the next method candidate. Every recovery must fit within the approved resource envelope. API request retries remain governed by their independently frozen retry contract.
 
 ## Frozen contract
 

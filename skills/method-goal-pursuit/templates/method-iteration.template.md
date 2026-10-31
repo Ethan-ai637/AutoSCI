@@ -63,6 +63,15 @@
 - Evidence class: exploratory | confirmatory | incomplete
 - Observed result and raw evidence paths/hashes:
 - Full-scope audit result and manifest reference:
+- Attempt history, including incomplete attempts and recovery IDs:
+
+| Attempt ID | Purpose | Status and technical cause | Seed/replicate | Config/source/environment hashes | Full-scope manifest | Partial metrics/predictions accessed and reason |
+| --- | --- | --- | --- | --- | --- | --- |
+| | | | | | | |
+
+- Recovery correction and evidence that method semantics stayed fixed:
+- Recovery used the same predeclared seed/replicate: yes | no | not applicable
+- Recovery resource use remained within approved estimate: yes | no | not applicable
 - What the result supports:
 - What it rules out:
 - What remains uncertain:
@@ -89,6 +98,7 @@
 - Ranked fallback comparators for access/implementation failure, frozen before outcomes:
 - Unavailable or incompatible candidates and documented reason:
 - Rule preventing replacement based on an unfavorable valid result:
+- Technical retry rule for incomplete attempts and frozen API retry policy:
 - Partial-run and failure handling:
 - Matched resource dimensions, units, values, and evidence/derivation:
 - Full-campaign runtime estimate and evidence:

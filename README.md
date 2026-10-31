@@ -275,13 +275,13 @@ See [`SKILL.md`](skills/paper-reproduction/SKILL.md), [`references/`](skills/pap
 
 See [`SKILL.md`](skills/experiment-goal-design/SKILL.md), [`references/evidence-and-thresholds.md`](skills/experiment-goal-design/references/evidence-and-thresholds.md), and [`templates/`](skills/experiment-goal-design/templates/). Download the [current complete v4.0.0 package](releases/experiment-goal-design-v4.0.0.zip) and its [SHA-256 file](releases/experiment-goal-design-v4.0.0.zip.sha256). The current repository tree keeps only the latest complete package; earlier ZIP archives are omitted. Review the [three-round independent audit log](releases/experiment-goal-design-audit-log.md).
 
-## Method Goal Pursuit v2.0.0
+## Method Goal Pursuit v2.1.0
 
 `method-goal-pursuit` sustains a method-paper goal through evidence-led method iterations, including AutoSOTA-style workflows. Each round proposes a concrete next method and keeps the main experiment central, even when earlier candidates lack positive evidence. The declared contribution and venue goal remain active; unfavorable and incomplete outcomes stay visible.
 
-Version 2.0.0 adds an outcome-access gate for open benchmark selection and records any prior exposure. It freezes the exact official task/split inventory, loader and evaluator revisions, and per-attempt full-scope audit. Benchmark selection checks task fit, real-world provenance, documented challenge, population and data-period coverage, evaluation validity, and full-scope access. Each scientific condition uses the complete official scope. The main experiment compares the candidate with a small, justified set of baselines and SOTA methods under documented budgets. Controlled SOTA methods require publicly accessible, compatible source plus separately verified required assets and terms. Access fallbacks are ranked before outcomes; a valid unfavorable result does not justify replacing a comparator. Exploratory screening uses one run per condition. Numeric gates require an applicable source or derivation, and resource estimates cover runtime, memory, storage, and accelerator class before preflight.
+Version 2.1.0 clarifies how to recover from an incomplete technical attempt: preserve its artifacts, correct a supported fault, and rerun the complete official scope with the same predeclared seed or API replicate identity. Such recovery does not add a statistical replicate, and partial metrics stay out of method tuning. It retains v2.0.0's outcome-access gate, exact official scope inventory and audit, real-world benchmark evidence, verified open-source comparator assets, and resource estimates before preflight.
 
-See [`SKILL.md`](skills/method-goal-pursuit/SKILL.md), [`references/benchmark-selection.md`](skills/method-goal-pursuit/references/benchmark-selection.md), [`references/iteration-policy.md`](skills/method-goal-pursuit/references/iteration-policy.md), and [`templates/`](skills/method-goal-pursuit/templates/). Download the [current complete v2.0.0 package](releases/method-goal-pursuit-v2.0.0.zip) and its [SHA-256 file](releases/method-goal-pursuit-v2.0.0.zip.sha256).
+See [`SKILL.md`](skills/method-goal-pursuit/SKILL.md), [`references/benchmark-selection.md`](skills/method-goal-pursuit/references/benchmark-selection.md), [`references/iteration-policy.md`](skills/method-goal-pursuit/references/iteration-policy.md), and [`templates/`](skills/method-goal-pursuit/templates/). Download the [current complete v2.1.0 package](releases/method-goal-pursuit-v2.1.0.zip) and its [SHA-256 file](releases/method-goal-pursuit-v2.1.0.zip.sha256).
 
 ## Experiment Execution v1.12.0
 
@@ -470,7 +470,7 @@ Each skill is self-contained and can be copied into a local Codex skills directo
 - **Academic Research Presentation:** `v3.0.0`, focused on evidence-first presentation design, diagram safety, and complete acquisition of paper figures/tables.
 - **Experiment Execution:** `v1.12.0`, benchmark-complete campaign preflight and attempt-level provenance audit with staged seed use.
 - **Experiment Goal Design:** `v4.0.0`, full-official-scope benchmark goals, source-grounded thresholds, condition matrices, approved protocol drafts, and compatible campaign handoff.
-- **Method Goal Pursuit:** `v2.0.0`, benchmark choice records outcome exposure, real-world task fit and challenge; main experiments preserve full official scope and compare a small set of verified open-source baseline/SOTA methods under documented budgets.
+- **Method Goal Pursuit:** `v2.1.0`, benchmark choice records outcome exposure and full official scope; incomplete technical attempts can recover on the same seed or API replicate without counting as extra replicates.
 
 ## Acknowledgements
 
